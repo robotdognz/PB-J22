@@ -24,7 +24,7 @@ public class RoomTemplates : MonoBehaviour
     // keep track of rooms
     public List<Room> rooms;
 
-    private void Start()
+    private void Awake()
     {
         roomCount = dungeonSize - 1; // minus one to account for first room
         rooms = new List<Room>();
@@ -55,7 +55,7 @@ public class RoomTemplates : MonoBehaviour
             Destroy(spawnPoints[i].gameObject);
         }
 
-        // close off rooms
+        // close off rooms and add sprites
         foreach (Room room in rooms)
         {
             if (room.top && topWall != null)
@@ -64,7 +64,8 @@ public class RoomTemplates : MonoBehaviour
                 GameObject newWall = Instantiate(topWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made top wall");
-                room.top = false;
+                // room.top = false;
+                room.RemoveTopDoor();
             }
             if (room.right && rightWall != null)
             {
@@ -72,7 +73,8 @@ public class RoomTemplates : MonoBehaviour
                 GameObject newWall = Instantiate(rightWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made right wall");
-                room.right = false;
+                // room.right = false;
+                room.RemoveRightDoor();
             }
             if (room.bottom && bottomWall != null)
             {
@@ -80,7 +82,8 @@ public class RoomTemplates : MonoBehaviour
                 GameObject newWall = Instantiate(bottomWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made bottom wall");
-                room.bottom = false;
+                // room.bottom = false;
+                room.RemoveBottomDoor();
             }
             if (room.left && leftWall != null)
             {
@@ -88,14 +91,15 @@ public class RoomTemplates : MonoBehaviour
                 GameObject newWall = Instantiate(leftWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made left wall");
-                room.left = false;
+                // room.left = false;
+                room.RemoveLeftDoor();
             }
 
-            // add sprite onto room
+            // TODO: add sprite onto room
         }
 
-        // add player to start room
+        // TODO: add player to start room
 
-        // add end/boss to end room
+        // TODO: add end/boss to end room
     }
 }
