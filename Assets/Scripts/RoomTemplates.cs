@@ -9,12 +9,31 @@ public class RoomTemplates : MonoBehaviour
     [SerializeField] GameObject bottomWall;
     [SerializeField] GameObject leftWall;
 
+    // public GameObject topRoomClosed;
+    // public GameObject rightRoomClosed;
+    // public GameObject bottomRoomClosed;
+    // public GameObject leftRoomClosed;
     public GameObject[] topRooms;
     public GameObject[] rightRooms;
     public GameObject[] bottomRooms;
     public GameObject[] leftRooms;
 
-    [SerializeField] int roomCount = 20;
+
+    [SerializeField] int dungeonSize = 20;
+    private int roomCount;
+
+    int rand;
+
+    // public GameObject GetTopRoom()
+    // {
+    //     rand = Random.Range(0, templates.topRooms.Length);
+
+    // }
+
+    private void Start()
+    {
+        roomCount = dungeonSize - 1;
+    }
 
     public int GetRemainingRooms()
     {
@@ -26,7 +45,7 @@ public class RoomTemplates : MonoBehaviour
         roomCount--;
         if (roomCount <= 0)
         {
-            Invoke("FinalCheck", 0.5f);
+            Invoke("FinalCheck", 0.1f);
         }
     }
 
@@ -36,16 +55,17 @@ public class RoomTemplates : MonoBehaviour
         Room[] rooms = FindObjectsOfType<Room>();
         foreach (Room room in rooms)
         {
-            // if (room.IsComplete())
-            // {
-            //     continue;
-            // }
+            if (room.IsComplete())
+            {
+                // add sprite onto room
+            }
             if (room.top && topWall != null)
             {
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(topWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made top wall");
+                room.top = false;
             }
             if (room.right && rightWall != null)
             {
@@ -53,6 +73,7 @@ public class RoomTemplates : MonoBehaviour
                 GameObject newWall = Instantiate(rightWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made right wall");
+                room.right = false;
             }
             if (room.bottom && bottomWall != null)
             {
@@ -60,6 +81,7 @@ public class RoomTemplates : MonoBehaviour
                 GameObject newWall = Instantiate(bottomWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made bottom wall");
+                room.bottom = false;
             }
             if (room.left && leftWall != null)
             {
@@ -67,9 +89,10 @@ public class RoomTemplates : MonoBehaviour
                 GameObject newWall = Instantiate(leftWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made left wall");
+                room.left = false;
             }
+
+            // add sprite onto room
         }
     }
-
-    // rooms should have references to their neighbors, graph structure. This will have lots of uses I can think of when I'm not absolutely wrecked.
 }

@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 140.03352
+  orthographic size: 57.978943
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -299,19 +299,17 @@ MonoBehaviour:
   leftWall: {fileID: 8486601113098030502, guid: c5dca5cc06e076546a10aa5f6506f15b, type: 3}
   topRooms:
   - {fileID: 8486601113098030502, guid: 2127628c9933d644285ad5a42e402c03, type: 3}
-  - {fileID: 5318475198461444993, guid: 8ff8f72b02d61b24da49d896796eeb5b, type: 3}
+  - {fileID: 8486601113098030502, guid: b1d9952d4a9415f41a792587f88d11ec, type: 3}
   rightRooms:
   - {fileID: 8486601113098030502, guid: 2127628c9933d644285ad5a42e402c03, type: 3}
   - {fileID: 8486601113098030502, guid: 25116c6bfc98a3146ac762baf1041250, type: 3}
-  - {fileID: 5318475198461444993, guid: 8991205ec6fcca442b4e6dd17301ce4e, type: 3}
   bottomRooms:
   - {fileID: 8486601113098030502, guid: 2127628c9933d644285ad5a42e402c03, type: 3}
-  - {fileID: 5318475198461444993, guid: 7110f9c3714aef944866992f24389dcb, type: 3}
+  - {fileID: 8486601113098030502, guid: b1d9952d4a9415f41a792587f88d11ec, type: 3}
   leftRooms:
   - {fileID: 8486601113098030502, guid: 2127628c9933d644285ad5a42e402c03, type: 3}
   - {fileID: 8486601113098030502, guid: 25116c6bfc98a3146ac762baf1041250, type: 3}
-  - {fileID: 2185638908019907407, guid: 61f777d68c1e65c4890836f5bf80d7e7, type: 3}
-  roomCount: 20
+  dungeonSize: 20
 --- !u!4 &1581055387
 Transform:
   m_ObjectHideFlags: 0

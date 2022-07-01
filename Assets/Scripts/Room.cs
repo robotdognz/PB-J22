@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    [SerializeField] bool doorTop;
+    [SerializeField] bool doorRight;
+    [SerializeField] bool doorBottom;
+    [SerializeField] bool doorLeft;
+
     // door sides, aka required rooms
     public bool top;
     public bool right;
@@ -34,4 +39,6 @@ public class Room : MonoBehaviour
         }
         return false;
     }
+
+    
 }
