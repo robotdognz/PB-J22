@@ -22,7 +22,7 @@ public class RoomSpawner : MonoBehaviour
     {
         if (!spawned)
         {
-            if (templates.roomCount > 0)
+            if (templates.GetRemainingRooms() > 0)
             {
                 // TODO: spawn open room (another door other than the one we're coming from)
 
@@ -50,20 +50,39 @@ public class RoomSpawner : MonoBehaviour
                         break;
                 }
                 spawned = true;
-                templates.roomCount--;
+                templates.DecrementRemainingRooms();
             }
             else
             {
                 // TODO: spawn a closed room (only one entrance)
             }
         }
-        Debug.Log("Spawn");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("SpawnPoint")) // && other.GetComponent<RoomSpawner>().spawned == true
         {
+            if (other.GetComponent<Room>() != null)
+            {
+                Room room = other.GetComponent<Room>();
+                // this spawn point was created on top of an existing room
+                switch (openingDirection)
+                {
+                    case Direction.Top:
+                        room.top = false;
+                        break;
+                    case Direction.Right:
+                        room.right = false;
+                        break;
+                    case Direction.Bottom:
+                        room.bottom = false;
+                        break;
+                    case Direction.Left:
+                        room.left = false;
+                        break;
+                }
+            }
 
             if (other.GetComponent<RoomSpawner>() != null && other.GetComponent<RoomSpawner>().spawned == false && spawned == false)
             {

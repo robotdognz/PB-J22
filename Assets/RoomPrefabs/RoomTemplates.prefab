@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6099767115999452692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6099767115999452694}
+  - component: {fileID: 6099767115999452695}
+  m_Layer: 0
+  m_Name: RoomTemplates
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6099767115999452694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6099767115999452692}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6099767115999452695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6099767115999452692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fccdfede1eec28b4cbaa3aa2bca00a0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftWall: {fileID: 8486601113098030502, guid: c5dca5cc06e076546a10aa5f6506f15b, type: 3}
+  topRooms:
+  - {fileID: 8486601113098030502, guid: 2127628c9933d644285ad5a42e402c03, type: 3}
+  - {fileID: 5318475198461444993, guid: 8ff8f72b02d61b24da49d896796eeb5b, type: 3}
+  rightRooms:
+  - {fileID: 8486601113098030502, guid: 2127628c9933d644285ad5a42e402c03, type: 3}
+  - {fileID: 8486601113098030502, guid: 25116c6bfc98a3146ac762baf1041250, type: 3}
+  - {fileID: 5318475198461444993, guid: 8991205ec6fcca442b4e6dd17301ce4e, type: 3}
+  bottomRooms:
+  - {fileID: 8486601113098030502, guid: 2127628c9933d644285ad5a42e402c03, type: 3}
+  - {fileID: 5318475198461444993, guid: 7110f9c3714aef944866992f24389dcb, type: 3}
+  leftRooms:
+  - {fileID: 8486601113098030502, guid: 2127628c9933d644285ad5a42e402c03, type: 3}
+  - {fileID: 8486601113098030502, guid: 25116c6bfc98a3146ac762baf1041250, type: 3}
+  - {fileID: 2185638908019907407, guid: 61f777d68c1e65c4890836f5bf80d7e7, type: 3}
+  roomCount: 0
