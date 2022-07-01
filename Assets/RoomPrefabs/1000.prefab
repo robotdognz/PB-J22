@@ -1561,7 +1561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6665574535394791423, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
       propertyPath: m_Name
-      value: RoomPont
+      value: RoomPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}

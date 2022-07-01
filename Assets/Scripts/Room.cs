@@ -20,6 +20,8 @@ public class Room : MonoBehaviour
     private void Start()
     {
         sRenderer = GetComponent<SpriteRenderer>();
+        RoomTemplates templates = FindObjectOfType<RoomTemplates>();
+        templates.rooms.Add(this);
     }
 
 
@@ -40,5 +42,5 @@ public class Room : MonoBehaviour
         return false;
     }
 
-    
+
 }

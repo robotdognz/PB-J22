@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6324843429124159923}
   - component: {fileID: 5291314010604805564}
   m_Layer: 0
-  m_Name: RoomPont
+  m_Name: RoomPoint
   m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
