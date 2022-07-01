@@ -1,0 +1,12 @@
+0000
+
+1234
+
+1 = Top
+2 = Right
+3 = Bottom
+4 = Left
+
+so
+
+0100 = Right door only
