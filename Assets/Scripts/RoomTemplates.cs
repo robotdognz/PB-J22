@@ -115,8 +115,19 @@ public class RoomTemplates : MonoBehaviour
         DoorSpawner[] doorSpawners = FindObjectsOfType<DoorSpawner>();
         for (int i = doorSpawners.Length - 1; i >= 0; i--)
         {
-            Instantiate(door, doorSpawners[i].transform.position, Quaternion.identity);
-            Destroy(doorSpawners[i].gameObject);
+            // get the door spawner
+            DoorSpawner ds = doorSpawners[i];
+
+
+            // build the door
+            GameObject tempDoorObject = Instantiate(door, ds.transform.position, Quaternion.identity);
+            Door tempDoor = tempDoorObject.GetComponent<Door>();
+
+
+            tempDoor.AddRooms(ds.GetParentRooms());
+
+            // Cleanup
+            Destroy(ds.gameObject);
         }
     }
 }

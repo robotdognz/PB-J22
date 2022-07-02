@@ -216,7 +216,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6099767115999452692, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: m_Name
-      value: RoomTemplates
+      value: DungeonManager
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452694, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: m_RootOrder

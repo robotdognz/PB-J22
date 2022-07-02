@@ -801,6 +801,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
+--- !u!114 &3829314652035249189 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4186806727723328424, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
+  m_PrefabInstance: {fileID: 1098583547266488205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887125ae1d60d954b9bc282831058baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5651458180757859142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4706526247795326155, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
@@ -981,6 +992,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4828226412657650616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
+      propertyPath: parentRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828226412657650616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
+      propertyPath: parentRooms.Array.data[0]
+      value: 
+      objectReference: {fileID: 3829314652035249189}
     - target: {fileID: 8473976245316974616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
       propertyPath: m_Name
       value: DoorPoint (3)
@@ -1291,6 +1310,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4828226412657650616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
+      propertyPath: parentRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828226412657650616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
+      propertyPath: parentRooms.Array.data[0]
+      value: 
+      objectReference: {fileID: 3829314652035249189}
     - target: {fileID: 8473976245316974616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
       propertyPath: m_Name
       value: DoorPoint
@@ -2345,6 +2372,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4828226412657650616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
+      propertyPath: parentRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828226412657650616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
+      propertyPath: parentRooms.Array.data[0]
+      value: 
+      objectReference: {fileID: 3829314652035249189}
     - target: {fileID: 8473976245316974616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
       propertyPath: m_Name
       value: DoorPoint (1)
@@ -2469,6 +2504,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4828226412657650616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
+      propertyPath: parentRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828226412657650616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
+      propertyPath: parentRooms.Array.data[0]
+      value: 
+      objectReference: {fileID: 3829314652035249189}
     - target: {fileID: 8473976245316974616, guid: 2495628862cf8f84ab5351e2d574dbb3, type: 3}
       propertyPath: m_Name
       value: DoorPoint (2)
