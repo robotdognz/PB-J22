@@ -133,7 +133,7 @@ public class RoomTemplates : MonoBehaviour
     public void SetupPlayer()
     {
         // add player to start room
-        GameObject newPlayer = Instantiate(player, rooms[0].transform.position, Quaternion.identity);
+        // GameObject newPlayer = Instantiate(player, rooms[0].transform.position, Quaternion.identity);
 
         // add end/boss to end room
         GameObject newBoss = Instantiate(boss, rooms[rooms.Count-1].transform.position, Quaternion.identity);
