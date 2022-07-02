@@ -16,8 +16,6 @@ public class Room : MonoBehaviour
     [HideInInspector] public bool bottom;
     [HideInInspector] public bool left;
 
-    SpriteRenderer sRenderer;
-
     [SerializeField] List<Door> childDoors;
 
     private void Awake()
@@ -31,18 +29,8 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
-        sRenderer = GetComponent<SpriteRenderer>();
         RoomTemplates templates = FindObjectOfType<RoomTemplates>();
         templates.rooms.Add(this);
-    }
-
-
-    private void Update()
-    {
-        if (IsComplete())
-        {
-            sRenderer.color = new Color(255, 0, 0);
-        }
     }
 
     public bool IsComplete()
@@ -76,17 +64,6 @@ public class Room : MonoBehaviour
     {
         doorLeft = false;
         left = false;
-    }
-
-    public void AddDoors(List<Door> doors)
-    {
-        foreach (Door door in doors)
-        {
-            if (!childDoors.Contains(door))
-            {
-                childDoors.Add(door);
-            }
-        }
     }
 
     public void AddDoor(Door door)

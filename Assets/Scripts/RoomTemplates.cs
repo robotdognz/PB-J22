@@ -16,7 +16,9 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] bottomRooms;
     public GameObject[] leftRooms;
 
-    // door object
+    // game object
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject boss;
     [SerializeField] GameObject door;
 
     // dungeon generation
@@ -45,6 +47,7 @@ public class RoomTemplates : MonoBehaviour
         {
             Invoke("CloseRooms", 0.1f);
             Invoke("BuildDoors", 0.2f);
+            Invoke("SetupPlayer", 0.3f);
         }
     }
 
@@ -68,7 +71,6 @@ public class RoomTemplates : MonoBehaviour
                 GameObject newWall = Instantiate(topWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made top wall");
-                // room.top = false;
                 room.RemoveTopDoor();
             }
             if (room.right && rightWall != null)
@@ -77,7 +79,6 @@ public class RoomTemplates : MonoBehaviour
                 GameObject newWall = Instantiate(rightWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made right wall");
-                // room.right = false;
                 room.RemoveRightDoor();
             }
             if (room.bottom && bottomWall != null)
@@ -86,7 +87,6 @@ public class RoomTemplates : MonoBehaviour
                 GameObject newWall = Instantiate(bottomWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made bottom wall");
-                // room.bottom = false;
                 room.RemoveBottomDoor();
             }
             if (room.left && leftWall != null)
@@ -95,18 +95,11 @@ public class RoomTemplates : MonoBehaviour
                 GameObject newWall = Instantiate(leftWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
                 Debug.Log("Made left wall");
-                // room.left = false;
                 room.RemoveLeftDoor();
             }
 
             // TODO: add sprite onto room
         }
-
-
-
-        // TODO: add player to start room
-
-        // TODO: add end/boss to end room
     }
 
     public void BuildDoors()
@@ -118,7 +111,6 @@ public class RoomTemplates : MonoBehaviour
             // get the door spawner
             DoorSpawner ds = doorSpawners[i];
 
-
             // build the door
             GameObject tempDoorObject = Instantiate(door, ds.transform.position, Quaternion.identity);
             Door tempDoor = tempDoorObject.GetComponent<Door>();
@@ -126,16 +118,24 @@ public class RoomTemplates : MonoBehaviour
             // setup room-door connections
             List<Room> parentRooms = ds.GetParentRooms();
             // add doors to room
-            foreach(Room room in parentRooms)
+            foreach (Room room in parentRooms)
             {
                 room.AddDoor(tempDoor);
             }
             //add rooms to door
             tempDoor.AddRooms(parentRooms);
 
-
             // Cleanup
             Destroy(ds.gameObject);
         }
+    }
+
+    public void SetupPlayer()
+    {
+        // add player to start room
+        GameObject newPlayer = Instantiate(player, rooms[0].transform.position, Quaternion.identity);
+
+        // add end/boss to end room
+        GameObject newBoss = Instantiate(boss, rooms[rooms.Count-1].transform.position, Quaternion.identity);
     }
 }
