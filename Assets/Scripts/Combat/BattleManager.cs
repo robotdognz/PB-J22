@@ -23,22 +23,16 @@ namespace Alchemy.Combat
         {
             get
             {
-                /*  // This is the final version of the code. I've commented it out so I can test easily
+                 // This is the final version of the code. I've commented it out so I can test easily
                 List<Battler> Bs = new List<Battler>();
-                foreach (ActorStats Actor in BattleSystem.Battlers)
+                int I = 0;
+                foreach (ActorStats Actor in BattleStarter.Battlers)
                 {
+                    if (I == 0)
+                        UIManager.Instance.PlayerStats = Actor;
                     Bs.Add(new Battler() { Stats = Actor });
+                    I++;
                 }
-                return Bs.ToArray();
-                */
-
-                List<Battler> Bs = new List<Battler>();
-                foreach (ActorStats Actor in FindObjectsOfType<ActorStats>())
-                {
-                    Actor.ResetStats();
-                    Bs.Add(new Battler() { Stats = Actor });
-                }
-
                 return Bs.ToArray();
             }
         }
