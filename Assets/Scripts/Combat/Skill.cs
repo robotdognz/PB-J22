@@ -29,10 +29,10 @@ namespace Alchemy.Combat
         [Space]
         public Stat BasedStat = Stat.Arcana;
         [Space]
-        [Tooltip("If this is a healing skill, set this to a negative!")]
         public bool CanCrit = true;
         public float CritMultiplier = 1.3f;
         [Range(0, 1)] public float Variance = 0.2f;
+        [Tooltip("If this is a healing skill, set this to a negative!")]
         public float m_Damage = 1;
         public Element DamageElement;
         [Space]

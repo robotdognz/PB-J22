@@ -33,8 +33,8 @@ namespace Alchemy.Stats
         {
             Combat.OutputDamage Damage = Skill.Damage(Stats, CurrentLevel);
 
-            StartCoroutine(SpawnEffect(Skill.IndicatorDelay, Skill.Effect, Target, Damage));
             Combat.BattleManager.Instance.ClearATB(this);
+            StartCoroutine(SpawnEffect(Skill.IndicatorDelay, Skill.Effect, Target, Damage));
         }
 
         private IEnumerator SpawnEffect(float Delay, GameObject Effect, ActorStats Target, Combat.OutputDamage Damage)
@@ -44,6 +44,27 @@ namespace Alchemy.Stats
             Target.ModifyHealth(Mathf.RoundToInt(Damage.Damage));
 
             Combat.BattleManager.ShowDamagePopup(Target.transform, Damage.Damage, Damage.WasCrit);
+        }
+
+        public void ProcessTurn()
+        {
+            switch (DecisionMaker)
+            {
+                case DecisionStyle.AI:
+                    {
+                        Combat.Skill Skill = Skills[Random.Range(0, Skills.Count)];
+
+                        if (Skill.m_Damage >= 0)
+                        {
+                            UseSkill(Skill, this);
+                        }
+                        else
+                        {
+                            UseSkill(Skill, Combat.UIManager.Instance.PlayerStats);
+                        }
+                    }
+                    break;
+            }            
         }
 
         /// <summary>
