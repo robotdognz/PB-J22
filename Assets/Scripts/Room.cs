@@ -18,7 +18,7 @@ public class Room : MonoBehaviour
 
     [SerializeField] List<Door> childDoors;
 
-    public GameObject enemies = null;
+    private GameObject enemies = null;
 
     float roomDiameter = 3.5f;
 
@@ -93,25 +93,20 @@ public class Room : MonoBehaviour
             if (enemies != null)
             {
                 Vector2 playerTemp = other.transform.position;
-                // if (playerTemp.x == transform.position.x && playerTemp.y == transform.position.y)
-                // {
-                //     // don't do player snapping if this is the start of the game
-                //     return;
-                // }
 
                 if (Mathf.Abs(playerTemp.x - transform.position.x) > Mathf.Abs(playerTemp.y - transform.position.y))
                 {
                     // snap on x axis to edge of room
                     if (playerTemp.x < transform.position.x)
                     {
-                        Debug.Log("x snap, to left side of room");
+                        // Debug.Log("x snap, to left side of room");
                         playerTemp.x = transform.position.x - roomDiameter;
                         playerTemp.y = playerBody.transform.position.y;
                         playerBody.transform.position = playerTemp;
                     }
                     else
                     {
-                        Debug.Log("x snap, to right side of room");
+                        // Debug.Log("x snap, to right side of room");
                         playerTemp.x = transform.position.x + roomDiameter;
                         playerTemp.y = playerBody.transform.position.y;
                         playerBody.transform.position = playerTemp;
@@ -122,7 +117,7 @@ public class Room : MonoBehaviour
                     // snap on y axis to edge of room
                     if (playerTemp.y < transform.position.y)
                     {
-                        Debug.Log("y snap, to bottom of room");
+                        // Debug.Log("y snap, to bottom of room");
                         playerTemp.x = playerBody.transform.position.x;
                         playerTemp.y = transform.position.y - roomDiameter;
                         playerBody.transform.position = playerTemp;
@@ -130,7 +125,7 @@ public class Room : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("y snap, to top of room");
+                        // Debug.Log("y snap, to top of room");
                         playerTemp.x = playerBody.transform.position.x;
                         playerTemp.y = transform.position.y + roomDiameter;
                         playerBody.transform.position = playerTemp;
@@ -145,6 +140,34 @@ public class Room : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void RoomCleared()
+    {
+        Debug.Log("Room Cleared");
+        RemoveEnemies();
+        // deactivate doors
+        foreach (Door door in childDoors)
+        {
+            door.EndCombat();
+        }
+    }
+
+    public void AddEnemies(GameObject enemyLayout)
+    {
+        enemies = enemyLayout;
+        enemies.GetComponent<EnemyLayout>().EnemiesDefeated += RoomCleared;
+    }
+
+    public bool HasEnemies()
+    {
+        return enemies != null;
+    }
+
+    public void RemoveEnemies()
+    {
+        Destroy(enemies);
+        enemies = null;
     }
 
 }

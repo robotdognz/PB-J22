@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Combat starts!");
+
+            // temp kill the enemy immediately, replace this with Sky's combat system
+            Kill();
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Kill()
     {
-        
+        GetComponentInParent<EnemyLayout>().KillEnemy(this);
     }
 }

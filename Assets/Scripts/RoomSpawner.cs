@@ -58,7 +58,7 @@ public class RoomSpawner : MonoBehaviour
                 GameObject enemies = Instantiate(templates.enemyLayouts[rand], transform.position, Quaternion.identity);
                 if (spawnedRoom != null)
                 {
-                    spawnedRoom.GetComponentInChildren<Room>().enemies = enemies;
+                    spawnedRoom.GetComponentInChildren<Room>().AddEnemies(enemies); //.enemies = enemies;
                 }
             }
         }

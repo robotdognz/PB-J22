@@ -141,10 +141,11 @@ public class RoomTemplates : MonoBehaviour
 
         // add end/boss to end room
         GameObject newBoss = Instantiate(boss, rooms[rooms.Count-1].transform.position, Quaternion.identity);
-        if(rooms[rooms.Count-1].enemies != null)
+        if(rooms[rooms.Count-1].HasEnemies()) //enemies != null)
         {
-            Destroy(rooms[rooms.Count-1].enemies);
-            rooms[rooms.Count-1].enemies = null;
+            rooms[rooms.Count-1].RemoveEnemies();
+            // Destroy(rooms[rooms.Count-1].enemies);
+            // rooms[rooms.Count-1].enemies = null;
         }
     }
 }

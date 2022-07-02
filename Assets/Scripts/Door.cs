@@ -9,6 +9,8 @@ public class Door : MonoBehaviour
 
     public bool isLocked = false;
 
+    private bool hasBeenOpened = false;
+
     public void AddRooms(List<Room> rooms)
     {
         foreach (Room room in rooms)
@@ -18,6 +20,16 @@ public class Door : MonoBehaviour
                 parentRooms.Add(room);
             }
         }
+    }
+
+    public void EndCombat()
+    {
+        isLocked = false;
+        if (hasBeenOpened)
+        {
+            OpenDoor();
+        }
+
     }
 
     public void CloseDoor()
@@ -31,6 +43,7 @@ public class Door : MonoBehaviour
         {
             return;
         }
+        hasBeenOpened = true;
         doorBody.SetActive(false);
     }
 }
