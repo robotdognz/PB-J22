@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b048aef8c26b38444bb4b9ed424ec308, type: 3}
+  m_Name: Bonfire
+  m_EditorClassIdentifier: 
+  DisplayedName: Short Rest
+  Description: Restores LOADS of SP
+  Icon: {fileID: 21300000, guid: dbf1789041181374ea987b762c91edb2, type: 3}
+  BasedStat: 3
+  StaminaCost: -15
+  CanCrit: 0
+  CritMultiplier: 1.3
+  Variance: 0.2
+  m_Damage: 5
+  DamageElement: 0
+  IndicatorDelay: 0
+  Effect: {fileID: 8143230463268424904, guid: 9610bb6f585263b4289a33b5eabff780, type: 3}
+  StatusEffects:
+  - Effect: {fileID: 11400000, guid: 0110ff974cdd8a345ae74cd8cbfc4824, type: 2}
+    Chance: 100
+    Certain: 1

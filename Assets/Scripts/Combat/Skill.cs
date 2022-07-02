@@ -18,6 +18,8 @@ namespace Alchemy.Combat
     {
         public float Damage;
         public bool WasCrit;
+        public bool WasWeak;
+        public StatusEffect[] Effects;
     }
 
     [CreateAssetMenu(fileName = "New Skill", menuName = "Create Skill")]
@@ -39,8 +41,10 @@ namespace Alchemy.Combat
         [Space]
         public float IndicatorDelay = 0;
         public GameObject Effect;
+        [Space]
+        public StatusEffectValue[] StatusEffects;
 
-        public OutputDamage Damage(StatHolder Stats, int Level = 1)
+        public OutputDamage Damage(StatHolder Stats, int Level = 1, ActorStats Target = null)
         {
             float Dmg = m_Damage;
                 
@@ -76,7 +80,32 @@ namespace Alchemy.Combat
                 WasCrit = true;
             }
 
-            return new OutputDamage() { Damage = Dmg, WasCrit = WasCrit };
+            List<StatusEffect> Effects = new List<StatusEffect>();
+
+            if (StatusEffects != null)
+            {
+                if (Target && StatusEffects.Length > 0)
+                {
+                    foreach (StatusEffectValue V in StatusEffects)
+                    {
+                        int Roll = Random.Range(0, 100);
+
+                        Debug.Log($"Rolled {Roll + Target.Luck}, needed {V.Chance}");
+
+                        if (Roll + Target.Luck <= V.Chance || V.Certain)
+                        {
+                            Effects.Add(V.Effect);
+                        }
+                    }
+                }
+            }
+
+            foreach (StatusEffect E in Effects)
+            {
+                Debug.Log(E.Name);
+            }
+
+            return new OutputDamage() { Damage = Dmg, WasCrit = WasCrit, Effects = Effects.ToArray() };
         }
     }
 }

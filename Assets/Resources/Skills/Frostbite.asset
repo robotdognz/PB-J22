@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayedName: Frostbite
   Description: Cast a frostbite at one foe
-  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  Icon: {fileID: 21300000, guid: 15a1578c7c23b1245ac9a568ab3686b8, type: 3}
   BasedStat: 3
-  StaminaCost: 3
+  StaminaCost: 25
   CanCrit: 1
-  CritMultiplier: 1.4
+  CritMultiplier: 1.6
   Variance: 0.2
   m_Damage: -7
   DamageElement: 2
   IndicatorDelay: 0.6
   Effect: {fileID: 4653059587843408715, guid: 6b34a2ca3517f4040b8e00eb746a56f0, type: 3}
+  StatusEffects: []

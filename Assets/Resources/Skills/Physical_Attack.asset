@@ -20,7 +20,8 @@ MonoBehaviour:
   CanCrit: 1
   CritMultiplier: 1.3
   Variance: 0.2
-  m_Damage: -1
+  m_Damage: -7.5
   DamageElement: 0
   IndicatorDelay: 0.15
   Effect: {fileID: 1454847043746168268, guid: 94333b503984d244c9d5979af71c898d, type: 3}
+  StatusEffects: []

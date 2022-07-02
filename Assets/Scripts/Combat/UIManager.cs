@@ -44,6 +44,21 @@ namespace Alchemy.Combat
         public Transform TargetsRoot;
         public GameObject TargetsButton;
         private List<GameObject> TargetButtons = new List<GameObject>();
+        [Space]
+        public GameObject StatusEffectImage;
+        public Transform StatusEffects;
+        private List<GameObject> SpawnedIcons = new List<GameObject>();
+
+        [Header("Aftermath")]
+        public Image Darkinator;
+        public GameObject AftermathScreen;
+        [Space]
+        public Text LevelProgress;
+        public Image LevelUpBar;
+        public GameObject LevelUpAnnounce;
+        [Space]
+        public Transform ItemsGained;
+        public GameObject GainedItemObject;
 
         public void RefreshSkillsList()
         {
@@ -84,6 +99,27 @@ namespace Alchemy.Combat
                 {
                     BattleManager.PlayerLoadedTarget = Actor;
                     PlayerStats.UseSkill(BattleManager.PlayerLoadedSkill, Actor);
+
+                    if (PlayerStats.StatusEffects.Count > 0)
+                    {
+                        try
+                        {
+                            foreach (InstancedStatusEffect Effect in PlayerStats.StatusEffects)
+                            {
+                                Effect.TurnsRemaining--;
+                                if (Effect.TurnsRemaining <= 0)
+                                {
+                                    PlayerStats.StatusEffects.Remove(Effect);
+                                }
+                                else
+                                {
+                                    PlayerStats.ModifyHealth(-Effect.Effect.HealthDrainPerTurn);
+                                    PlayerStats.ModifyStamina(Effect.Effect.StaminaDrainPerTurn);
+                                }
+                            }
+                        } catch { }
+                    }
+
                     SetMenu(0);
                 });
                 if (Actor.CurrentHealth <= 0)
@@ -104,7 +140,48 @@ namespace Alchemy.Combat
             {
                 ATBStatus.text = "Decision!";
                 if (CurrentMenu == 0)
-                    CurrentMenu = 1;
+                {
+                    bool FreezePlayer = false;
+
+                    foreach (InstancedStatusEffect Effect in PlayerStats.StatusEffects)
+                    {
+                        Debug.Log($"{Effect.Effect.Name}\nStops Movement: {Effect.Effect.StopsMovement}");
+
+                        if (Effect.Effect.StopsMovement)
+                        {
+                            FreezePlayer = true;
+                            break;
+                        }
+                    }
+
+                    Debug.Log($"Is player sleep: {FreezePlayer}");
+
+                    if (!FreezePlayer)
+                    {
+                        CurrentMenu = 1;
+                    }
+                    else
+                    {
+                        if (PlayerStats.StatusEffects.Count > 0)
+                        {
+                            foreach (InstancedStatusEffect Effect in PlayerStats.StatusEffects)
+                            {
+                                Effect.TurnsRemaining--;
+                                if (Effect.TurnsRemaining <= 0)
+                                {
+                                    PlayerStats.StatusEffects.Remove(Effect);
+                                }
+                                else
+                                {
+                                    PlayerStats.ModifyHealth(-Effect.Effect.HealthDrainPerTurn);
+                                    PlayerStats.ModifyStamina(Effect.Effect.StaminaDrainPerTurn);
+                                }
+                            }
+                        }
+
+                        BattleManager.Instance.ClearATB(PlayerStats);
+                    }
+                }
             }
             else
             {
@@ -114,6 +191,11 @@ namespace Alchemy.Combat
             UpdateUI();
 
             ATBBar.fillAmount = Value;
+        }
+
+        public void Flee()
+        {
+            BattleManager.EndBattle(BattleEndResult.Fled);
         }
 
         private IEnumerator UpdateStatLabels()
@@ -192,6 +274,21 @@ namespace Alchemy.Combat
                     Menus[I].ThisMenu.SetActive(true);
                 else
                     Menus[I].ThisMenu.SetActive(false);
+
+            foreach (GameObject G in SpawnedIcons)
+            {
+                Destroy(G);
+            }
+
+            SpawnedIcons.Clear();
+
+            foreach (InstancedStatusEffect StatusEffect in PlayerStats.StatusEffects)
+            {
+                GameObject Ico = Instantiate(StatusEffectImage, StatusEffects);
+                Ico.transform.GetChild(0).GetComponent<Image>().sprite = StatusEffect.Effect.Overlay;
+                Ico.GetComponentInChildren<Text>().text = $"{StatusEffect.TurnsRemaining}";
+                SpawnedIcons.Add(Ico);
+            }
         }
     }
 }

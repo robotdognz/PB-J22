@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayedName: Fireball
   Description: Cast a fireball at one foe
-  Icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  Icon: {fileID: 21300000, guid: 06603ee1871711643b3ca35a6e43f66d, type: 3}
   BasedStat: 3
+  StaminaCost: 20
   CanCrit: 1
   CritMultiplier: 1.4
+  Variance: 0.2
   m_Damage: -5
   DamageElement: 1
   IndicatorDelay: 0.6
   Effect: {fileID: 4653059587843408715, guid: 82e6ff53338358a49bda90b3c8232698, type: 3}
+  StatusEffects: []

@@ -11,7 +11,8 @@ namespace Alchemy
     {
         Victory,
         Defeat,
-        Flee
+        Fled,
+        Other
     }
 
     public static class BattleStarter
