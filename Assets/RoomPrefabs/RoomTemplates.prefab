@@ -60,4 +60,6 @@ MonoBehaviour:
   leftRooms:
   - {fileID: 8486601113098030502, guid: 2127628c9933d644285ad5a42e402c03, type: 3}
   - {fileID: 8486601113098030502, guid: 25116c6bfc98a3146ac762baf1041250, type: 3}
+  door: {fileID: 2574267516488484084, guid: d9a24998c608465488a74adbafdf98a1, type: 3}
   dungeonSize: 20
+  rooms: []

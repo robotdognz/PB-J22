@@ -16,6 +16,9 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] bottomRooms;
     public GameObject[] leftRooms;
 
+    // door object
+    [SerializeField] GameObject door;
+
     // dungeon generation
     [SerializeField] int dungeonSize = 20;
     private int roomCount;
@@ -40,13 +43,14 @@ public class RoomTemplates : MonoBehaviour
         roomCount--;
         if (roomCount <= 0)
         {
-            Invoke("FinalCheck", 0.1f);
+            Invoke("CloseRooms", 0.1f);
+            Invoke("BuildDoors", 0.2f);
         }
     }
 
-    public void FinalCheck()
+    public void CloseRooms()
     {
-        Debug.Log("Final Check");
+        Debug.Log("Close up rooms");
 
         // remove spawn points
         RoomSpawner[] spawnPoints = FindObjectsOfType<RoomSpawner>();
@@ -98,8 +102,21 @@ public class RoomTemplates : MonoBehaviour
             // TODO: add sprite onto room
         }
 
+
+
         // TODO: add player to start room
 
         // TODO: add end/boss to end room
+    }
+
+    public void BuildDoors()
+    {
+        // add doors
+        DoorSpawner[] doorSpawners = FindObjectsOfType<DoorSpawner>();
+        for (int i = doorSpawners.Length - 1; i >= 0; i--)
+        {
+            Instantiate(door, doorSpawners[i].transform.position, Quaternion.identity);
+            Destroy(doorSpawners[i].gameObject);
+        }
     }
 }
