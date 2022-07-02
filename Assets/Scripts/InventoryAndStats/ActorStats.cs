@@ -28,6 +28,8 @@ namespace Alchemy.Stats
         public Sprite DamagedSprite;
         public Sprite DeadSprite;
 
+        public List<Combat.InstancedStatusEffect> StatusEffects = new List<Combat.InstancedStatusEffect>();
+
         private void Awake()
         {
             if (Stats.StartingSkills.Length >= 0)
@@ -42,10 +44,17 @@ namespace Alchemy.Stats
 
         public void UseSkill(Combat.Skill Skill, ActorStats Target)
         {
-            Combat.OutputDamage Damage = Skill.Damage(Stats, CurrentLevel);
+            Combat.OutputDamage Damage = Skill.Damage(Stats, CurrentLevel, Target);
 
             Combat.BattleManager.Instance.ClearATB(this);
             ModifyStamina(Skill.StaminaCost);
+
+            if (Target.IsWeakTo(Skill.DamageElement))
+            {
+                Damage.Damage *= 1.6f;
+                Damage.WasCrit = true;
+                Damage.WasWeak = true;
+            }
 
             StartCoroutine(SpawnEffect(Skill.IndicatorDelay, Skill.Effect, Target, Damage));
         }
@@ -57,12 +66,51 @@ namespace Alchemy.Stats
                 Instantiate(Effect, Target.transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(Delay);
             }
-            Target.ModifyHealth(Mathf.RoundToInt(Damage.Damage));
 
+            foreach (Combat.StatusEffect E in Damage.Effects)
+            {
+                Debug.Log(E.Name);
+            }
+
+            if (Damage.Effects.Length > 0)
+            {
+                foreach (Combat.StatusEffect E in Damage.Effects)
+                {
+                    Combat.InstancedStatusEffect InstEffect = E.GenerateInstance();
+
+                    bool HadEffect = false;
+
+                    if (Target.StatusEffects.Count > 0)
+                    {
+                        foreach (Combat.InstancedStatusEffect E2 in Target.StatusEffects)
+                        {
+                            if (E2.Effect == E)
+                            {
+                                HadEffect = true;
+
+                                if (E2.TurnsRemaining < InstEffect.TurnsRemaining)
+                                {
+                                    E2.TurnsRemaining = InstEffect.TurnsRemaining;
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!HadEffect)
+                    {
+                        Debug.Log($"Added {E.Name}");
+                        Target.StatusEffects.Add(InstEffect);
+                    }
+                }
+            }
+
+            Target.ModifyHealth(Mathf.RoundToInt(Damage.Damage));
 
             if (Damage.Damage != 0)
             {
-                Combat.BattleManager.ShowDamagePopup(Target.transform, Damage.Damage, Damage.WasCrit);
+                Combat.BattleManager.ShowDamagePopup(Target.transform, Damage.Damage, Damage.WasCrit, Damage.WasWeak);
             }
         }
 

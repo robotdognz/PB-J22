@@ -25,6 +25,10 @@ namespace Alchemy.Stats
         public AnimationCurve AgilityOverLevel = new AnimationCurve(new Keyframe(0, 10), new Keyframe(99, 125));
         public AnimationCurve LuckOverLevel = new AnimationCurve(new Keyframe(0, 75), new Keyframe(99, 90));
         [Space]
+        public AnimationCurve EXPOverLevel = new AnimationCurve(new Keyframe(0, 20), new Keyframe(99, 150));
+        [Space]
+        public int EXPGained = 5;
+        [Space]
         public List<Combat.Element> IsWeakTo;
         [Space]
         public Combat.Skill[] StartingSkills;

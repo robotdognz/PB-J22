@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Alchemy.Stats;
 
 namespace Alchemy.Combat
@@ -53,11 +54,11 @@ namespace Alchemy.Combat
 
         public GameObject DamageIndicatorBase;
 
-        public static void ShowDamagePopup(Transform Target, float Damage, bool WasCrit = false)
+        public static void ShowDamagePopup(Transform Target, float Damage, bool WasCrit = false, bool WasWeak = false)
         {
             GameObject DmgInd = Instantiate(Instance.DamageIndicatorBase, GameObject.Find("WorldCanvas").transform);
             UnityEngine.UI.Text Txt = DmgInd.GetComponent<UnityEngine.UI.Text>();
-            Txt.text = $"{(WasCrit ? "<i>CRIT</i> " : "")}{(int)Damage}";
+            Txt.text = $"{(WasCrit ? WasWeak ? "WEAK" : "CRIT " : "")}{(int)Damage}";
             Txt.color = Damage >= 0 ? Color.green : WasCrit ? Color.red : Color.yellow;
             DmgInd.transform.position = Target.position;
             DmgInd.AddComponent<DamageIndicator>();
@@ -72,16 +73,15 @@ namespace Alchemy.Combat
             }
         }
 
-        UnityEngine.UI.Text Indicator;
-
         private bool AllEnemiesDead
         {
             get
             {
                 foreach (Battler B in ThisCombat)
                 {
-                    if (B.Stats.CurrentHealth > 0)
-                        return false;
+                    if (B.Stats != UIManager.Instance.PlayerStats)
+                        if (B.Stats.CurrentHealth > 0)
+                            return false;
                 }
 
                 return true;
@@ -98,7 +98,7 @@ namespace Alchemy.Combat
 
         private void Update()
         {
-            if (ThisCombat.Length > 0)
+            if (ThisCombat.Length > 0 && !BattleEnded)
             {
                 bool AnyATB1 = false;
 
@@ -128,7 +128,44 @@ namespace Alchemy.Combat
                     BattleSpeed = 0;
                 else
                     BattleSpeed = 1;
+
+                if (AllEnemiesDead)
+                {
+                    UIManager.Instance.AftermathScreen.SetActive(true);
+                    UIManager.Instance.SetMenu(6);
+                    BattleEnded = true;
+                }
+                if (PlayerDead)
+                {
+                    EndBattle(BattleEndResult.Defeat);
+                }
             }
+        }
+
+        private static bool BattleEnded = false;
+
+        public void FinishVictory()
+        {
+            EndBattle(BattleEndResult.Victory);
+        }
+
+        public static void EndBattle(BattleEndResult Result)
+        {
+            BattleEnded = true;
+            UIManager.Instance.StartCoroutine(EndBattleFadeout(Result));
+        }
+
+        private static IEnumerator EndBattleFadeout(BattleEndResult Result)
+        {
+            UIManager.Instance.Darkinator.gameObject.SetActive(true);
+            while (UIManager.Instance.Darkinator.color.a < 1)
+            {
+                UIManager.Instance.Darkinator.color = new Color(UIManager.Instance.Darkinator.color.r, UIManager.Instance.Darkinator.color.g, UIManager.Instance.Darkinator.color.b, UIManager.Instance.Darkinator.color.a + (Time.deltaTime / 0.5f));
+                yield return null;
+            }
+
+            SceneManager.UnloadSceneAsync("Combat");
+            BattleStarter.OnBattleEnd.Invoke(Result);
         }
     }
 }
