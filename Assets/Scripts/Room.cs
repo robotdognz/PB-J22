@@ -78,16 +78,22 @@ public class Room : MonoBehaviour
         }
     }
 
+    public static Vector3 TargetPos { get; private set; }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             Rigidbody2D playerBody = other.gameObject.GetComponentInParent<Rigidbody2D>();
             // snap camera to this room
+            /*
             Vector3 cameraTemp = Camera.main.transform.position;
             cameraTemp.x = transform.position.x;
             cameraTemp.y = transform.position.y;
             Camera.main.transform.position = cameraTemp;
+            */
+
+            TargetPos = transform.position + -Vector3.forward * 10;
 
             // if the room has enemies, snap player to this room (so they are't inside the door when it closes)
             if (enemies != null)
