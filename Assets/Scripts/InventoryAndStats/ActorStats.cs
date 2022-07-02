@@ -30,7 +30,7 @@ namespace Alchemy.Stats
 
         public List<Combat.InstancedStatusEffect> StatusEffects = new List<Combat.InstancedStatusEffect>();
 
-        private void Awake()
+        protected virtual void Awake()
         {
             if (Stats.StartingSkills.Length >= 0)
                 foreach (Combat.Skill Skill in Stats.StartingSkills)

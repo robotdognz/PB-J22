@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Alchemy.Stats;
+using Alchemy.Music;
 
 namespace Alchemy.Combat
 {
@@ -125,6 +126,7 @@ namespace Alchemy.Combat
 
                 if (AllEnemiesDead)
                 {
+                    MusicManager.SetTrack(Track.Victory);
                     UIManager.Instance.AftermathScreen.SetActive(true);
                     UIManager.Instance.SetMenu(6);
                     BattleEnded = true;
