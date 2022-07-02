@@ -34,6 +34,7 @@ namespace Alchemy.Combat
                 List<Battler> Bs = new List<Battler>();
                 foreach (ActorStats Actor in FindObjectsOfType<ActorStats>())
                 {
+                    Actor.ResetStats();
                     Bs.Add(new Battler() { Stats = Actor });
                 }
 
@@ -50,12 +51,14 @@ namespace Alchemy.Combat
             ThisCombat = Battlers;
         }
 
+        public GameObject DamageIndicatorBase;
+
         public static void ShowDamagePopup(Transform Target, float Damage, bool WasCrit = false)
         {
-            GameObject DmgInd = new GameObject("Indicator");
-            UnityEngine.UI.Text Txt = DmgInd.AddComponent<UnityEngine.UI.Text>();
-            Txt.text = $"{(WasCrit ? "<i>CRIT</i> " : "")}{Damage}";
-            Txt.color = WasCrit ? Color.red : Color.yellow;
+            GameObject DmgInd = Instantiate(Instance.DamageIndicatorBase, GameObject.Find("WorldCanvas").transform);
+            UnityEngine.UI.Text Txt = DmgInd.GetComponent<UnityEngine.UI.Text>();
+            Txt.text = $"{(WasCrit ? "<i>CRIT</i> " : "")}{(int)Damage}";
+            Txt.color = Damage >= 0 ? Color.green : WasCrit ? Color.red : Color.yellow;
             DmgInd.transform.position = Target.position;
             DmgInd.AddComponent<DamageIndicator>();
         }
@@ -71,6 +74,28 @@ namespace Alchemy.Combat
 
         UnityEngine.UI.Text Indicator;
 
+        private bool AllEnemiesDead
+        {
+            get
+            {
+                foreach (Battler B in ThisCombat)
+                {
+                    if (B.Stats.CurrentHealth > 0)
+                        return false;
+                }
+
+                return true;
+            }
+        }
+
+        private bool PlayerDead
+        {
+            get
+            {
+                return UIManager.Instance.PlayerStats.CurrentHealth <= 0;
+            }
+        }
+
         private void Update()
         {
             if (ThisCombat.Length > 0)
@@ -79,14 +104,14 @@ namespace Alchemy.Combat
 
                 foreach (Battler B in ThisCombat)
                 {
-                    B.CurrentATB += ((Time.deltaTime / 50) * B.Stats.Agility) * BattleSpeed;
+                    B.CurrentATB += (((Time.deltaTime / 50) * B.Stats.Agility) * (Random.Range(B.Stats.Luck / 8, 90) / 25)) * BattleSpeed;
 
                     if (B.Stats == UIManager.Instance.PlayerStats)
                     {
                         UIManager.Instance.SetATBBarValue(B.CurrentATB);
                     }
 
-                    if (B.CurrentATB >= 1)
+                    if (B.CurrentATB >= 1 && B.Stats.CurrentHealth > 0)
                     {
                         CurrentTurn = B.Stats;
                         AnyATB1 = true;

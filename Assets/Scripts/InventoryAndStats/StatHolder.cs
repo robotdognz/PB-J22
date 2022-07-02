@@ -26,5 +26,7 @@ namespace Alchemy.Stats
         public AnimationCurve LuckOverLevel = new AnimationCurve(new Keyframe(0, 75), new Keyframe(99, 90));
         [Space]
         public List<Combat.Element> IsWeakTo;
+        [Space]
+        public Combat.Skill[] StartingSkills;
     }
 }
