@@ -28,6 +28,7 @@ namespace Alchemy.Music
             if (!SceneManager.GetSceneByName("MusicManager").isLoaded)
             {
                 SceneManager.LoadScene("MusicManager", LoadSceneMode.Additive);
+                Instance = FindObjectOfType<MusicManager>();
             }
 
             Initialized = true;
