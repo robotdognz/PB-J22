@@ -24,7 +24,7 @@ namespace Alchemy
         public static UnityAction<BattleEndResult> OnBattleEnd = new UnityAction<BattleEndResult>((BattleEndResult R)=> 
         { 
             Debug.Log($"Battle ended with result: {R}!");
-            Music.MusicManager.SetTrack(Music.Track.Explore);
+            // Music.MusicManager.SetTrack(Music.Track.Explore);
         });
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Alchemy
         /// <param name="Actors"></param>
         public static void StartBattle(List<ActorStats> Actors)
         {
-            Music.MusicManager.SetTrack(Music.Track.Battle); // Switch to Battle music without forgetting the dungeon type
+            // Music.MusicManager.SetTrack(Music.Track.Battle); // Switch to Battle music without forgetting the dungeon type
             SceneManager.LoadScene(BattleSceneName, LoadSceneMode.Additive);
 
             foreach (ActorStats Actor in Actors)

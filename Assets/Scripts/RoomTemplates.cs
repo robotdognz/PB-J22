@@ -49,9 +49,9 @@ public class RoomTemplates : MonoBehaviour
         roomCount--;
         if (roomCount <= 0)
         {
-            Invoke("CloseRooms", 0.001f);
-            Invoke("BuildDoors", 0.05f);
-            Invoke("SetupPlayer", 0.001f);
+            Invoke("CloseRooms", 0.005f);
+            Invoke("BuildDoors", 0.08f);
+            Invoke("SetupPlayer", 0.01f);
         }
     }
 

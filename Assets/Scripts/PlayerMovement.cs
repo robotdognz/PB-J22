@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Rigidbody2D body;
+    public Rigidbody2D body;
     Vector2 movement;
 
     [SerializeField] float moveSpeed = 5;
+
+    bool isDisabled = false;
+    SpriteRenderer sRenderer;
 
 
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
+        sRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
+        if (isDisabled)
+        {
+            return;
+        }
+
         // do input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -24,8 +33,25 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isDisabled)
+        {
+            return;
+        }
+
         // do movement
         body.MovePosition(body.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public void DisablePlayer()
+    {
+        isDisabled = true;
+        sRenderer.enabled = false;
+    }
+
+    public void EnablePlayer()
+    {
+        isDisabled = false;
+        sRenderer.enabled = true;
     }
 
 }
