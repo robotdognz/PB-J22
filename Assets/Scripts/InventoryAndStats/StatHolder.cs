@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Alchemy.Inventory;
 
 namespace Alchemy.Stats
 {
@@ -32,5 +33,7 @@ namespace Alchemy.Stats
         public List<Combat.Element> IsWeakTo;
         [Space]
         public Combat.Skill[] StartingSkills;
+        [Space]
+        public ItemInstance[] Drops;
     }
 }

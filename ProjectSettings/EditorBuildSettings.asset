@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Combat.unity
     guid: 7eb05344d9d175a40a5e8969c8483b3d
+  - enabled: 1
+    path: Assets/Scenes/MusicManager.unity
+    guid: 23b16f6cb1bba3a418b865bb2815dfd2
   m_configObjects: {}

@@ -19,6 +19,7 @@ namespace Alchemy.Combat
         public static Skill PlayerLoadedSkill;
         public static ActorStats PlayerLoadedTarget;
         public float BattleSpeed = 1;
+        private bool Initialized = false;
 
         public Battler[] Battlers
         {
@@ -44,7 +45,13 @@ namespace Alchemy.Combat
         private void Awake()
         {
             Instance = this;
+        }
+
+        public void Init()
+        {
             ThisCombat = Battlers;
+            UIManager.Instance.Init();
+            Initialized = true;
         }
 
         public GameObject DamageIndicatorBase;
@@ -93,47 +100,50 @@ namespace Alchemy.Combat
 
         private void Update()
         {
-            if (ThisCombat.Length > 0 && !BattleEnded)
+            if (Initialized)
             {
-                bool AnyATB1 = false;
-
-                foreach (Battler B in ThisCombat)
+                if (ThisCombat.Length > 0 && !BattleEnded)
                 {
-                    B.CurrentATB += (((Time.deltaTime / 50) * B.Stats.Agility) * (Random.Range(B.Stats.Luck / 8, 90) / 25)) * BattleSpeed;
+                    bool AnyATB1 = false;
 
-                    if (B.Stats == UIManager.Instance.PlayerStats)
+                    foreach (Battler B in ThisCombat)
                     {
-                        UIManager.Instance.SetATBBarValue(B.CurrentATB);
+                        B.CurrentATB += (((Time.deltaTime / 50) * B.Stats.Agility) * (Random.Range(B.Stats.Luck / 8, 90) / 25)) * BattleSpeed;
+
+                        if (B.Stats == UIManager.Instance.PlayerStats)
+                        {
+                            UIManager.Instance.SetATBBarValue(B.CurrentATB);
+                        }
+
+                        if (B.CurrentATB >= 1 && B.Stats.CurrentHealth > 0)
+                        {
+                            CurrentTurn = B.Stats;
+                            AnyATB1 = true;
+                        }
                     }
 
-                    if (B.CurrentATB >= 1 && B.Stats.CurrentHealth > 0)
+                    if (CurrentTurn)
                     {
-                        CurrentTurn = B.Stats;
-                        AnyATB1 = true;
+                        CurrentTurn.ProcessTurn();
+                        CurrentTurn = null;
                     }
-                }
 
-                if (CurrentTurn)
-                {
-                    CurrentTurn.ProcessTurn();
-                    CurrentTurn = null;
-                }
+                    if (AnyATB1)
+                        BattleSpeed = 0;
+                    else
+                        BattleSpeed = 1;
 
-                if (AnyATB1)
-                    BattleSpeed = 0;
-                else
-                    BattleSpeed = 1;
-
-                if (AllEnemiesDead)
-                {
-                    MusicManager.SetTrack(Track.Victory);
-                    UIManager.Instance.AftermathScreen.SetActive(true);
-                    UIManager.Instance.SetMenu(6);
-                    BattleEnded = true;
-                }
-                if (PlayerDead)
-                {
-                    EndBattle(BattleEndResult.Defeat);
+                    if (AllEnemiesDead)
+                    {
+                        MusicManager.SetTrack(Track.Victory);
+                        UIManager.Instance.AftermathScreen.SetActive(true);
+                        UIManager.Instance.SetMenu(6);
+                        BattleEnded = true;
+                    }
+                    if (PlayerDead)
+                    {
+                        EndBattle(BattleEndResult.Defeat);
+                    }
                 }
             }
         }

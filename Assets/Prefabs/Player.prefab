@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb5c9bdba7a15f42b9958320b18ee36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   moveSpeed: 5
 --- !u!114 &236336858811139889
 MonoBehaviour:
@@ -117,11 +118,11 @@ MonoBehaviour:
   Stats: {fileID: 11400000, guid: 520497004edf60445984240c24237635, type: 2}
   ActorName: Alchemist
   DecisionMaker: 0
-  CurrentLevel: 0
+  CurrentLevel: 1
   Skills: []
-  NormalSprite: {fileID: 0}
-  DamagedSprite: {fileID: 0}
-  DeadSprite: {fileID: 0}
+  NormalSprite: {fileID: 21300000, guid: 8bd90782cb8159b4bb5bfc8d940e0be4, type: 3}
+  DamagedSprite: {fileID: 21300000, guid: 8bd90782cb8159b4bb5bfc8d940e0be4, type: 3}
+  DeadSprite: {fileID: 21300000, guid: 8bd90782cb8159b4bb5bfc8d940e0be4, type: 3}
   StatusEffects: []
 --- !u!50 &5617313402428781526
 Rigidbody2D:

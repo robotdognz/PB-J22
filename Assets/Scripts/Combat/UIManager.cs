@@ -92,8 +92,9 @@ namespace Alchemy.Combat
                 foreach (GameObject Btn in TargetButtons)
                     Destroy(Btn);
 
-            foreach (ActorStats Actor in FindObjectsOfType<ActorStats>())
+            foreach (Battler B in BattleManager.Instance.Battlers)
             {
+                ActorStats Actor = B.Stats;
                 Button Btn = Instantiate(TargetsButton, TargetsRoot).GetComponentInChildren<Button>();
                 Btn.onClick.AddListener(() => 
                 {
@@ -220,8 +221,13 @@ namespace Alchemy.Combat
 
         private void Awake()
         {
-            ResetPlayer(); // This is only to be used until the battle system is done
             Instance = this;
+        }
+
+        public void Init()
+        {
+            ResetPlayer(); // This is only to be used until the battle system is done
+            
             StartCoroutine(UpdateStatLabels());
         }
 
