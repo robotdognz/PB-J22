@@ -15,6 +15,9 @@ namespace Alchemy.Combat
 
     public class UIManager : MonoBehaviour
     {
+        public static UIManager Instance;
+
+        public ActorStats PlayerStats;
         public int CurrentMenu { get; private set; }
         [Header("Menus")]
         public Menu[] Menus;
@@ -29,6 +32,23 @@ namespace Alchemy.Combat
         [Space]
         public Text StaminaLabel;
         public Image StaminaImage;
+        [Space]
+        public Text ATBStatus;
+        public Image ATBBar;
+
+        public void SetATBBarValue(float Value)
+        {
+            if (Value >= 1)
+            {
+                ATBStatus.text = "Decision!";
+            }
+            else
+            {
+                ATBStatus.text = $"Charging... [{Mathf.RoundToInt(Value * 100)}]";
+            }
+
+            ATBBar.fillAmount = Value;
+        }
 
         private IEnumerator UpdateStatLabels()
         {
@@ -53,7 +73,7 @@ namespace Alchemy.Combat
         private void Awake()
         {
             ResetPlayer(); // This is only to be used until the battle system is done
-
+            Instance = this;
             StartCoroutine(UpdateStatLabels());
         }
 
@@ -96,7 +116,7 @@ namespace Alchemy.Combat
 
         private void UpdateUI()
         {
-            ActorNameLabel.text = $"{PlayerStats.PlayerName}\nLevel {PlayerStats.CurrentLevel}";
+            ActorNameLabel.text = $"{PlayerStats.ActorName}\nLevel {PlayerStats.CurrentLevel}";
 
             for (int I = 0; I < Menus.Length; I++)
                 if (I == CurrentMenu)
