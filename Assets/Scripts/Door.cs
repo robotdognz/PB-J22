@@ -8,6 +8,12 @@ public class Door : MonoBehaviour
 
     public void AddRooms(List<Room> rooms)
     {
-        parentRooms.AddRange(rooms);
+        foreach (Room room in rooms)
+        {
+            if (!parentRooms.Contains(room))
+            {
+                parentRooms.Add(room);
+            }
+        }
     }
 }

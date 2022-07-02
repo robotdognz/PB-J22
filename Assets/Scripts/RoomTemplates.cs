@@ -123,8 +123,16 @@ public class RoomTemplates : MonoBehaviour
             GameObject tempDoorObject = Instantiate(door, ds.transform.position, Quaternion.identity);
             Door tempDoor = tempDoorObject.GetComponent<Door>();
 
+            // setup room-door connections
+            List<Room> parentRooms = ds.GetParentRooms();
+            // add doors to room
+            foreach(Room room in parentRooms)
+            {
+                room.AddDoor(tempDoor);
+            }
+            //add rooms to door
+            tempDoor.AddRooms(parentRooms);
 
-            tempDoor.AddRooms(ds.GetParentRooms());
 
             // Cleanup
             Destroy(ds.gameObject);

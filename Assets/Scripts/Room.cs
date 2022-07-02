@@ -18,6 +18,8 @@ public class Room : MonoBehaviour
 
     SpriteRenderer sRenderer;
 
+    [SerializeField] List<Door> childDoors;
+
     private void Awake()
     {
         // setup required rooms
@@ -74,6 +76,25 @@ public class Room : MonoBehaviour
     {
         doorLeft = false;
         left = false;
+    }
+
+    public void AddDoors(List<Door> doors)
+    {
+        foreach (Door door in doors)
+        {
+            if (!childDoors.Contains(door))
+            {
+                childDoors.Add(door);
+            }
+        }
+    }
+
+    public void AddDoor(Door door)
+    {
+        if (!childDoors.Contains(door))
+        {
+            childDoors.Add(door);
+        }
     }
 
 }
