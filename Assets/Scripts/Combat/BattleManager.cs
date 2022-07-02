@@ -22,29 +22,42 @@ namespace Alchemy.Combat
         {
             get
             {
+                /*  // This is the final version of the code. I've commented it out so I can test easily
+                List<Battler> Bs = new List<Battler>();
+                foreach (ActorStats Actor in BattleSystem.Battlers)
+                {
+                    Bs.Add(new Battler() { Stats = Actor });
+                }
+                return Bs.ToArray();
+                */
+
                 List<Battler> Bs = new List<Battler>();
                 foreach (ActorStats Actor in FindObjectsOfType<ActorStats>())
                 {
                     Bs.Add(new Battler() { Stats = Actor });
                 }
+
                 return Bs.ToArray();
             }
         }
 
         Battler[] ThisCombat;
+        public static ActorStats CurrentTurn;
 
         private void Awake()
         {
             Instance = this;
             ThisCombat = Battlers;
-            Indicator = GameObject.Find("Important_DamagePopup").GetComponent<UnityEngine.UI.Text>();
         }
 
         public static void ShowDamagePopup(Transform Target, float Damage, bool WasCrit = false)
         {
-            GameObject.Find("Important_DamagePopup").transform.position = Target.transform.position;
-            GameObject.Find("Important_DamagePopup").GetComponent<UnityEngine.UI.Text>().text = $"{(WasCrit ? "CRIT " : "")}{Mathf.RoundToInt(Damage)}";
-            GameObject.Find("Important_DamagePopup").GetComponent<UnityEngine.UI.Text>().color = Damage > 0 ? Color.green : WasCrit ? Color.yellow : Color.red;
+            GameObject DmgInd = new GameObject("Indicator");
+            UnityEngine.UI.Text Txt = DmgInd.AddComponent<UnityEngine.UI.Text>();
+            Txt.text = $"{(WasCrit ? "<i>CRIT</i> " : "")}{Damage}";
+            Txt.color = WasCrit ? Color.red : Color.yellow;
+            DmgInd.transform.position = Target.position;
+            DmgInd.AddComponent<DamageIndicator>();
         }
 
         public void ClearATB(ActorStats Actor)
@@ -60,16 +73,14 @@ namespace Alchemy.Combat
 
         private void Update()
         {
-            Indicator.transform.position += Vector3.up * Time.deltaTime / 2;
-            Indicator.color = new Color(Indicator.color.r, Indicator.color.g, Indicator.color.b, Indicator.color.a - Time.deltaTime);
-
             if (ThisCombat.Length > 0)
             {
                 bool AnyATB1 = false;
 
                 foreach (Battler B in ThisCombat)
                 {
-                    B.CurrentATB += ((Time.deltaTime / 50) * B.Stats.Agility);
+                    B.CurrentATB += ((Time.deltaTime / 50) * B.Stats.Agility) * BattleSpeed;
+
                     if (B.Stats == UIManager.Instance.PlayerStats)
                     {
                         UIManager.Instance.SetATBBarValue(B.CurrentATB);
@@ -77,8 +88,15 @@ namespace Alchemy.Combat
 
                     if (B.CurrentATB >= 1)
                     {
+                        CurrentTurn = B.Stats;
                         AnyATB1 = true;
                     }
+                }
+
+                if (CurrentTurn)
+                {
+                    CurrentTurn.ProcessTurn();
+                    CurrentTurn = null;
                 }
 
                 if (AnyATB1)

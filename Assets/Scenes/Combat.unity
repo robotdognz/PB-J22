@@ -2383,8 +2383,10 @@ MonoBehaviour:
   Stats: {fileID: 11400000, guid: 2d2c0487f9183ee43ad6e87193489178, type: 2}
   ActorName: Tim
   DecisionMaker: 1
-  CurrentLevel: 1
-  Skills: []
+  CurrentLevel: 3
+  Skills:
+  - {fileID: 11400000, guid: 1ce1f6a89c9677945b2c35eeeb999ec9, type: 2}
+  - {fileID: 11400000, guid: 434a9bac54fe7b845a969da3a9144736, type: 2}
 --- !u!1 &608637731
 GameObject:
   m_ObjectHideFlags: 0
