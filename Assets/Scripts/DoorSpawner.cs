@@ -9,7 +9,7 @@ public class DoorSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("DoorSpawner"))
+        if (other.CompareTag("DoorSpawner")) // || other.CompareTag("Room"))
         {
             // only destroy one of the two door spawners
             DoorSpawner otherDoorSpawner = other.gameObject.GetComponent<DoorSpawner>();

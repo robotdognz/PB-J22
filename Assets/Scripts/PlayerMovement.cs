@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float moveSpeed = 5;
 
+    // [SerializeField] 
+
 
     void Awake()
     {
@@ -26,5 +28,16 @@ public class PlayerMovement : MonoBehaviour
     {
         // do movement
         body.MovePosition(body.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Room"))
+        {
+            Debug.Log("Move camera");
+            Vector3 temp = Camera.main.transform.position;
+            temp.x = other.transform.position.x;
+            temp.y = other.transform.position.y;
+            Camera.main.transform.position = temp;
+        }
     }
 }
