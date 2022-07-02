@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] GameObject doorBody;
     [SerializeField] List<Room> parentRooms;
+
+    public bool isLocked = false;
 
     public void AddRooms(List<Room> rooms)
     {
@@ -17,16 +20,17 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void CloseDoor()
     {
-        if (other.CompareTag("Player"))
-        {
-            OpenDoor();
-        }
+        doorBody.SetActive(true);
     }
 
     public void OpenDoor()
     {
-        Destroy(gameObject);
+        if (isLocked)
+        {
+            return;
+        }
+        doorBody.SetActive(false);
     }
 }

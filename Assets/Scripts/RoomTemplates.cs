@@ -16,6 +16,10 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] bottomRooms;
     public GameObject[] leftRooms;
 
+    // enemies
+    public GameObject[] enemyLayouts;
+    public float chanceOfEnemy = 0.5f;
+
     // game object
     [SerializeField] GameObject player;
     [SerializeField] GameObject boss;
@@ -53,7 +57,7 @@ public class RoomTemplates : MonoBehaviour
 
     public void CloseRooms()
     {
-        Debug.Log("Close up rooms");
+        // Debug.Log("Close up rooms");
 
         // remove spawn points
         RoomSpawner[] spawnPoints = FindObjectsOfType<RoomSpawner>();
@@ -70,7 +74,7 @@ public class RoomTemplates : MonoBehaviour
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(topWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                Debug.Log("Made top wall");
+                // Debug.Log("Made top wall");
                 room.RemoveTopDoor();
             }
             if (room.right && rightWall != null)
@@ -78,7 +82,7 @@ public class RoomTemplates : MonoBehaviour
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(rightWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                Debug.Log("Made right wall");
+                // Debug.Log("Made right wall");
                 room.RemoveRightDoor();
             }
             if (room.bottom && bottomWall != null)
@@ -86,7 +90,7 @@ public class RoomTemplates : MonoBehaviour
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(bottomWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                Debug.Log("Made bottom wall");
+                // Debug.Log("Made bottom wall");
                 room.RemoveBottomDoor();
             }
             if (room.left && leftWall != null)
@@ -94,7 +98,7 @@ public class RoomTemplates : MonoBehaviour
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(leftWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                Debug.Log("Made left wall");
+                // Debug.Log("Made left wall");
                 room.RemoveLeftDoor();
             }
 
@@ -137,5 +141,10 @@ public class RoomTemplates : MonoBehaviour
 
         // add end/boss to end room
         GameObject newBoss = Instantiate(boss, rooms[rooms.Count-1].transform.position, Quaternion.identity);
+        if(rooms[rooms.Count-1].enemies != null)
+        {
+            Destroy(rooms[rooms.Count-1].enemies);
+            rooms[rooms.Count-1].enemies = null;
+        }
     }
 }

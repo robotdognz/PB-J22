@@ -18,6 +18,10 @@ public class Room : MonoBehaviour
 
     [SerializeField] List<Door> childDoors;
 
+    public GameObject enemies = null;
+
+    float roomDiameter = 3.5f;
+
     private void Awake()
     {
         // setup required rooms
@@ -71,6 +75,75 @@ public class Room : MonoBehaviour
         if (!childDoors.Contains(door))
         {
             childDoors.Add(door);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Rigidbody2D playerBody = other.gameObject.GetComponentInParent<Rigidbody2D>();
+            // snap camera to this room
+            Vector3 cameraTemp = Camera.main.transform.position;
+            cameraTemp.x = transform.position.x;
+            cameraTemp.y = transform.position.y;
+            Camera.main.transform.position = cameraTemp;
+
+            // if the room has enemies, snap player to this room (so they are't inside the door when it closes)
+            if (enemies != null)
+            {
+                Vector2 playerTemp = other.transform.position;
+                // if (playerTemp.x == transform.position.x && playerTemp.y == transform.position.y)
+                // {
+                //     // don't do player snapping if this is the start of the game
+                //     return;
+                // }
+
+                if (Mathf.Abs(playerTemp.x - transform.position.x) > Mathf.Abs(playerTemp.y - transform.position.y))
+                {
+                    // snap on x axis to edge of room
+                    if (playerTemp.x < transform.position.x)
+                    {
+                        Debug.Log("x snap, to left side of room");
+                        playerTemp.x = transform.position.x - roomDiameter;
+                        playerTemp.y = playerBody.transform.position.y;
+                        playerBody.transform.position = playerTemp;
+                    }
+                    else
+                    {
+                        Debug.Log("x snap, to right side of room");
+                        playerTemp.x = transform.position.x + roomDiameter;
+                        playerTemp.y = playerBody.transform.position.y;
+                        playerBody.transform.position = playerTemp;
+                    }
+                }
+                else
+                {
+                    // snap on y axis to edge of room
+                    if (playerTemp.y < transform.position.y)
+                    {
+                        Debug.Log("y snap, to bottom of room");
+                        playerTemp.x = playerBody.transform.position.x;
+                        playerTemp.y = transform.position.y - roomDiameter;
+                        playerBody.transform.position = playerTemp;
+
+                    }
+                    else
+                    {
+                        Debug.Log("y snap, to top of room");
+                        playerTemp.x = playerBody.transform.position.x;
+                        playerTemp.y = transform.position.y + roomDiameter;
+                        playerBody.transform.position = playerTemp;
+                    }
+                }
+
+                // activate doors
+                foreach (Door door in childDoors)
+                {
+                    door.isLocked = true;
+                    door.CloseDoor();
+                }
+            }
         }
     }
 
