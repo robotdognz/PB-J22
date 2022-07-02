@@ -22,6 +22,30 @@ namespace Alchemy.Stats
         public int CurrentHealth { get; private set; } // Players current Health (not normalized)
         public int CurrentStamina { get; private set; } // Players current Stamina (not normalized)
 
+        public List<Combat.Skill> Skills = new List<Combat.Skill>();
+        
+        public void UseSkill(int Skill, ActorStats Target)
+        {
+            UseSkill(Skills[Skill], Target);
+        }
+
+        public void UseSkill(Combat.Skill Skill, ActorStats Target)
+        {
+            Combat.OutputDamage Damage = Skill.Damage(Stats, CurrentLevel);
+
+            StartCoroutine(SpawnEffect(Skill.IndicatorDelay, Skill.Effect, Target, Damage));
+            Combat.BattleManager.Instance.ClearATB(this);
+        }
+
+        private IEnumerator SpawnEffect(float Delay, GameObject Effect, ActorStats Target, Combat.OutputDamage Damage)
+        {
+            Instantiate(Effect, Target.transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(Delay);
+            Target.ModifyHealth(Mathf.RoundToInt(Damage.Damage));
+
+            Combat.BattleManager.ShowDamagePopup(Target.transform, Damage.Damage, Damage.WasCrit);
+        }
+
         /// <summary>
         /// Resets player stats (but not level)
         /// </summary>
@@ -42,6 +66,8 @@ namespace Alchemy.Stats
 
             if (CurrentHealth <= 0)
                 return true;
+
+            Combat.UIManager.Instance.OnDamagePlayer();
 
             return false;
         }
