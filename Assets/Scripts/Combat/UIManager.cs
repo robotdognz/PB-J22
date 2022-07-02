@@ -62,6 +62,9 @@ namespace Alchemy.Combat
                     SetMenu(5);
                     RefreshTargetsList();
                 });
+                if (PlayerStats.CurrentStamina < S.StaminaCost)
+                    Btn.enabled = false;
+
                 Btn.GetComponentInChildren<Text>().text = S.DisplayedName;
                 Btn.transform.GetChild(0).GetComponent<Image>().sprite = S.Icon;
                 SkillButtons.Add(Btn.gameObject);
@@ -83,6 +86,8 @@ namespace Alchemy.Combat
                     PlayerStats.UseSkill(BattleManager.PlayerLoadedSkill, Actor);
                     SetMenu(0);
                 });
+                if (Actor.CurrentHealth <= 0)
+                    Btn.interactable = false;
                 Btn.GetComponentInChildren<Text>().text = Actor == PlayerStats ? "Self" : Actor.ActorName;
                 if (Actor == PlayerStats)
                 {
@@ -151,6 +156,11 @@ namespace Alchemy.Combat
             PlayerStats.ResetStats();
 
             StartCoroutine(UpdateStatLabels());
+        }
+
+        public void PlayerRest()
+        {
+            PlayerStats.UseSkill(Resources.Load<Skill>("Skills/Rest"), PlayerStats);
         }
 
         public void OnDamagePlayer()

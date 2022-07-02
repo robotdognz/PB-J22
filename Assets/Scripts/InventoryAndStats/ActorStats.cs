@@ -23,7 +23,18 @@ namespace Alchemy.Stats
         public int CurrentStamina { get; private set; } // Players current Stamina (not normalized)
 
         public List<Combat.Skill> Skills = new List<Combat.Skill>();
-        
+
+        public Sprite NormalSprite;
+        public Sprite DamagedSprite;
+        public Sprite DeadSprite;
+
+        private void Awake()
+        {
+            if (Stats.StartingSkills.Length >= 0)
+                foreach (Combat.Skill Skill in Stats.StartingSkills)
+                    Skills.Add(Skill);
+        }
+
         public void UseSkill(int Skill, ActorStats Target)
         {
             UseSkill(Skills[Skill], Target);
@@ -34,16 +45,25 @@ namespace Alchemy.Stats
             Combat.OutputDamage Damage = Skill.Damage(Stats, CurrentLevel);
 
             Combat.BattleManager.Instance.ClearATB(this);
+            ModifyStamina(Skill.StaminaCost);
+
             StartCoroutine(SpawnEffect(Skill.IndicatorDelay, Skill.Effect, Target, Damage));
         }
 
         private IEnumerator SpawnEffect(float Delay, GameObject Effect, ActorStats Target, Combat.OutputDamage Damage)
         {
-            Instantiate(Effect, Target.transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(Delay);
+            if (Effect)
+            {
+                Instantiate(Effect, Target.transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(Delay);
+            }
             Target.ModifyHealth(Mathf.RoundToInt(Damage.Damage));
 
-            Combat.BattleManager.ShowDamagePopup(Target.transform, Damage.Damage, Damage.WasCrit);
+
+            if (Damage.Damage != 0)
+            {
+                Combat.BattleManager.ShowDamagePopup(Target.transform, Damage.Damage, Damage.WasCrit);
+            }
         }
 
         public void ProcessTurn()
@@ -86,11 +106,29 @@ namespace Alchemy.Stats
             CurrentHealth += Amount;
 
             if (CurrentHealth <= 0)
+            {
+                GetComponent<SpriteRenderer>().sprite = DeadSprite;
                 return true;
+            }
+            else if (HealthPercent <= 0.2f)
+            {
+                GetComponent<SpriteRenderer>().sprite = DamagedSprite;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = NormalSprite;
+            }
 
             Combat.UIManager.Instance.OnDamagePlayer();
 
             return false;
+        }
+
+        public void ModifyStamina(int Amount)
+        {
+            CurrentStamina -= Amount;
+
+            Combat.UIManager.Instance.OnDamagePlayer();
         }
 
         public int MaxHealth => Mathf.RoundToInt(Stats.HealthOverLevel.Evaluate(CurrentLevel));

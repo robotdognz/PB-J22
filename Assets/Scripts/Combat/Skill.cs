@@ -28,6 +28,7 @@ namespace Alchemy.Combat
         public Sprite Icon;
         [Space]
         public Stat BasedStat = Stat.Arcana;
+        public int StaminaCost = 2;
         [Space]
         public bool CanCrit = true;
         public float CritMultiplier = 1.3f;
