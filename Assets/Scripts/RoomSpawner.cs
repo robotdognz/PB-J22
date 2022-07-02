@@ -15,7 +15,7 @@ public class RoomSpawner : MonoBehaviour
     {
         templates = FindObjectOfType<RoomTemplates>();
 
-        Invoke("Spawn", 0.1f);
+        Invoke("Spawn", 0.001f);
     }
 
     void Spawn()
