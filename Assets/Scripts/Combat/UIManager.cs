@@ -36,16 +36,77 @@ namespace Alchemy.Combat
         public Text ATBStatus;
         public Image ATBBar;
 
+        [Header("Skills")]
+        public Transform SkillsRoot;
+        public GameObject SkillButton;
+        private List<GameObject> SkillButtons = new List<GameObject>();
+        [Space]
+        public Transform TargetsRoot;
+        public GameObject TargetsButton;
+        private List<GameObject> TargetButtons = new List<GameObject>();
+
+        public void RefreshSkillsList()
+        {
+            if (SkillButtons.Count > 0)
+                foreach (GameObject Btn in SkillButtons)
+                    Destroy(Btn);
+
+            SkillButtons.Clear();
+
+            foreach (Skill S in PlayerStats.Skills)
+            {
+                Button Btn = Instantiate(SkillButton, SkillsRoot).GetComponentInChildren<Button>();
+                Btn.onClick.AddListener(() =>
+                {
+                    BattleManager.PlayerLoadedSkill = S;
+                    SetMenu(5);
+                    RefreshTargetsList();
+                });
+                Btn.GetComponentInChildren<Text>().text = S.DisplayedName;
+                Btn.transform.GetChild(0).GetComponent<Image>().sprite = S.Icon;
+                SkillButtons.Add(Btn.gameObject);
+            }
+        }
+
+        public void RefreshTargetsList()
+        {
+            if (TargetButtons.Count > 0)
+                foreach (GameObject Btn in TargetButtons)
+                    Destroy(Btn);
+
+            foreach (ActorStats Actor in FindObjectsOfType<ActorStats>())
+            {
+                Button Btn = Instantiate(TargetsButton, TargetsRoot).GetComponentInChildren<Button>();
+                Btn.onClick.AddListener(() => 
+                {
+                    BattleManager.PlayerLoadedTarget = Actor;
+                    PlayerStats.UseSkill(BattleManager.PlayerLoadedSkill, Actor);
+                    SetMenu(0);
+                });
+                Btn.GetComponentInChildren<Text>().text = Actor == PlayerStats ? "Self" : Actor.ActorName;
+                if (Actor == PlayerStats)
+                {
+                    Btn.transform.SetAsFirstSibling();
+                }
+                Btn.transform.GetChild(0).GetComponent<Image>().color = Color.clear;
+                TargetButtons.Add(Btn.gameObject);
+            }
+        }
+
         public void SetATBBarValue(float Value)
         {
             if (Value >= 1)
             {
                 ATBStatus.text = "Decision!";
+                if (CurrentMenu == 0)
+                    CurrentMenu = 1;
             }
             else
             {
-                ATBStatus.text = $"Charging... [{Mathf.RoundToInt(Value * 100)}]";
+                ATBStatus.text = $"Charging... [{Mathf.RoundToInt(Value * 100)}%]";
             }
+
+            UpdateUI();
 
             ATBBar.fillAmount = Value;
         }
@@ -92,10 +153,8 @@ namespace Alchemy.Combat
             StartCoroutine(UpdateStatLabels());
         }
 
-        public void DamagePlayer(int Damage)
+        public void OnDamagePlayer()
         {
-            PlayerStats.ModifyHealth(-Damage);
-
             StartCoroutine(UpdateStatLabels());
         }
 

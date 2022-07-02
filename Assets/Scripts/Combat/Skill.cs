@@ -32,8 +32,12 @@ namespace Alchemy.Combat
         [Tooltip("If this is a healing skill, set this to a negative!")]
         public bool CanCrit = true;
         public float CritMultiplier = 1.3f;
+        [Range(0, 1)] public float Variance = 0.2f;
         public float m_Damage = 1;
         public Element DamageElement;
+        [Space]
+        public float IndicatorDelay = 0;
+        public GameObject Effect;
 
         public OutputDamage Damage(StatHolder Stats, int Level = 1)
         {
@@ -62,6 +66,8 @@ namespace Alchemy.Combat
             }
 
             bool WasCrit = false;
+
+            Dmg += Random.Range(Dmg * Variance, Dmg * -Variance);
 
             if (Random.Range(0, 100) <= Stats.LuckOverLevel.Evaluate(Level) && CanCrit)
             {
