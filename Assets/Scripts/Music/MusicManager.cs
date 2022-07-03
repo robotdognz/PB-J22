@@ -14,10 +14,10 @@ namespace Alchemy.Music
 
     public enum DungeonType
     {
-        A,
-        B,
-        C,
-        D
+        Forest,
+        MidnightDesert,
+        Castle,
+        Sewers
     }
 
     public class MusicManager : MonoBehaviour

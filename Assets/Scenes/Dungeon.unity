@@ -394,8 +394,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1017788998}
   - component: {fileID: 1017788997}
+  - component: {fileID: 1017788999}
   m_Layer: 0
-  m_Name: MusicStarter
+  m_Name: DungeonMaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -430,6 +431,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1017788999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017788996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c735745b9c69e3478e32d635dd70474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetSprite: {fileID: 789540234, guid: 630584b0564f0fd4a9ce8f5f7d6ad33d, type: 3}
+  Forest: {fileID: 2800000, guid: a39441cd928fb374d972ff30c32aed25, type: 3}
+  MidnightDesert: {fileID: 2800000, guid: 5d18b7d792096f847a8527a415c67b81, type: 3}
+  Castle: {fileID: 2800000, guid: 6ddae2a8b6bba5d4596b1073aa6d6db4, type: 3}
+  Sewers: {fileID: 2800000, guid: 70dc9e90366a053448260d50621c8e73, type: 3}
 --- !u!1001 &1025654948
 PrefabInstance:
   m_ObjectHideFlags: 0
