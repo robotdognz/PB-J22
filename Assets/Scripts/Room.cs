@@ -36,6 +36,11 @@ public class Room : MonoBehaviour
     {
         DungeonManager templates = FindObjectOfType<DungeonManager>();
         templates.rooms.Add(this);
+
+        if (templates.IsPositionValid(transform.position))
+        {
+            templates.SpawnedCoords.Add(new Vector2Int((int)transform.position.x, (int)transform.position.y));
+        }
     }
 
     public bool IsComplete()

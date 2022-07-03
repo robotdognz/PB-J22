@@ -15,7 +15,7 @@ namespace Alchemy.Dungeon
         public Texture2D Castle;
         public Texture2D Sewers;
 
-        private void Awake()
+        public void Refresh()
         {
             Mus = GetComponent<MusicStarter>();
 

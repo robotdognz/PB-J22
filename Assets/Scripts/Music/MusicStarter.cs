@@ -10,6 +10,16 @@ namespace Alchemy.Music
         public Track StartingTrack;
         public DungeonType DungeonType;
 
+        public void RefreshGraphics()
+        {
+            GetComponent<Dungeon.SpriteSwapper>().Refresh();
+
+            foreach (Door D in FindObjectsOfType<Door>())
+            {
+                D.Refresh();
+            }
+        }
+
         private IEnumerator Start()
         {
             Instance = this;

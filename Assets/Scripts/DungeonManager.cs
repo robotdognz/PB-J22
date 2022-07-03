@@ -6,10 +6,12 @@ using Alchemy.Music;
 
 public class DungeonManager : MonoBehaviour
 {
+    public List<Vector2Int> SpawnedCoords = new List<Vector2Int>();
+
     [Header("Dungeon Settings")]
     [Tooltip("Set this to true to use the below settings, otherwise the game will decide")]
     public bool overwriteSettings = false;
-    [Range(4, 30)] public int dungeonSize = 20;
+    public int dungeonSize = 20;
     [Range(0f, 1f)] public float enemyProbability = 0.5f;
     [Range(1, 10)] public int enemyLevel = 1;
     public DungeonType dungeonType = DungeonType.Forest;
@@ -42,6 +44,11 @@ public class DungeonManager : MonoBehaviour
     // keep track of rooms
     public List<Room> rooms;
 
+    public bool IsPositionValid(Vector2 Position)
+    {
+        return !SpawnedCoords.Contains(new Vector2Int((int)Position.x, (int)Position.y));
+    }
+
     private void Start()
     {
         if (!overwriteSettings)
@@ -56,6 +63,7 @@ public class DungeonManager : MonoBehaviour
         // set dungeon type
         MusicStarter musicStater = FindObjectOfType<MusicStarter>();
         musicStater.DungeonType = dungeonType;
+        musicStater.RefreshGraphics();
 
         roomCount = dungeonSize - 1; // minus one to account for first room
         rooms = new List<Room>();

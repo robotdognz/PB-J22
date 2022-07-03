@@ -22,44 +22,51 @@ public class RoomSpawner : MonoBehaviour
     {
         if (!spawned && dungeonManager.GetRemainingRooms() > 0)
         {
-            GameObject spawnedRoom = null;
-
-            // spawn room
-            switch (openingDirection)
+            if (dungeonManager.IsPositionValid(transform.position))
             {
-                case Direction.Top:
-                    // need to spawn a room with top door
-                    rand = Random.Range(0, dungeonManager.topRooms.Length);
-                    spawnedRoom = Instantiate(dungeonManager.topRooms[rand], transform.position, Quaternion.identity);
-                    break;
-                case Direction.Right:
-                    // need to spawn a room with right door
-                    rand = Random.Range(0, dungeonManager.rightRooms.Length);
-                    spawnedRoom = Instantiate(dungeonManager.rightRooms[rand], transform.position, Quaternion.identity);
-                    break;
-                case Direction.Bottom:
-                    // need to spawn a room with bottom door
-                    rand = Random.Range(0, dungeonManager.bottomRooms.Length);
-                    spawnedRoom = Instantiate(dungeonManager.bottomRooms[rand], transform.position, Quaternion.identity);
-                    break;
-                case Direction.Left:
-                    // need to spawn a room with left door
-                    rand = Random.Range(0, dungeonManager.leftRooms.Length);
-                    spawnedRoom = Instantiate(dungeonManager.leftRooms[rand], transform.position, Quaternion.identity);
-                    break;
-            }
-            spawned = true;
-            dungeonManager.DecrementRemainingRooms();
+                GameObject spawnedRoom = null;
 
-            // spawn enemies in room
-            if (Random.value <= dungeonManager.enemyProbability) // this shouldn't be hard coded
-            {
-                rand = Random.Range(0, dungeonManager.enemyLayouts.Length);
-                GameObject enemies = Instantiate(dungeonManager.enemyLayouts[rand], transform.position, Quaternion.identity);
-                if (spawnedRoom != null)
+                // spawn room
+                switch (openingDirection)
                 {
-                    spawnedRoom.GetComponentInChildren<Room>().AddEnemies(enemies); //.enemies = enemies;
+                    case Direction.Top:
+                        // need to spawn a room with top door
+                        rand = Random.Range(0, dungeonManager.topRooms.Length);
+                        spawnedRoom = Instantiate(dungeonManager.topRooms[rand], transform.position, Quaternion.identity);
+                        break;
+                    case Direction.Right:
+                        // need to spawn a room with right door
+                        rand = Random.Range(0, dungeonManager.rightRooms.Length);
+                        spawnedRoom = Instantiate(dungeonManager.rightRooms[rand], transform.position, Quaternion.identity);
+                        break;
+                    case Direction.Bottom:
+                        // need to spawn a room with bottom door
+                        rand = Random.Range(0, dungeonManager.bottomRooms.Length);
+                        spawnedRoom = Instantiate(dungeonManager.bottomRooms[rand], transform.position, Quaternion.identity);
+                        break;
+                    case Direction.Left:
+                        // need to spawn a room with left door
+                        rand = Random.Range(0, dungeonManager.leftRooms.Length);
+                        spawnedRoom = Instantiate(dungeonManager.leftRooms[rand], transform.position, Quaternion.identity);
+                        break;
+                    default:
+                        return; // Break the code if the direction is invalid
                 }
+                spawned = true;
+                dungeonManager.DecrementRemainingRooms();
+
+                // spawn enemies in room
+                if (Random.value <= dungeonManager.enemyProbability) // this shouldn't be hard coded
+                {
+                    rand = Random.Range(0, dungeonManager.enemyLayouts.Length);
+                    GameObject enemies = Instantiate(dungeonManager.enemyLayouts[rand], transform.position, Quaternion.identity);
+                    if (spawnedRoom != null)
+                    {
+                        spawnedRoom.GetComponentInChildren<Room>().AddEnemies(enemies); //.enemies = enemies;
+                    }
+                }
+
+                dungeonManager.SpawnedCoords.Add(new Vector2Int((int)transform.position.x, (int)transform.position.y));
             }
         }
     }

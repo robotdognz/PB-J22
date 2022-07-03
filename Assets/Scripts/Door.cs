@@ -24,10 +24,14 @@ public class Door : MonoBehaviour
     public Texture2D Castle;
     public Texture2D Sewers;
 
-    private void OnEnable()
+    private void Awake()
     {
         Col = GetComponentInChildren<Collider2D>();
+        Refresh();
+    }
 
+    public void Refresh()
+    {
         MusicStarter Mus = MusicStarter.Instance;
 
         switch (Mus.DungeonType)
