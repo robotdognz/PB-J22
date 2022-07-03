@@ -1,9 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Alchemy.Stats;
+using Alchemy.Music;
 
 public class DungeonManager : MonoBehaviour
 {
+    [Header("Dungeon Settings")]
+    [Tooltip("Set this to true to use the below settings, otherwise the game will decide")]
+    public bool overwriteSettings = false;
+    [Range(4, 30)] public int dungeonSize = 20;
+    [Range(0f, 1f)] public float enemyProbability = 0.5f;
+    [Range(1, 10)] public int enemyLevel = 1;
+    public DungeonType dungeonType = DungeonType.Forest;
+    // Dungeon theme
+
+    [Header("Required Fields")]
     // filler walls to block holes
     [SerializeField] GameObject topWall;
     [SerializeField] GameObject rightWall;
@@ -19,13 +31,11 @@ public class DungeonManager : MonoBehaviour
     // enemies
     public GameObject[] enemyLayouts;
     public GameObject bossLayout;
-    public float chanceOfEnemy = 0.5f;
 
     // doors
     [SerializeField] GameObject door;
 
     // dungeon generation
-    [SerializeField] int dungeonSize = 20;
     private int roomCount;
     int rand;
 
@@ -34,6 +44,19 @@ public class DungeonManager : MonoBehaviour
 
     private void Awake()
     {
+        if (!overwriteSettings)
+        {
+            // TODO: replace dungeon settings with ones from the singleton
+            dungeonSize = SettingsSingleton.instance.dungeonSize;
+            enemyProbability = SettingsSingleton.instance.enemyProbability;
+            enemyLevel = SettingsSingleton.instance.enemyLevel;
+            dungeonType = SettingsSingleton.instance.dungeonType;
+        }
+
+        // set dungeon type
+        MusicStarter musicStater = FindObjectOfType<MusicStarter>();
+        musicStater.DungeonType = dungeonType;
+
         roomCount = dungeonSize - 1; // minus one to account for first room
         rooms = new List<Room>();
     }
@@ -101,7 +124,16 @@ public class DungeonManager : MonoBehaviour
                 room.RemoveLeftDoor();
             }
 
-            // TODO: add sprite onto room
+            // get the enemies from the room
+            List<Enemy> roomEnemies = room.GetIndividualEnemies();
+            // set their level
+            if (roomEnemies != null)
+            {
+                foreach (Enemy enemy in roomEnemies)
+                {
+                    enemy.gameObject.GetComponent<ActorStats>().CurrentLevel = enemyLevel;
+                }
+            }
         }
     }
 
@@ -140,7 +172,15 @@ public class DungeonManager : MonoBehaviour
         {
             rooms[rooms.Count - 1].RemoveEnemies();
         }
-        GameObject enemies = Instantiate(bossLayout, rooms[rooms.Count-1].transform.position, Quaternion.identity);
+        GameObject enemies = Instantiate(bossLayout, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
+
+        // setup boss level
+        List<Enemy> bossWave = enemies.GetComponent<EnemyLayout>().GetEnemies();
+        foreach (Enemy enemy in bossWave)
+        {
+            enemy.gameObject.GetComponent<ActorStats>().CurrentLevel = enemyLevel;
+        }
+
         rooms[rooms.Count - 1].AddEnemies(enemies);
     }
 }

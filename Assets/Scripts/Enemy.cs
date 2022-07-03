@@ -5,7 +5,6 @@ using Alchemy;
 
 public class Enemy : MonoBehaviour
 {
-    bool isDisabled = false;
     SpriteRenderer sRenderer;
 
     private void Awake()
@@ -15,13 +14,11 @@ public class Enemy : MonoBehaviour
 
     public void DisableEnemy()
     {
-        isDisabled = true;
         sRenderer.enabled = false;
     }
 
     public void EnableEnemy()
     {
-        isDisabled = false;
         sRenderer.enabled = true;
     }
 }

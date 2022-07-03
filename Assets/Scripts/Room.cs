@@ -215,6 +215,15 @@ public class Room : MonoBehaviour
         enemies = enemyLayout;
     }
 
+    public List<Enemy> GetIndividualEnemies()
+    {
+        if (enemies != null)
+        {
+            return enemies.GetComponent<EnemyLayout>().GetEnemies();
+        }
+        return null;
+    }
+
     public bool HasEnemies()
     {
         return enemies != null;

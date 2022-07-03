@@ -52,7 +52,7 @@ public class RoomSpawner : MonoBehaviour
             dungeonManager.DecrementRemainingRooms();
 
             // spawn enemies in room
-            if (Random.value <= dungeonManager.chanceOfEnemy) // this shouldn't be hard coded
+            if (Random.value <= dungeonManager.enemyProbability) // this shouldn't be hard coded
             {
                 rand = Random.Range(0, dungeonManager.enemyLayouts.Length);
                 GameObject enemies = Instantiate(dungeonManager.enemyLayouts[rand], transform.position, Quaternion.identity);
