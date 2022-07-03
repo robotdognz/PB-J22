@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static Room PreviousRoom;
+    public static PlayerMovement Instance;
+
     public Rigidbody2D body;
     Vector2 movement;
 
     [SerializeField] float moveSpeed = 5;
+    public float MoveSpeed { get { return moveSpeed; } }
 
     bool isDisabled = false;
     SpriteRenderer sRenderer;
@@ -15,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        Instance = this;
         body = GetComponent<Rigidbody2D>();
         sRenderer = GetComponent<SpriteRenderer>();
     }

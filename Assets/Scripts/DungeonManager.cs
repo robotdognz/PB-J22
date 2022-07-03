@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Alchemy.Stats;
 using Alchemy.Music;
+using Alchemy.Combat;
 
 public class DungeonManager : MonoBehaviour
 {
+    public static EnemyPalette ActiveEnemyPalette;
     public List<Vector2Int> SpawnedCoords = new List<Vector2Int>();
+
+    public EnemyPalette Forest;
+    public EnemyPalette MidnightDesert;
+    public EnemyPalette Castle;
+    public EnemyPalette Sewers;
 
     [Header("Dungeon Settings")]
     [Tooltip("Set this to true to use the below settings, otherwise the game will decide")]
@@ -81,6 +88,22 @@ public class DungeonManager : MonoBehaviour
         MusicStarter musicStater = FindObjectOfType<MusicStarter>();
         musicStater.DungeonType = dungeonType;
         musicStater.RefreshGraphics();
+
+        switch (dungeonType)
+        {
+            case DungeonType.Forest:
+                ActiveEnemyPalette = Forest;
+                break;
+            case DungeonType.MidnightDesert:
+                ActiveEnemyPalette = MidnightDesert;
+                break;
+            case DungeonType.Castle:
+                ActiveEnemyPalette = Castle;
+                break;
+            case DungeonType.Sewers:
+                ActiveEnemyPalette = Sewers;
+                break;
+        }
 
         roomCount = dungeonSize - 1; // minus one to account for first room
         rooms = new List<Room>();

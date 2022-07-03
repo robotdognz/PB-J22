@@ -9,6 +9,7 @@ namespace Alchemy.Inventory
     {
         public Item Base;
         public int Count;
+        [Range(0, 1)]public float DropProbability = 1;
 
         public ItemInstance(Item Base, int Count)
         {

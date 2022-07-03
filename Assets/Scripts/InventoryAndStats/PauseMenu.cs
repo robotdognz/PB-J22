@@ -33,6 +33,12 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void ReloadDungeon()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
+    }
+
     private void Update()
     {
         Time.timeScale = Menu.activeSelf ? 0 : 1;

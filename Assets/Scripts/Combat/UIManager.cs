@@ -122,22 +122,32 @@ namespace Alchemy.Combat
             List<ItemInstance> Items = new List<ItemInstance>();
             foreach (Battler B in BattleManager.Instance.Battlers)
             {
-                foreach(ItemInstance Item in B.Stats.Stats.Drops)
+                if (B.Stats != PlayerStats)
                 {
-                    bool GotItem = false;
-
-                    foreach (ItemInstance Itm in Items)
+                    foreach (ItemInstance Item in B.Stats.Stats.Drops)
                     {
-                        if (Itm.Base == Item.Base)
+                        float GetProbability = Random.Range(0f, 1);
+
+                        Debug.Log($"Rolled {GetProbability} - Items drop probablility is {Item.DropProbability}");
+                        
+                        if (GetProbability <= Item.DropProbability) // Allows us to setup proper loot tables
                         {
-                            Itm.Count += Item.Count;
-                            GotItem = true;
-                            break;
+                            bool GotItem = false;
+
+                            foreach (ItemInstance Itm in Items)
+                            {
+                                if (Itm.Base == Item.Base)
+                                {
+                                    Itm.Count += Item.Count;
+                                    GotItem = true;
+                                    break;
+                                }
+                            }
+
+                            if (!GotItem)
+                                Items.Add(Item);
                         }
                     }
-
-                    if (!GotItem)
-                        Items.Add(Item);
                 }
             }
 
@@ -311,18 +321,25 @@ namespace Alchemy.Combat
                     {
                         if (PlayerStats.StatusEffects.Count > 0)
                         {
+                            List<InstancedStatusEffect> ToRemove = new List<InstancedStatusEffect>();
+
                             foreach (InstancedStatusEffect Effect in PlayerStats.StatusEffects)
                             {
                                 Effect.TurnsRemaining--;
                                 if (Effect.TurnsRemaining <= 0)
                                 {
-                                    PlayerStats.StatusEffects.Remove(Effect);
+                                    ToRemove.Add(Effect);
                                 }
                                 else
                                 {
                                     PlayerStats.ModifyHealth(-Effect.Effect.HealthDrainPerTurn);
                                     PlayerStats.ModifyStamina(Effect.Effect.StaminaDrainPerTurn);
                                 }
+                            }
+
+                            foreach (InstancedStatusEffect E in ToRemove)
+                            {
+                                PlayerStats.StatusEffects.Remove(E);
                             }
                         }
 

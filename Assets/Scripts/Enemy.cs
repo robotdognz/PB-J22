@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Alchemy;
+using Alchemy.Stats;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,15 +10,26 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         sRenderer = GetComponent<SpriteRenderer>();
+
+        // Get a random enemy from the current enemy palette. Allows different dungeons to have different enemies
+        GetComponent<ActorStats>().Stats = DungeonManager.ActiveEnemyPalette.GetEnemy;
+        GetComponent<ActorStats>().ResetStats();
+        GetComponent<ActorStats>().InitializeActor();
     }
 
     public void DisableEnemy()
     {
-        sRenderer.enabled = false;
+        foreach (SpriteRenderer R in GetComponentsInChildren<SpriteRenderer>())
+        {
+            R.enabled = false;
+        }
     }
 
     public void EnableEnemy()
     {
-        sRenderer.enabled = true;
+        foreach (SpriteRenderer R in GetComponentsInChildren<SpriteRenderer>())
+        {
+            R.enabled = true;
+        }
     }
 }

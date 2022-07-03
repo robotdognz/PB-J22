@@ -25,7 +25,18 @@ namespace Alchemy
         { 
             Debug.Log($"Battle ended with result: {R}!");
             Music.MusicManager.SetTrack(Music.Track.Explore);
+            ClearBattleEnd();
         });
+
+        public static void ClearBattleEnd()
+        {
+            OnBattleEnd = new UnityAction<BattleEndResult>((BattleEndResult R) =>
+            {
+                Debug.Log($"Battle ended with result: {R}!");
+                Music.MusicManager.SetTrack(Music.Track.Explore);
+                ClearBattleEnd();
+            });
+        }
 
         public static bool CanPlayerFlee = true;
 
@@ -61,6 +72,7 @@ namespace Alchemy
             foreach (ActorStats Actor in Actors)
             {
                 Puppet P = new GameObject($"{Actor.name}_PUPPET").AddComponent<Puppet>();
+
                 P.gameObject.AddComponent<SpriteRenderer>();
                 P.GetComponent<SpriteRenderer>().sortingOrder = 8;
                 P.GetComponent<SpriteRenderer>().flipX = Actor.GetComponent<SpriteRenderer>().flipX;
@@ -80,7 +92,7 @@ namespace Alchemy
 
                 P.ResetStats();
 
-                P.transform.localScale = Vector3.one * 0.15f;
+                P.transform.localScale = Vector3.one * 0.098439f;
                 P.GetComponent<SpriteRenderer>().sprite = P.NormalSprite;
 
                 Bs.Add(P);

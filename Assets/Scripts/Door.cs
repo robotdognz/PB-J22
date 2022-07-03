@@ -24,8 +24,19 @@ public class Door : MonoBehaviour
     public Texture2D Castle;
     public Texture2D Sewers;
 
+    private AudioSource AS;
+    public AudioClip OpenSound;
+    public AudioClip CloseSound;
+
     private void Awake()
     {
+        if (GetComponent<AudioSource>())
+            AS = GetComponent<AudioSource>();
+        else
+            AS = gameObject.AddComponent<AudioSource>();
+
+        AS.volume = 0.5f;
+
         Col = GetComponentInChildren<Collider2D>();
         Refresh();
     }
@@ -59,6 +70,8 @@ public class Door : MonoBehaviour
 
     private IEnumerator OpenAnimation()
     {
+        AS.PlayOneShot(OpenSound);
+
         for (int I = 0; I < Animation.Length; I++)
         {
             GetComponentInChildren<SpriteRenderer>().sprite = Animation[I];
@@ -68,11 +81,12 @@ public class Door : MonoBehaviour
 
     private IEnumerator CloseAnimation()
     {
-        for (int I = 0; I < Animation.Length; I++)
+        for (int I = Animation.Length - 1; I >= 0; I--)
         {
             GetComponentInChildren<SpriteRenderer>().sprite = Animation[I];
             yield return new WaitForSeconds(Duration / Animation.Length);
         }
+        AS.PlayOneShot(CloseSound);
     }
 
     public void AddRooms(List<Room> rooms)

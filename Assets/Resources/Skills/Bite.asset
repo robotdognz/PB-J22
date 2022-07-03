@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b048aef8c26b38444bb4b9ed424ec308, type: 3}
+  m_Name: Bite
+  m_EditorClassIdentifier: 
+  DisplayedName: Bite
+  Description: Type your description here!
+  Icon: {fileID: 0}
+  BasedStat: 3
+  StaminaCost: 2
+  CanCrit: 1
+  CritMultiplier: 1.3
+  Variance: 0.4
+  m_Damage: -5
+  DamageElement: 0
+  IndicatorDelay: 0
+  Effect: {fileID: 1454847043746168268, guid: bd7fbad58699adf4186b89b0a26186fb, type: 3}
+  StatusEffects:
+  - Effect: {fileID: 11400000, guid: 513aeb9979f47fc4eb524cdaed309f11, type: 2}
+    Chance: 50
+    Certain: 0

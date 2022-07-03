@@ -11,6 +11,10 @@ namespace Alchemy.Combat
         protected override void Awake()
         {
             // No need to load skills for a puppet, as they use an existing actors skills
+            if (GetComponent<AudioSource>())
+                Src = GetComponent<AudioSource>();
+            else
+                Src = gameObject.AddComponent<AudioSource>();
         }
 
         private void Update()

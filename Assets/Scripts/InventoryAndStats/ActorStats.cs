@@ -31,19 +31,62 @@ namespace Alchemy.Stats
         public List<Combat.InstancedStatusEffect> StatusEffects = new List<Combat.InstancedStatusEffect>();
         public int CurrentEXP = 0;
 
-        protected virtual void Awake()
+        public void InitializeActor()
         {
+
             if (Stats.StartingSkills.Length >= 0)
                 foreach (Combat.Skill Skill in Stats.StartingSkills)
                     Skills.Add(Skill);
 
+            if (!string.IsNullOrEmpty(Stats.DefaultName))
+            {
+                ActorName = Stats.DefaultName;
+            }
+
+            if (Stats.NormalSprite)
+            {
+                NormalSprite = Stats.NormalSprite;
+                DamagedSprite = Stats.NormalSprite;
+                DeadSprite = Stats.NormalSprite;
+
+                if (Stats.DeadSprite)
+                {
+                    DeadSprite = Stats.DeadSprite;
+
+                    if (Stats.DamagedSprite)
+                    {
+                        DamagedSprite = Stats.DamagedSprite;
+                    }
+                }
+
+                foreach (SpriteRenderer R in GetComponentsInChildren<SpriteRenderer>())
+                {
+                    R.sprite = NormalSprite;
+                }
+            }
+
             if (DecisionMaker == DecisionStyle.PlayerControlled)
             {
+                Inventory.Inventory.Items.Clear();
+
                 foreach (Inventory.ItemInstance Item in Stats.Drops)
                 {
                     Inventory.Inventory.AddItem(Item.Base, Item.Count);
                 }
             }
+        }
+
+        protected AudioSource Src;
+
+        protected virtual void Awake()
+        {
+            if (GetComponent<AudioSource>())
+                Src = GetComponent<AudioSource>();
+            else
+                Src = gameObject.AddComponent<AudioSource>();
+
+            if (!GetComponent<Enemy>())
+                InitializeActor();
         }
 
         public void UseSkill(int Skill, ActorStats Target)
@@ -165,15 +208,26 @@ namespace Alchemy.Stats
             if (CurrentHealth <= 0)
             {
                 GetComponent<SpriteRenderer>().sprite = DeadSprite;
+
+                if (Stats.DeathSound)
+                    Src.PlayOneShot(Stats.DeathSound);
+
                 return true;
-            }
-            else if (HealthPercent <= 0.2f)
-            {
-                GetComponent<SpriteRenderer>().sprite = DamagedSprite;
             }
             else
             {
-                GetComponent<SpriteRenderer>().sprite = NormalSprite;
+                if (Amount < 0)
+                    if (Stats.HurtSound)
+                        Src.PlayOneShot(Stats.HurtSound);
+
+                if (HealthPercent <= 0.2f)
+                {
+                    GetComponent<SpriteRenderer>().sprite = DamagedSprite;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().sprite = NormalSprite;
+                }
             }
 
             Combat.UIManager.Instance.OnDamagePlayer();

@@ -78,6 +78,8 @@ public class Room : MonoBehaviour
 
     public void AddDoor(Door door)
     {
+        //door.transform.parent = transform;
+
         if (!childDoors.Contains(door))
         {
             childDoors.Add(door);
@@ -138,7 +140,7 @@ public class Room : MonoBehaviour
                 }
 
                 // activate doors
-                foreach (Door door in childDoors)
+                foreach (Door door in GetComponentsInChildren<Door>())
                 {
                     door.isLocked = true;
                     door.CloseDoor();
@@ -146,13 +148,17 @@ public class Room : MonoBehaviour
 
                 Invoke("BattleStarted", 0.6f);
             }
+            else
+            {
+                PlayerMovement.PreviousRoom = this;
+            }
         }
     }
 
     public void BattleStarted()
     {
         Debug.Log("Battle!");
-        EnemyLayout enemyWave = enemies.GetComponent<EnemyLayout>(); ;
+        EnemyLayout enemyWave = enemies.GetComponent<EnemyLayout>();
         List<Enemy> enemiesInWave = enemyWave.GetEnemies();
 
         List<Alchemy.Stats.ActorStats> actors = new List<Alchemy.Stats.ActorStats>();
@@ -204,14 +210,43 @@ public class Room : MonoBehaviour
                 }
 
                 // deactivate doors
-                foreach (Door door in childDoors)
+                foreach (Door door in GetComponentsInChildren<Door>()) // Changed code to fix an issue where they just wouldn't open again for some reason
                 {
                     door.EndCombat();
                 }
+
+                PlayerMovement.PreviousRoom = this;
                 break;
             case BattleEndResult.Defeat:
+                PlayerMovement.PreviousRoom = null;
                 UnityEngine.SceneManagement.SceneManager.LoadScene(0);
                 break;
+            case BattleEndResult.Fled:
+                PlayerMovement.Instance.EnablePlayer();
+                EnemyLayout enemyWave = enemies.GetComponent<EnemyLayout>();
+
+                foreach (Enemy E in enemyWave.GetEnemies())
+                {
+                    E.EnableEnemy();
+                }
+
+                // deactivate doors
+                foreach (Door door in GetComponentsInChildren<Door>()) // Changed code to fix an issue where they just wouldn't open again for some reason
+                {
+                    door.EndCombat();
+                }
+
+                StartCoroutine(MovePlayerToPreviousRoom());
+                break;
+        }
+    }
+
+    private IEnumerator MovePlayerToPreviousRoom()
+    {
+        while (PlayerMovement.Instance.transform.position != PlayerMovement.PreviousRoom.transform.position)
+        {
+            PlayerMovement.Instance.transform.position = Vector3.MoveTowards(PlayerMovement.Instance.transform.position, PlayerMovement.PreviousRoom.transform.position, (PlayerMovement.Instance.MoveSpeed * 2) * Time.deltaTime);
+            yield return null;
         }
     }
 

@@ -18,6 +18,7 @@ namespace Alchemy.Stats
     [CreateAssetMenu(fileName = "StatBlock", menuName = "Create StatBlock")]
     public class StatHolder : ScriptableObject
     {
+        public string DefaultName = "";
         public AnimationCurve HealthOverLevel = new AnimationCurve(new Keyframe(0, 250), new Keyframe(99, 5500));
         public AnimationCurve StaminaOverLevel = new AnimationCurve(new Keyframe(0, 100), new Keyframe(99, 1000));
         [Space]
@@ -33,6 +34,13 @@ namespace Alchemy.Stats
         public List<Combat.Element> IsWeakTo;
         [Space]
         public Combat.Skill[] StartingSkills;
+        [Space]
+        public AudioClip HurtSound;
+        public AudioClip DeathSound;
+        [Space]
+        public Sprite NormalSprite;
+        public Sprite DamagedSprite;
+        public Sprite DeadSprite;
         [Space]
         public ItemInstance[] Drops;
     }

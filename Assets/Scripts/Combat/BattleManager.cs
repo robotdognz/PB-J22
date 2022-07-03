@@ -173,11 +173,16 @@ namespace Alchemy.Combat
 
         private static IEnumerator EndBattleFadeout(BattleEndResult Result)
         {
-            UIManager.Instance.Darkinator.gameObject.SetActive(true);
-            while (UIManager.Instance.Darkinator.color.a < 1)
+            if (Result == BattleEndResult.Defeat)
             {
-                UIManager.Instance.Darkinator.color = new Color(UIManager.Instance.Darkinator.color.r, UIManager.Instance.Darkinator.color.g, UIManager.Instance.Darkinator.color.b, UIManager.Instance.Darkinator.color.a + (Time.deltaTime / 0.5f));
-                yield return null;
+                MusicManager.SetTrack(Track.GameOver);
+
+                UIManager.Instance.Darkinator.gameObject.SetActive(true);
+                while (UIManager.Instance.Darkinator.color.a < 1)
+                {
+                    UIManager.Instance.Darkinator.color = new Color(UIManager.Instance.Darkinator.color.r, UIManager.Instance.Darkinator.color.g, UIManager.Instance.Darkinator.color.b, UIManager.Instance.Darkinator.color.a + (Time.deltaTime / 2));
+                    yield return null;
+                }
             }
 
             SceneManager.UnloadSceneAsync("Combat");
