@@ -39,7 +39,7 @@ namespace Alchemy.Combat
             }
         }
 
-        Battler[] ThisCombat;
+        public Battler[] ThisCombat { get; private set; }
         public static ActorStats CurrentTurn;
 
         private void Awake()

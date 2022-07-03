@@ -120,7 +120,7 @@ namespace Alchemy.Combat
             SetMenu(7);
 
             List<ItemInstance> Items = new List<ItemInstance>();
-            foreach (Battler B in BattleManager.Instance.Battlers)
+            foreach (Battler B in BattleManager.Instance.ThisCombat)
             {
                 if (B.Stats != PlayerStats)
                 {
