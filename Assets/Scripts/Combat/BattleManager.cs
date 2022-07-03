@@ -143,6 +143,7 @@ namespace Alchemy.Combat
                     }
                     if (PlayerDead)
                     {
+                        UIManager.Instance.Darkinator.sprite = null;
                         EndBattle(BattleEndResult.Defeat);
                     }
                 }

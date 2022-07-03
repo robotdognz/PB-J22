@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stats: {fileID: 11400000, guid: f7ccf652a51697d47a6b933d96f5e95f, type: 2}
-  ActorName: Alchemist
+  ActorName: Toxic Sludge
   DecisionMaker: 1
   CurrentLevel: 1
   Skills: []

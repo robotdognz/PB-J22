@@ -22,7 +22,7 @@ namespace Alchemy.Inventory
         public static List<ItemInstance> Items
         {
             get; private set;
-        }
+        } = new List<ItemInstance>();
 
         public static void AddItem(Item Itm, int Amount = 1)
         {

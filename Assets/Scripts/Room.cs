@@ -172,17 +172,27 @@ public class Room : MonoBehaviour
 
     public void BattleEnded(BattleEndResult result)
     {
-        // restore player
-        GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
-        player.GetComponent<PlayerMovement>().EnablePlayer();
+        // Sky here, just added a condition so that if it's a game over the game will reload. Might add a GameOver screen if there's enough time!
 
-        // clear enemies
-        RemoveEnemies();
-
-        // deactivate doors
-        foreach (Door door in childDoors)
+        switch (result) 
         {
-            door.EndCombat();
+            default:
+                // restore player
+                GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+                player.GetComponent<PlayerMovement>().EnablePlayer();
+
+                // clear enemies
+                RemoveEnemies();
+
+                // deactivate doors
+                foreach (Door door in childDoors)
+                {
+                    door.EndCombat();
+                }
+                break;
+            case BattleEndResult.Defeat:
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                break;
         }
     }
 
