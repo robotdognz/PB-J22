@@ -59,6 +59,7 @@ namespace Alchemy
             {
                 Puppet P = new GameObject($"{Actor.name}_PUPPET").AddComponent<Puppet>();
                 P.gameObject.AddComponent<SpriteRenderer>();
+                P.GetComponent<SpriteRenderer>().sortingOrder = 2;
 
                 P.TrackedCoords = Actor.transform.position;
 

@@ -44,6 +44,11 @@ namespace Alchemy.Combat
 
         private void ClearStatics()
         {
+            foreach (Battler B in Battlers)
+            {
+
+            }
+
             Instance = null;
             PlayerLoadedSkill = null;
             PlayerLoadedTarget = null;

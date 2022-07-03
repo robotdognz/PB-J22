@@ -10504,6 +10504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerStats: {fileID: 0}
+  FleeButton: {fileID: 1880383450}
   Menus:
   - ThisMenu: {fileID: 487201768}
     ParentMenu: 0
