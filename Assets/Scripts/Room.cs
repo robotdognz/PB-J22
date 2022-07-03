@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using Alchemy;
 
 public class Room : MonoBehaviour
@@ -140,7 +139,7 @@ public class Room : MonoBehaviour
                     door.CloseDoor();
                 }
 
-                Invoke("BattleStarted", 0.5f);
+                Invoke("BattleStarted", 0.6f);
             }
         }
     }
@@ -173,23 +172,13 @@ public class Room : MonoBehaviour
 
     public void BattleEnded(BattleEndResult result)
     {
-        // enemies.GetComponent<EnemyLayout>().KillAll();
-
+        // restore player
         GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
         player.GetComponent<PlayerMovement>().EnablePlayer();
 
+        // clear enemies
         RemoveEnemies();
-        // deactivate doors
-        foreach (Door door in childDoors)
-        {
-            door.EndCombat();
-        }
-    }
 
-    public void RoomCleared()
-    {
-        Debug.Log("Room Cleared");
-        RemoveEnemies();
         // deactivate doors
         foreach (Door door in childDoors)
         {
@@ -200,7 +189,6 @@ public class Room : MonoBehaviour
     public void AddEnemies(GameObject enemyLayout)
     {
         enemies = enemyLayout;
-        enemies.GetComponent<EnemyLayout>().EnemiesDefeated += RoomCleared;
     }
 
     public bool HasEnemies()
