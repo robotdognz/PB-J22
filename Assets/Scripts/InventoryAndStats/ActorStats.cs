@@ -36,6 +36,14 @@ namespace Alchemy.Stats
             if (Stats.StartingSkills.Length >= 0)
                 foreach (Combat.Skill Skill in Stats.StartingSkills)
                     Skills.Add(Skill);
+
+            if (DecisionMaker == DecisionStyle.PlayerControlled)
+            {
+                foreach (Inventory.ItemInstance Item in Stats.Drops)
+                {
+                    Inventory.Inventory.AddItem(Item.Base, Item.Count);
+                }
+            }
         }
 
         public void UseSkill(int Skill, ActorStats Target)

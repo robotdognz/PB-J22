@@ -186,3 +186,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 434a9bac54fe7b845a969da3a9144736, type: 2}
   - {fileID: 11400000, guid: a6294d4768a3b64469d09dd3268d511d, type: 2}
   - {fileID: 11400000, guid: 689d837580f8ec64a85f44f2148918dd, type: 2}
+  Drops:
+  - Base: {fileID: 11400000, guid: 0fcc2982f8c712d408cce16da8a053d1, type: 2}
+    Count: 3
+  - Base: {fileID: 11400000, guid: 1ac413d185d6c3b498bea0e7c09a1a70, type: 2}
+    Count: 5

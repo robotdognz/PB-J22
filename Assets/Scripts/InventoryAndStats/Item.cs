@@ -9,6 +9,7 @@ namespace Alchemy.Inventory
     [CreateAssetMenu(fileName = "New Item", menuName = "Create Item (Generic)")]
     public class Item : ScriptableObject
     {
+        public AudioClip Sound;
         public string ItemName = "Item";
         [Space]
         public bool RestoreHPAsPercent = false;
@@ -23,11 +24,14 @@ namespace Alchemy.Inventory
         {
             if (Target)
             {
+                FindObjectOfType<AudioSource>().PlayOneShot(Sound, 0.6f);
+
+                Debug.Log($"Use {ItemName}");
                 if (SkillToLearn)
                     Target.Skills.Add(SkillToLearn);
 
-                Target.ModifyHealth(Mathf.RoundToInt(RestoreHPAsPercent ? HealthRestore / Target.MaxHealth : HealthRestore));
-                Target.ModifyStamina(Mathf.RoundToInt(RestoreSPAsPercent ? StaminaRestore / Target.MaxStamina : StaminaRestore));
+                Target.ModifyHealth(Mathf.RoundToInt(RestoreHPAsPercent ? HealthRestore * Target.MaxHealth : HealthRestore));
+                Target.ModifyStamina(-Mathf.RoundToInt(RestoreSPAsPercent ? StaminaRestore * Target.MaxStamina : StaminaRestore));
 
                 List<StatusEffect> StatusEffects = new List<StatusEffect>();
 

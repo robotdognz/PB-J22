@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2667e0a7436d63469e7e74e6d9e7bcc, type: 3}
   m_Name: MegaPotion
   m_EditorClassIdentifier: 
+  Sound: {fileID: 8300000, guid: 9b4bcabead276104b9fcbfddcdf6b594, type: 3}
   ItemName: Mega Potion
   RestoreHPAsPercent: 1
   HealthRestore: 0.6

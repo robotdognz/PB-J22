@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Alchemy.Stats;
+using Alchemy.Inventory;
 
 namespace Alchemy.Combat
 {
@@ -41,14 +42,21 @@ namespace Alchemy.Combat
         public Transform SkillsRoot;
         public GameObject SkillButton;
         private List<GameObject> SkillButtons = new List<GameObject>();
-        [Space]
+
+        [Header("Targets")]
         public Transform TargetsRoot;
         public GameObject TargetsButton;
         private List<GameObject> TargetButtons = new List<GameObject>();
-        [Space]
+
+        [Header("Status Effects")]
         public GameObject StatusEffectImage;
         public Transform StatusEffects;
         private List<GameObject> SpawnedIcons = new List<GameObject>();
+
+        [Header("Items")]
+        public Transform ItemsRoot;
+        public GameObject ItemButton;
+        private List<GameObject> ItemButtons = new List<GameObject>();
 
         [Header("Aftermath")]
         public Image Darkinator;
@@ -105,14 +113,14 @@ namespace Alchemy.Combat
             while (CurrentMenu == 6)
                 yield return null;
 
-            List<Inventory.ItemInstance> Items = new List<Inventory.ItemInstance>();
+            List<ItemInstance> Items = new List<ItemInstance>();
             foreach (Battler B in BattleManager.Instance.Battlers)
             {
-                foreach(Inventory.ItemInstance Item in B.Stats.Stats.Drops)
+                foreach(ItemInstance Item in B.Stats.Stats.Drops)
                 {
                     bool GotItem = false;
 
-                    foreach (Inventory.ItemInstance Itm in Items)
+                    foreach (ItemInstance Itm in Items)
                     {
                         if (Itm.Base == Item.Base)
                         {
@@ -127,7 +135,7 @@ namespace Alchemy.Combat
                 }
             }
 
-            foreach (Inventory.ItemInstance Item in Items)
+            foreach (ItemInstance Item in Items)
             {
                 if (Item != null)
                 {
@@ -162,6 +170,59 @@ namespace Alchemy.Combat
                 Btn.GetComponentInChildren<Text>().text = S.DisplayedName;
                 Btn.transform.GetChild(0).GetComponent<Image>().sprite = S.Icon;
                 SkillButtons.Add(Btn.gameObject);
+            }
+        }
+
+        public void RefreshItemsList()
+        {
+            if (ItemButtons.Count > 0)
+                foreach (GameObject Btn in ItemButtons)
+                    Destroy(Btn);
+
+            ItemButtons.Clear();
+
+            foreach (ItemInstance Item in Inventory.Inventory.Items)
+            {
+                Button Btn = Instantiate(ItemButton, ItemsRoot).GetComponentInChildren<Button>();
+                Btn.onClick.AddListener(() => 
+                {
+                    Item.Base.UseItem(PlayerStats);
+                    StartCoroutine(UpdateStatLabels());
+                    Item.Count--;
+
+                    if (Item.Count <= 0)
+                    {
+                        Inventory.Inventory.Items.Remove(Item);
+                    }
+
+                    if (PlayerStats.StatusEffects.Count > 0)
+                    {
+                        try
+                        {
+                            foreach (InstancedStatusEffect Effect in PlayerStats.StatusEffects)
+                            {
+                                Effect.TurnsRemaining--;
+                                if (Effect.TurnsRemaining <= 0)
+                                {
+                                    PlayerStats.StatusEffects.Remove(Effect);
+                                }
+                                else
+                                {
+                                    PlayerStats.ModifyHealth(-Effect.Effect.HealthDrainPerTurn);
+                                    PlayerStats.ModifyStamina(Effect.Effect.StaminaDrainPerTurn);
+                                }
+                            }
+                        }
+                        catch { }
+                    }
+                    BattleManager.Instance.ClearATB(PlayerStats);
+                    SetMenu(0);
+                });
+
+                Btn.GetComponentInChildren<Text>().text = $"{Item.Base.ItemName} x{Item.Count}";
+                Btn.transform.GetChild(0).GetComponent<Image>().color = Color.clear;
+
+                ItemButtons.Add(Btn.gameObject);
             }
         }
 
