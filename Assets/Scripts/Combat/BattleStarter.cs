@@ -42,14 +42,17 @@ namespace Alchemy
 
         private static IEnumerator BEGIN(List<ActorStats> Actors)
         {
+            Debug.LogError("BEEGIN");
             Music.MusicManager.Initialize();
             yield return new WaitForSecondsRealtime(0.1f);
             Music.MusicManager.SetTrack(Music.Track.Battle); // Switch to Battle music without forgetting the dungeon type
 
             AsyncOperation Op = SceneManager.LoadSceneAsync("Combat", LoadSceneMode.Additive);
 
+            Debug.LogError("Wait for load");
             while (!Op.isDone)
                 yield return null;
+            Debug.LogError("Loaded");
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("Combat"));
 
@@ -82,13 +85,17 @@ namespace Alchemy
 
                 Bs.Add(P);
             }
+            Debug.LogError("Added Battlers");
 
             Battlers = Bs.ToArray();
 
+            Debug.LogError("Get Active Scene");
             SceneManager.GetActiveScene().GetRootGameObjects()[0].SetActive(true);
 
             while (BattleManager.Instance == null)
                 yield return null;
+
+            Debug.LogError("Done Loading");
 
             BattleManager.Instance.Init();
         }
