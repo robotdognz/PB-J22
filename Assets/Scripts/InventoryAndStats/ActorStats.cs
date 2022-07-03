@@ -29,6 +29,7 @@ namespace Alchemy.Stats
         public Sprite DeadSprite;
 
         public List<Combat.InstancedStatusEffect> StatusEffects = new List<Combat.InstancedStatusEffect>();
+        public int CurrentEXP = 0;
 
         protected virtual void Awake()
         {

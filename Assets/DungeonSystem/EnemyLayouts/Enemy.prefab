@@ -117,10 +117,11 @@ MonoBehaviour:
   DecisionMaker: 1
   CurrentLevel: 1
   Skills: []
-  NormalSprite: {fileID: -721035515, guid: 92e457da1dcb0d9489fc6c6623ff4aba, type: 3}
-  DamagedSprite: {fileID: 21300000, guid: 565b891db5c35d944b8835fd0475f076, type: 3}
-  DeadSprite: {fileID: 21300000, guid: cceaf4a6835837343954b9be2c3f541c, type: 3}
+  NormalSprite: {fileID: 21300000, guid: 071e68fc9b406264481f113c8204340b, type: 3}
+  DamagedSprite: {fileID: 21300000, guid: bfb84bd7c1bd40f43917e863f240bb0a, type: 3}
+  DeadSprite: {fileID: 21300000, guid: c88f5ffdba1aadf46ae7e2f91131b78f, type: 3}
   StatusEffects: []
+  CurrentEXP: 0
 --- !u!58 &3953860342659830398
 CircleCollider2D:
   m_ObjectHideFlags: 0
