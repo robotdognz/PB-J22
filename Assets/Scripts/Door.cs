@@ -70,7 +70,8 @@ public class Door : MonoBehaviour
 
     private IEnumerator OpenAnimation()
     {
-        AS.PlayOneShot(OpenSound);
+        if (GetComponentInChildren<SpriteRenderer>().isVisible)
+            AS.PlayOneShot(OpenSound);
 
         for (int I = 0; I < Animation.Length; I++)
         {
@@ -86,7 +87,9 @@ public class Door : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().sprite = Animation[I];
             yield return new WaitForSeconds(Duration / Animation.Length);
         }
-        AS.PlayOneShot(CloseSound);
+
+        if (GetComponentInChildren<SpriteRenderer>().isVisible)
+            AS.PlayOneShot(CloseSound);
     }
 
     public void AddRooms(List<Room> rooms)
@@ -114,6 +117,7 @@ public class Door : MonoBehaviour
     {
         if (Anim == true)
         {
+            StopAllCoroutines();
             StartCoroutine(CloseAnimation());
             Anim = false;
         }
@@ -128,6 +132,7 @@ public class Door : MonoBehaviour
         }
         if (Anim == false)
         {
+            StopAllCoroutines();
             StartCoroutine(OpenAnimation());
             Anim = true;
         }

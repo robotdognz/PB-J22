@@ -65,6 +65,29 @@ public class DungeonManager : MonoBehaviour
         return !SpawnedCoords.Contains(new Vector2Int((int)Position.x, (int)Position.y));
     }
 
+    private int roomCountLastSecond;
+    private float roomCountSampleTick;
+    private bool CheckRoomCounts = true;
+
+    private void Update()
+    {
+        if (CheckRoomCounts)
+        {
+            roomCountSampleTick -= Time.deltaTime;
+            if (roomCountSampleTick <= 0)
+            {
+                if (roomCountLastSecond == roomCount)
+                {
+                    roomCount = 1;
+                    DecrementRemainingRooms();
+                }
+
+                roomCountLastSecond = roomCount;
+                roomCountSampleTick = 1;
+            }
+        }
+    }
+
     private void Start()
     {
         if (!overwriteSettings)
@@ -122,6 +145,8 @@ public class DungeonManager : MonoBehaviour
             Invoke("CloseRooms", 0.005f);
             Invoke("BuildDoors", 0.08f);
             Invoke("SetupEnd", 0.01f);
+            GameObject.Find("[DARKINATOR]").SetActive(false);
+            CheckRoomCounts = false;
         }
     }
 
