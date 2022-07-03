@@ -42,11 +42,11 @@ public class DungeonManager : MonoBehaviour
     // keep track of rooms
     public List<Room> rooms;
 
-    private void Awake()
+    private void Start()
     {
         if (!overwriteSettings)
         {
-            // TODO: replace dungeon settings with ones from the singleton
+            // replace dungeon settings with ones from the singleton
             dungeonSize = SettingsSingleton.instance.dungeonSize;
             enemyProbability = SettingsSingleton.instance.enemyProbability;
             enemyLevel = SettingsSingleton.instance.enemyLevel;
