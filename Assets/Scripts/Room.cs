@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using Alchemy;
 
 public class Room : MonoBehaviour
 {
@@ -84,20 +86,13 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Rigidbody2D playerBody = other.gameObject.GetComponentInParent<Rigidbody2D>();
             // snap camera to this room
-            /*
-            Vector3 cameraTemp = Camera.main.transform.position;
-            cameraTemp.x = transform.position.x;
-            cameraTemp.y = transform.position.y;
-            Camera.main.transform.position = cameraTemp;
-            */
-
             TargetPos = transform.position + -Vector3.forward * 10;
 
             // if the room has enemies, snap player to this room (so they are't inside the door when it closes)
             if (enemies != null)
             {
+                Rigidbody2D playerBody = other.gameObject.GetComponentInParent<Rigidbody2D>();
                 Vector2 playerTemp = other.transform.position;
 
                 if (Mathf.Abs(playerTemp.x - transform.position.x) > Mathf.Abs(playerTemp.y - transform.position.y))
@@ -144,7 +139,50 @@ public class Room : MonoBehaviour
                     door.isLocked = true;
                     door.CloseDoor();
                 }
+
+                Invoke("BattleStarted", 0.5f);
             }
+        }
+    }
+
+    public void BattleStarted()
+    {
+        Debug.Log("Battle!");
+        EnemyLayout enemyWave = enemies.GetComponent<EnemyLayout>(); ;
+        List<Enemy> enemiesInWave = enemyWave.GetEnemies();
+
+        List<Alchemy.Stats.ActorStats> actors = new List<Alchemy.Stats.ActorStats>();
+
+        GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+        actors.Add(player.GetComponent<Alchemy.Stats.ActorStats>());
+        player.GetComponent<PlayerMovement>().DisablePlayer();
+
+        foreach (Enemy enemy in enemiesInWave)
+        {
+            Alchemy.Stats.ActorStats current = enemy.gameObject.GetComponent<Alchemy.Stats.ActorStats>();
+            if (current != null)
+            {
+                actors.Add(current);
+            }
+            enemy.DisableEnemy();
+        }
+
+        BattleStarter.StartBattle(actors);
+        BattleStarter.OnBattleEnd += BattleEnded;
+    }
+
+    public void BattleEnded(BattleEndResult result)
+    {
+        // enemies.GetComponent<EnemyLayout>().KillAll();
+
+        GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+        player.GetComponent<PlayerMovement>().EnablePlayer();
+
+        RemoveEnemies();
+        // deactivate doors
+        foreach (Door door in childDoors)
+        {
+            door.EndCombat();
         }
     }
 

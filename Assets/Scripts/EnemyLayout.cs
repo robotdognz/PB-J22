@@ -18,11 +18,25 @@ public class EnemyLayout : MonoBehaviour
             Destroy(enemy.gameObject);
 
         }
-        
+
         if (enemies.Count == 0)
         {
             // tell room to deactivate
             EnemiesDefeated?.Invoke();
         }
+    }
+
+    public void KillAll()
+    {
+        foreach (Enemy enemy in enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
+        enemies.Clear();
+    }
+
+    public List<Enemy> GetEnemies()
+    {
+        return enemies;
     }
 }

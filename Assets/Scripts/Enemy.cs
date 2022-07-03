@@ -13,35 +13,35 @@ public class Enemy : MonoBehaviour
         sRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (isDisabled)
-        {
-            return;
-        }
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (isDisabled)
+    //     {
+    //         return;
+    //     }
 
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Combat starts!");
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         Debug.Log("Combat starts!");
 
-            // temp kill the enemy immediately, replace this with Sky's combat system
-            // Kill();
+    //         // temp kill the enemy immediately, replace this with Sky's combat system
+    //         // Kill();
 
-            DisableEnemy();
-            other.GetComponentInParent<PlayerMovement>().DisablePlayer();
+    //         DisableEnemy();
+    //         other.GetComponentInParent<PlayerMovement>().DisablePlayer();
 
-            Alchemy.Stats.ActorStats player = other.GetComponentInParent<Alchemy.Stats.ActorStats>();
-            Alchemy.Stats.ActorStats me = GetComponent<Alchemy.Stats.ActorStats>();
-            if (me != null && player != null)
-            {
-                List<Alchemy.Stats.ActorStats> actors = new List<Alchemy.Stats.ActorStats>();
-                actors.Add(player);
-                actors.Add(me);
-                BattleStarter.StartBattle(actors);
-            }
-        }
+    //         Alchemy.Stats.ActorStats player = other.GetComponentInParent<Alchemy.Stats.ActorStats>();
+    //         Alchemy.Stats.ActorStats me = GetComponent<Alchemy.Stats.ActorStats>();
+    //         if (me != null && player != null)
+    //         {
+    //             List<Alchemy.Stats.ActorStats> actors = new List<Alchemy.Stats.ActorStats>();
+    //             actors.Add(player);
+    //             actors.Add(me);
+    //             BattleStarter.StartBattle(actors);
+    //         }
+    //     }
 
-    }
+    // }
 
     public void DisableEnemy()
     {
