@@ -47,6 +47,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorBody: {fileID: 2898930837046548001}
   parentRooms: []
+  isLocked: 0
+  Animation:
+  - {fileID: -1601634130, guid: 6a7c4cecb1acd95499c3cfe64561cfbc, type: 3}
+  - {fileID: -1938450094, guid: 6a7c4cecb1acd95499c3cfe64561cfbc, type: 3}
+  - {fileID: -1450358065, guid: 6a7c4cecb1acd95499c3cfe64561cfbc, type: 3}
+  - {fileID: -2101327307, guid: 6a7c4cecb1acd95499c3cfe64561cfbc, type: 3}
+  Duration: 0.75
+  Master: {fileID: -1601634130, guid: 6a7c4cecb1acd95499c3cfe64561cfbc, type: 3}
+  Forest: {fileID: 2800000, guid: 577c815ff4bc007478d12b7e2e0bddd1, type: 3}
+  MidnightDesert: {fileID: 2800000, guid: cd39a77b71999e740abc2f1c5ab23629, type: 3}
+  Castle: {fileID: 2800000, guid: f267a567caf9481448e14769ac09bf49, type: 3}
+  Sewers: {fileID: 2800000, guid: f1a1fd72152d9be408e60c2a47934ba1, type: 3}
 --- !u!1 &2898930837046548001
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,8 +133,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: -1601634130, guid: 6a7c4cecb1acd95499c3cfe64561cfbc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,7 +162,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0625, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
