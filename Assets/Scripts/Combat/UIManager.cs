@@ -76,6 +76,7 @@ namespace Alchemy.Combat
 
         private IEnumerator Aftermath()
         {
+            /*
             int TotalEXP = 0;
             foreach (Battler B in BattleManager.Instance.Battlers)
             {
@@ -112,6 +113,11 @@ namespace Alchemy.Combat
 
             while (CurrentMenu == 6)
                 yield return null;
+            */
+
+            yield return null;
+
+            SetMenu(7);
 
             List<ItemInstance> Items = new List<ItemInstance>();
             foreach (Battler B in BattleManager.Instance.Battlers)

@@ -59,7 +59,8 @@ namespace Alchemy
             {
                 Puppet P = new GameObject($"{Actor.name}_PUPPET").AddComponent<Puppet>();
                 P.gameObject.AddComponent<SpriteRenderer>();
-                P.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                P.GetComponent<SpriteRenderer>().sortingOrder = 8;
+                P.GetComponent<SpriteRenderer>().flipX = Actor.GetComponent<SpriteRenderer>().flipX;
 
                 P.TrackedCoords = Actor.transform.position;
 
@@ -76,7 +77,7 @@ namespace Alchemy
 
                 P.ResetStats();
 
-                P.transform.localScale = Vector3.one * 0.25f;
+                P.transform.localScale = Vector3.one * 0.15f;
                 P.GetComponent<SpriteRenderer>().sprite = P.NormalSprite;
 
                 Bs.Add(P);

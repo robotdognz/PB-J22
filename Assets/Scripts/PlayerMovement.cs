@@ -40,6 +40,14 @@ public class PlayerMovement : MonoBehaviour
 
         // do movement
         body.MovePosition(body.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (movement.x < 0)
+        {
+            sRenderer.flipX = true;
+        }
+        if (movement.x > 0)
+        {
+            sRenderer.flipX = false;
+        }
     }
 
     public void DisablePlayer()
