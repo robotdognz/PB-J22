@@ -42,23 +42,11 @@ namespace Alchemy.Combat
         Battler[] ThisCombat;
         public static ActorStats CurrentTurn;
 
-        private void ClearStatics()
-        {
-            foreach (Battler B in Battlers)
-            {
-
-            }
-
-            Instance = null;
-            PlayerLoadedSkill = null;
-            PlayerLoadedTarget = null;
-
-            UIManager.Instance = null;
-        }
-
         private void Awake()
         {
             Instance = this;
+            Initialized = false;
+            BattleEnded = false;
         }
 
         public void Init()
@@ -149,6 +137,7 @@ namespace Alchemy.Combat
 
                     if (AllEnemiesDead)
                     {
+                        Initialized = false;
                         UIManager.Instance.PlayerStats.StatusEffects.Clear();
 
                         MusicManager.SetTrack(Track.Victory);
@@ -159,6 +148,7 @@ namespace Alchemy.Combat
                     }
                     if (PlayerDead)
                     {
+                        Initialized = false;
                         UIManager.Instance.PlayerStats.StatusEffects.Clear();
 
                         UIManager.Instance.Darkinator.sprite = null;
