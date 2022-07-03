@@ -60,6 +60,84 @@ namespace Alchemy.Combat
         public Transform ItemsGained;
         public GameObject GainedItemObject;
 
+        public void DoAftermath()
+        {
+            StartCoroutine(Aftermath());
+        }
+
+        private IEnumerator Aftermath()
+        {
+            int TotalEXP = 0;
+            foreach (Battler B in BattleManager.Instance.Battlers)
+            {
+                if (B.Stats != PlayerStats)
+                {
+                    TotalEXP += B.Stats.Stats.EXPGained;
+                }
+            }
+            int StartEXP = PlayerStats.CurrentEXP;
+            float EXP = StartEXP;
+            float Overflow = 0;
+
+            if (EXP + TotalEXP > PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel))
+            {
+                Overflow = EXP + TotalEXP - PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel);
+            }
+
+            while (EXP < StartEXP + TotalEXP)
+            {
+                EXP = Mathf.MoveTowards(EXP, StartEXP + TotalEXP, Time.deltaTime * 10);
+                if (EXP > PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel))
+                {
+                    PlayerStats.CurrentLevel++;
+                    PlayerStats.CurrentEXP = 0;
+                    StartEXP = 0;
+                    TotalEXP = Mathf.RoundToInt(Overflow);
+                    LevelUpAnnounce.SetActive(true);
+                }
+                PlayerStats.CurrentEXP = Mathf.RoundToInt(EXP);
+                LevelProgress.text = $"Level Progress: {Mathf.RoundToInt(EXP)}/{Mathf.RoundToInt(PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel))}EXP";
+                LevelUpBar.fillAmount = EXP / PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel);
+                yield return null;
+            }
+
+            while (CurrentMenu == 6)
+                yield return null;
+
+            List<Inventory.ItemInstance> Items = new List<Inventory.ItemInstance>();
+            foreach (Battler B in BattleManager.Instance.Battlers)
+            {
+                foreach(Inventory.ItemInstance Item in B.Stats.Stats.Drops)
+                {
+                    bool GotItem = false;
+
+                    foreach (Inventory.ItemInstance Itm in Items)
+                    {
+                        if (Itm.Base == Item.Base)
+                        {
+                            Itm.Count += Item.Count;
+                            GotItem = true;
+                            break;
+                        }
+                    }
+
+                    if (!GotItem)
+                        Items.Add(Item);
+                }
+            }
+
+            foreach (Inventory.ItemInstance Item in Items)
+            {
+                if (Item != null)
+                {
+                    GameObject Obj = Instantiate(GainedItemObject, ItemsGained);
+                    Obj.GetComponent<Text>().text = $"{Item.Count}x {Item.Base.ItemName}";
+
+                    Inventory.Inventory.AddItem(Item.Base, Item.Count);
+                }
+            }
+        }
+
         public void RefreshSkillsList()
         {
             if (SkillButtons.Count > 0)
@@ -226,7 +304,7 @@ namespace Alchemy.Combat
 
         public void Init()
         {
-            ResetPlayer(); // This is only to be used until the battle system is done
+            ResetPlayer();
             
             StartCoroutine(UpdateStatLabels());
         }

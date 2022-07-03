@@ -138,6 +138,7 @@ namespace Alchemy.Combat
                         MusicManager.SetTrack(Track.Victory);
                         UIManager.Instance.AftermathScreen.SetActive(true);
                         UIManager.Instance.SetMenu(6);
+                        UIManager.Instance.DoAftermath();
                         BattleEnded = true;
                     }
                     if (PlayerDead)
