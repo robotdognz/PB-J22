@@ -17,6 +17,15 @@ public class DungeonManager : MonoBehaviour
     public DungeonType dungeonType = DungeonType.Forest;
     // Dungeon theme
 
+    [Header("Randomizer")]
+    public bool EnableRandomizer = true;
+    public int MinimumSize = 10;
+    public int MaximumSize = 50;
+    public float MinimumEnemyProbability = 0.25f;
+    public float MaximumEnemyProbability = 0.7f;
+    public int MinimumEnemyLevel = 0;
+    public int MaximumEnemyLevel = 3;
+
     [Header("Required Fields")]
     // filler walls to block holes
     [SerializeField] GameObject topWall;
@@ -58,6 +67,14 @@ public class DungeonManager : MonoBehaviour
             enemyProbability = SettingsSingleton.instance.enemyProbability;
             enemyLevel = SettingsSingleton.instance.enemyLevel;
             dungeonType = SettingsSingleton.instance.dungeonType;
+        }
+
+        if (EnableRandomizer)
+        {
+            dungeonSize = Random.Range(MinimumSize, MaximumSize);
+            enemyProbability = Random.Range(MinimumEnemyProbability, MaximumEnemyProbability);
+            enemyLevel = Random.Range(MinimumEnemyLevel, MaximumEnemyLevel);
+            dungeonType = (DungeonType)Random.Range(0, 4);
         }
 
         // set dungeon type
