@@ -42,6 +42,15 @@ namespace Alchemy.Combat
         Battler[] ThisCombat;
         public static ActorStats CurrentTurn;
 
+        private void ClearStatics()
+        {
+            Instance = null;
+            PlayerLoadedSkill = null;
+            PlayerLoadedTarget = null;
+
+            UIManager.Instance = null;
+        }
+
         private void Awake()
         {
             Instance = this;
@@ -135,6 +144,8 @@ namespace Alchemy.Combat
 
                     if (AllEnemiesDead)
                     {
+                        UIManager.Instance.PlayerStats.StatusEffects.Clear();
+
                         MusicManager.SetTrack(Track.Victory);
                         UIManager.Instance.AftermathScreen.SetActive(true);
                         UIManager.Instance.SetMenu(6);
@@ -143,6 +154,8 @@ namespace Alchemy.Combat
                     }
                     if (PlayerDead)
                     {
+                        UIManager.Instance.PlayerStats.StatusEffects.Clear();
+
                         UIManager.Instance.Darkinator.sprite = null;
                         EndBattle(BattleEndResult.Defeat);
                     }

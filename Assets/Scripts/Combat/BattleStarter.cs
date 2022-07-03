@@ -27,12 +27,15 @@ namespace Alchemy
             Music.MusicManager.SetTrack(Music.Track.Explore);
         });
 
+        public static bool CanPlayerFlee = true;
+
         /// <summary>
         /// Make sure the player is listed as the first actor in the list. Otherwise you could have some funky issues!-
         /// </summary>
         /// <param name="Actors"></param>
-        public static void StartBattle(List<ActorStats> Actors)
+        public static void StartBattle(List<ActorStats> Actors, bool AllowFlee = true)
         {
+            CanPlayerFlee = AllowFlee;
             Music.MusicManager.SetTrack(Music.Track.Battle); // Switch to Battle music without forgetting the dungeon type
             Actors[0].StartCoroutine(BEGIN(Actors)); // Use the player to start the battle coroutine because silly
         }

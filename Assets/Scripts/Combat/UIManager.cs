@@ -20,6 +20,7 @@ namespace Alchemy.Combat
         public ActorStats PlayerStats;
         public int CurrentMenu { get; private set; }
         [Header("Menus")]
+        public Button FleeButton;
         public Menu[] Menus;
 
         [Header("Stats")]
@@ -373,6 +374,8 @@ namespace Alchemy.Combat
                 Ico.GetComponentInChildren<Text>().text = $"{StatusEffect.TurnsRemaining}";
                 SpawnedIcons.Add(Ico);
             }
+
+            FleeButton.interactable = BattleStarter.CanPlayerFlee;
         }
     }
 }
