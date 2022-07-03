@@ -46,7 +46,7 @@ namespace Alchemy
             yield return new WaitForSecondsRealtime(0.1f);
             Music.MusicManager.SetTrack(Music.Track.Battle); // Switch to Battle music without forgetting the dungeon type
 
-            AsyncOperation Op = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+            AsyncOperation Op = SceneManager.LoadSceneAsync("Combat", LoadSceneMode.Additive);
 
             while (!Op.isDone)
                 yield return null;
