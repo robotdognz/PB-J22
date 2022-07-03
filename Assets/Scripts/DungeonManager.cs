@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomTemplates : MonoBehaviour
+public class DungeonManager : MonoBehaviour
 {
     // filler walls to block holes
     [SerializeField] GameObject topWall;
@@ -18,11 +18,10 @@ public class RoomTemplates : MonoBehaviour
 
     // enemies
     public GameObject[] enemyLayouts;
+    public GameObject bossLayout;
     public float chanceOfEnemy = 0.5f;
 
-    // game object
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject boss;
+    // doors
     [SerializeField] GameObject door;
 
     // dungeon generation
@@ -51,7 +50,7 @@ public class RoomTemplates : MonoBehaviour
         {
             Invoke("CloseRooms", 0.005f);
             Invoke("BuildDoors", 0.08f);
-            Invoke("SetupPlayer", 0.01f);
+            Invoke("SetupEnd", 0.01f);
         }
     }
 
@@ -134,18 +133,14 @@ public class RoomTemplates : MonoBehaviour
         }
     }
 
-    public void SetupPlayer()
+    public void SetupEnd()
     {
-        // add player to start room
-        // GameObject newPlayer = Instantiate(player, rooms[0].transform.position, Quaternion.identity);
-
         // add end/boss to end room
-        GameObject newBoss = Instantiate(boss, rooms[rooms.Count-1].transform.position, Quaternion.identity);
-        if(rooms[rooms.Count-1].HasEnemies()) //enemies != null)
+        if (rooms[rooms.Count - 1].HasEnemies())
         {
-            rooms[rooms.Count-1].RemoveEnemies();
-            // Destroy(rooms[rooms.Count-1].enemies);
-            // rooms[rooms.Count-1].enemies = null;
+            rooms[rooms.Count - 1].RemoveEnemies();
         }
+        GameObject enemies = Instantiate(bossLayout, rooms[rooms.Count-1].transform.position, Quaternion.identity);
+        rooms[rooms.Count - 1].AddEnemies(enemies);
     }
 }

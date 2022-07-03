@@ -71,6 +71,7 @@ MonoBehaviour:
   enemyLayouts:
   - {fileID: 2474554416018938132, guid: e986c6ac664b72f4799a30a11f6f9e2a, type: 3}
   - {fileID: 2474554416018938132, guid: 38a98e5b93fa43d4b8ae3779393c40ef, type: 3}
+  bossLayout: {fileID: 2474554416018938132, guid: 7dd10057d5d6f8d4f817f0319f352996, type: 3}
   chanceOfEnemy: 0.5
   player: {fileID: 1744850376965863084, guid: d9116d251c37fd04c8d7ede7349ec646, type: 3}
   boss: {fileID: 7323487581050415581, guid: a7336f4cf671cbe4caec5386824ddcaa, type: 3}

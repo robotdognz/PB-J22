@@ -34,7 +34,7 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
-        RoomTemplates templates = FindObjectOfType<RoomTemplates>();
+        DungeonManager templates = FindObjectOfType<DungeonManager>();
         templates.rooms.Add(this);
     }
 
@@ -166,7 +166,9 @@ public class Room : MonoBehaviour
             enemy.DisableEnemy();
         }
 
-        BattleStarter.StartBattle(actors);
+        bool boss = enemyWave.isBoss;
+
+        BattleStarter.StartBattle(actors, !boss); // if it is a boss, then you can't flee
         BattleStarter.OnBattleEnd += BattleEnded;
     }
 
@@ -174,15 +176,27 @@ public class Room : MonoBehaviour
     {
         // Sky here, just added a condition so that if it's a game over the game will reload. Might add a GameOver screen if there's enough time!
 
-        switch (result) 
+        switch (result)
         {
             default:
                 // restore player
                 GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
                 player.GetComponent<PlayerMovement>().EnablePlayer();
 
-                // clear enemies
-                RemoveEnemies();
+
+                if (enemies)
+                {
+                    // was this the boss?
+                    bool boss = enemies.GetComponent<EnemyLayout>().isBoss;
+                    if (boss)
+                    {
+                        Debug.Log("You win!");
+                        // win condition
+                    }
+
+                    // clear enemies
+                    RemoveEnemies();
+                }
 
                 // deactivate doors
                 foreach (Door door in childDoors)
