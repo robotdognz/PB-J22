@@ -1301,7 +1301,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 1
-  spawned: 0
 --- !u!61 &8486601112801459745
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1396,7 +1395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 3
-  spawned: 0
 --- !u!61 &8486601112921261889
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1558,6 +1556,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8486601113098030503}
     m_Modifications:
+    - target: {fileID: 4186806727723328424, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
+      propertyPath: doorTop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186806727723328424, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
+      propertyPath: doorBottom
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4706526247795326155, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
       propertyPath: m_RootOrder
       value: 0

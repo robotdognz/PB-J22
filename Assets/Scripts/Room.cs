@@ -5,17 +5,17 @@ using Alchemy;
 
 public class Room : MonoBehaviour
 {
-    // current doors
+    // starting doors
     [SerializeField] bool doorTop;
     [SerializeField] bool doorRight;
     [SerializeField] bool doorBottom;
     [SerializeField] bool doorLeft;
 
-    // required rooms
-    [HideInInspector] public bool top;
-    [HideInInspector] public bool right;
-    [HideInInspector] public bool bottom;
-    [HideInInspector] public bool left;
+    // currently required rooms
+    public bool top; //[HideInInspector]
+    public bool right;
+    public bool bottom;
+    public bool left;
 
     [SerializeField] List<Door> childDoors;
 
@@ -34,12 +34,12 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
-        DungeonManager templates = FindObjectOfType<DungeonManager>();
-        templates.rooms.Add(this);
+        DungeonManager dungeonManager = FindObjectOfType<DungeonManager>();
+        dungeonManager.rooms.Add(this);
 
-        if (templates.IsPositionValid(transform.position))
+        if (dungeonManager.IsPositionValid(transform.position))
         {
-            templates.SpawnedCoords.Add(new Vector2Int((int)transform.position.x, (int)transform.position.y));
+            dungeonManager.spawnedRooms.Add(new Vector2Int((int)transform.position.x, (int)transform.position.y), this);
         }
     }
 

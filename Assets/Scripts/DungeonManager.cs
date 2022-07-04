@@ -8,7 +8,7 @@ using Alchemy.Combat;
 public class DungeonManager : MonoBehaviour
 {
     public static EnemyPalette ActiveEnemyPalette;
-    public List<Vector2Int> SpawnedCoords = new List<Vector2Int>();
+    public Dictionary<Vector2Int, Room> spawnedRooms = new Dictionary<Vector2Int, Room>();
 
     public EnemyPalette Forest;
     public EnemyPalette MidnightDesert;
@@ -62,31 +62,12 @@ public class DungeonManager : MonoBehaviour
 
     public bool IsPositionValid(Vector2 Position)
     {
-        return !SpawnedCoords.Contains(new Vector2Int((int)Position.x, (int)Position.y));
+        return !spawnedRooms.ContainsKey(new Vector2Int((int)Position.x, (int)Position.y));
     }
 
     private int roomCountLastSecond;
     private float roomCountSampleTick;
-    private bool CheckRoomCounts = true;
 
-    private void Update()
-    {
-        if (CheckRoomCounts)
-        {
-            roomCountSampleTick -= Time.deltaTime;
-            if (roomCountSampleTick <= 0)
-            {
-                if (roomCountLastSecond == roomCount)
-                {
-                    roomCount = 1;
-                    DecrementRemainingRooms();
-                }
-
-                roomCountLastSecond = roomCount;
-                roomCountSampleTick = 1;
-            }
-        }
-    }
 
     private void Start()
     {
@@ -130,6 +111,85 @@ public class DungeonManager : MonoBehaviour
 
         roomCount = dungeonSize - 1; // minus one to account for first room
         rooms = new List<Room>();
+
+        ConstructDungeon();
+    }
+
+    public void ConstructDungeon()
+    {
+        Debug.Log("Build dungeon");
+        // setup spawn queue
+        Queue<RoomSpawner> spawnQueue = new Queue<RoomSpawner>();
+
+        // get initial spawners and queue them
+        RoomSpawner[] initialSpawners = FindObjectsOfType<RoomSpawner>();
+        foreach (RoomSpawner spawner in initialSpawners)
+        {
+            spawnQueue.Enqueue(spawner);
+        }
+
+        Debug.Log("Rooms to build: " + spawnQueue.Count);
+
+        // generate dungeon
+        while (spawnQueue.Count > 0)
+        {
+            RoomSpawner currentSpawner = spawnQueue.Dequeue(); // get the next room spawner
+
+            if (GetRemainingRooms() > 0) 
+            {
+                // more rooms need to be made
+                if (IsPositionValid(currentSpawner.transform.position))
+                {
+                    // this spawner can make a valid room
+                    GameObject spawnedRoom = currentSpawner.Spawn(); // make the room
+                    if (spawnedRoom != null)
+                    {
+                        RoomSpawner[] tempSpawners = spawnedRoom.GetComponentsInChildren<RoomSpawner>(); // get the new spawners
+                        Debug.Log("Spawners found in room: " + tempSpawners.Length);
+                        foreach (RoomSpawner spawner in tempSpawners) // enqueue them
+                        {
+                            spawnQueue.Enqueue(spawner);
+                        }
+                    }
+                }
+            }
+
+            // update existing rooms
+            if (!IsPositionValid(currentSpawner.transform.position))
+            {
+                Room tempRoom = null;
+                spawnedRooms.TryGetValue(new Vector2Int((int)currentSpawner.transform.position.x, (int)currentSpawner.transform.position.y), out tempRoom);
+                // this spawn point is on top of a room, tell that room it has a neighbor
+                RoomSpawner.Direction openingDirection = currentSpawner.openingDirection;
+                switch (openingDirection)
+                {
+                    case RoomSpawner.Direction.Top:
+                        tempRoom.top = false;
+                        break;
+                    case RoomSpawner.Direction.Right:
+                        tempRoom.right = false;
+                        break;
+                    case RoomSpawner.Direction.Bottom:
+                        tempRoom.bottom = false;
+                        break;
+                    case RoomSpawner.Direction.Left:
+                        tempRoom.left = false;
+                        break;
+                }
+            }
+
+            // remove the spawner
+            Destroy(currentSpawner.gameObject); 
+        }
+
+        FinishBuild();
+    }
+
+    public void FinishBuild()
+    {
+        Invoke("CloseRooms", 0.005f);
+        Invoke("BuildDoors", 0.08f);
+        Invoke("SetupEnd", 0.01f);
     }
 
     public int GetRemainingRooms()
@@ -142,11 +202,7 @@ public class DungeonManager : MonoBehaviour
         roomCount--;
         if (roomCount <= 0)
         {
-            Invoke("CloseRooms", 0.005f);
-            Invoke("BuildDoors", 0.08f);
-            Invoke("SetupEnd", 0.01f);
             GameObject.Find("[DARKINATOR]").SetActive(false);
-            CheckRoomCounts = false;
         }
     }
 
@@ -154,17 +210,10 @@ public class DungeonManager : MonoBehaviour
     {
         // Debug.Log("Close up rooms");
 
-        // remove spawn points
-        RoomSpawner[] spawnPoints = FindObjectsOfType<RoomSpawner>();
-        for (int i = spawnPoints.Length - 1; i >= 0; i--)
-        {
-            Destroy(spawnPoints[i].gameObject);
-        }
-
         // close off rooms and add sprites
         foreach (Room room in rooms)
         {
-            if (room.top && topWall != null)
+            if (room.top) // && topWall != null)
             {
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(topWall, roomParent.transform.position, Quaternion.identity);
@@ -172,7 +221,7 @@ public class DungeonManager : MonoBehaviour
                 // Debug.Log("Made top wall");
                 room.RemoveTopDoor();
             }
-            if (room.right && rightWall != null)
+            if (room.right) // && rightWall != null)
             {
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(rightWall, roomParent.transform.position, Quaternion.identity);
@@ -180,7 +229,7 @@ public class DungeonManager : MonoBehaviour
                 // Debug.Log("Made right wall");
                 room.RemoveRightDoor();
             }
-            if (room.bottom && bottomWall != null)
+            if (room.bottom) // && bottomWall != null)
             {
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(bottomWall, roomParent.transform.position, Quaternion.identity);
@@ -188,7 +237,7 @@ public class DungeonManager : MonoBehaviour
                 // Debug.Log("Made bottom wall");
                 room.RemoveBottomDoor();
             }
-            if (room.left && leftWall != null)
+            if (room.left) // && leftWall != null)
             {
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(leftWall, roomParent.transform.position, Quaternion.identity);
