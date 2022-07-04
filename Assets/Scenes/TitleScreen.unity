@@ -736,8 +736,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetDungeonTheme03
         m_Mode: 1
         m_Arguments:
@@ -1341,8 +1341,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetDungeonTheme02
         m_Mode: 1
         m_Arguments:
@@ -1441,8 +1441,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetPlayer01
         m_Mode: 1
         m_Arguments:
@@ -1541,8 +1541,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetDungeonSize03
         m_Mode: 1
         m_Arguments:
@@ -1717,8 +1717,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetDungeonTheme04
         m_Mode: 1
         m_Arguments:
@@ -1810,17 +1810,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579381282}
   m_CullTransparentMesh: 1
---- !u!114 &671588964 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8193182263992636012, guid: c72e98ec1235b4b42bbdcefdba648fc2, type: 3}
-  m_PrefabInstance: {fileID: 1441074806}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9086073689b86ef40a4a940b966ff376, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &675242561
 GameObject:
   m_ObjectHideFlags: 0
@@ -2216,8 +2205,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetPlayer02
         m_Mode: 1
         m_Arguments:
@@ -2665,8 +2654,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetPlayer03
         m_Mode: 1
         m_Arguments:
@@ -2969,8 +2958,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetDifficulty03
         m_Mode: 1
         m_Arguments:
@@ -8269,8 +8258,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetDifficulty02
         m_Mode: 1
         m_Arguments:
@@ -8369,8 +8358,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetDungeonTheme01
         m_Mode: 1
         m_Arguments:
@@ -9384,8 +9373,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetDungeonSize01
         m_Mode: 1
         m_Arguments:
@@ -9560,8 +9549,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetDungeonSize02
         m_Mode: 1
         m_Arguments:
@@ -14626,6 +14615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 1
+  settingsSingleton: {fileID: 0}
 --- !u!4 &1862841390
 Transform:
   m_ObjectHideFlags: 0
@@ -15180,8 +15170,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 671588964}
-        m_TargetAssemblyTypeName: SettingsSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1862841389}
+        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
         m_MethodName: SetDifficulty01
         m_Mode: 1
         m_Arguments:
