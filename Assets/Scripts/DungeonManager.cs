@@ -194,7 +194,7 @@ public class DungeonManager : MonoBehaviour
     {
         CloseRoomsAndAddEnemies();
         SetupLevelEnd();
-        Invoke("BuildDoors", 0.001f);
+        Invoke("BuildDoors", 1f);
     }
 
     public int GetRemainingRooms()
@@ -205,10 +205,6 @@ public class DungeonManager : MonoBehaviour
     public void DecrementRemainingRooms()
     {
         roomCount--;
-        if (roomCount <= 0)
-        {
-            GameObject.Find("[DARKINATOR]").SetActive(false);
-        }
     }
 
     public void CloseRoomsAndAddEnemies()
@@ -290,6 +286,8 @@ public class DungeonManager : MonoBehaviour
             // Cleanup
             Destroy(ds.gameObject);
         }
+
+        GameObject.Find("[DARKINATOR]").SetActive(false);
     }
 
     public void SetupLevelEnd()
