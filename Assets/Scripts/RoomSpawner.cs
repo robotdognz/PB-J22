@@ -61,6 +61,8 @@ public class RoomSpawner : MonoBehaviour
                 }
             }
             dungeonManager.spawnedRooms.Add(new Vector2Int((int)transform.position.x, (int)transform.position.y), spawnedRoom.GetComponentInChildren<Room>());
+            dungeonManager.rooms.Add(spawnedRoom.GetComponentInChildren<Room>());
+            spawnedRoom.GetComponentInChildren<Room>().Init();
         }
 
         return spawnedRoom;

@@ -23,7 +23,16 @@ public class Room : MonoBehaviour
 
     float roomDiameter = 3.5f;
 
-    private void Awake()
+    // private void Awake()
+    // {
+    //     // setup required rooms
+    //     top = doorTop;
+    //     right = doorRight;
+    //     bottom = doorBottom;
+    //     left = doorLeft;
+    // }
+
+    public void Init()
     {
         // setup required rooms
         top = doorTop;
@@ -35,7 +44,7 @@ public class Room : MonoBehaviour
     private void Start()
     {
         DungeonManager dungeonManager = FindObjectOfType<DungeonManager>();
-        dungeonManager.rooms.Add(this);
+        // dungeonManager.rooms.Add(this);
 
         if (dungeonManager.IsPositionValid(transform.position))
         {

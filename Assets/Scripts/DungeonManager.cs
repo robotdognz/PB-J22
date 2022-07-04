@@ -128,14 +128,14 @@ public class DungeonManager : MonoBehaviour
             spawnQueue.Enqueue(spawner);
         }
 
-        Debug.Log("Rooms to build: " + spawnQueue.Count);
+        // Debug.Log("Rooms to build: " + spawnQueue.Count);
 
         // generate dungeon
         while (spawnQueue.Count > 0)
         {
             RoomSpawner currentSpawner = spawnQueue.Dequeue(); // get the next room spawner
 
-            if (GetRemainingRooms() > 0) 
+            if (GetRemainingRooms() > 0)
             {
                 // more rooms need to be made
                 if (IsPositionValid(currentSpawner.transform.position))
@@ -145,7 +145,7 @@ public class DungeonManager : MonoBehaviour
                     if (spawnedRoom != null)
                     {
                         RoomSpawner[] tempSpawners = spawnedRoom.GetComponentsInChildren<RoomSpawner>(); // get the new spawners
-                        Debug.Log("Spawners found in room: " + tempSpawners.Length);
+                        // Debug.Log("Spawners found in room: " + tempSpawners.Length);
                         foreach (RoomSpawner spawner in tempSpawners) // enqueue them
                         {
                             spawnQueue.Enqueue(spawner);
@@ -179,7 +179,7 @@ public class DungeonManager : MonoBehaviour
             }
 
             // remove the spawner
-            Destroy(currentSpawner.gameObject); 
+            Destroy(currentSpawner.gameObject);
         }
 
         FinishBuild();
@@ -187,9 +187,9 @@ public class DungeonManager : MonoBehaviour
 
     public void FinishBuild()
     {
-        Invoke("CloseRooms", 0.005f);
-        Invoke("BuildDoors", 0.08f);
-        Invoke("SetupEnd", 0.01f);
+        CloseRoomsAndAddEnemies();
+        SetupLevelEnd();
+        Invoke("BuildDoors", 0.001f);
     }
 
     public int GetRemainingRooms()
@@ -206,43 +206,43 @@ public class DungeonManager : MonoBehaviour
         }
     }
 
-    public void CloseRooms()
+    public void CloseRoomsAndAddEnemies()
     {
         // Debug.Log("Close up rooms");
 
         // close off rooms and add sprites
         foreach (Room room in rooms)
         {
-            if (room.top) // && topWall != null)
+            if (room.top)
             {
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(topWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                // Debug.Log("Made top wall");
+                Debug.Log("Made top wall");
                 room.RemoveTopDoor();
             }
-            if (room.right) // && rightWall != null)
+            if (room.right)
             {
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(rightWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                // Debug.Log("Made right wall");
+                Debug.Log("Made right wall");
                 room.RemoveRightDoor();
             }
-            if (room.bottom) // && bottomWall != null)
+            if (room.bottom)
             {
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(bottomWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                // Debug.Log("Made bottom wall");
+                Debug.Log("Made bottom wall");
                 room.RemoveBottomDoor();
             }
-            if (room.left) // && leftWall != null)
+            if (room.left)
             {
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(leftWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                // Debug.Log("Made left wall");
+                Debug.Log("Made left wall");
                 room.RemoveLeftDoor();
             }
 
@@ -287,7 +287,7 @@ public class DungeonManager : MonoBehaviour
         }
     }
 
-    public void SetupEnd()
+    public void SetupLevelEnd()
     {
         // add end/boss to end room
         if (rooms[rooms.Count - 1].HasEnemies())

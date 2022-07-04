@@ -1567,6 +1567,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b20c153f8bd58044faa13eb891f88b2b, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: EnableRandomizer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: overwriteSettings
       value: 1
       objectReference: {fileID: 0}
