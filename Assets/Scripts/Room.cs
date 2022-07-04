@@ -5,17 +5,17 @@ using Alchemy;
 
 public class Room : MonoBehaviour
 {
-    // current doors
+    // starting doors
     [SerializeField] bool doorTop;
     [SerializeField] bool doorRight;
     [SerializeField] bool doorBottom;
     [SerializeField] bool doorLeft;
 
-    // required rooms
-    [HideInInspector] public bool top;
-    [HideInInspector] public bool right;
-    [HideInInspector] public bool bottom;
-    [HideInInspector] public bool left;
+    // currently required rooms
+    public bool top; //[HideInInspector]
+    public bool right;
+    public bool bottom;
+    public bool left;
 
     [SerializeField] List<Door> childDoors;
 
@@ -23,7 +23,16 @@ public class Room : MonoBehaviour
 
     float roomDiameter = 3.5f;
 
-    private void Awake()
+    // private void Awake()
+    // {
+    //     // setup required rooms
+    //     top = doorTop;
+    //     right = doorRight;
+    //     bottom = doorBottom;
+    //     left = doorLeft;
+    // }
+
+    public void Init()
     {
         // setup required rooms
         top = doorTop;
@@ -34,12 +43,12 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
-        DungeonManager templates = FindObjectOfType<DungeonManager>();
-        templates.rooms.Add(this);
+        DungeonManager dungeonManager = FindObjectOfType<DungeonManager>();
+        // dungeonManager.rooms.Add(this);
 
-        if (templates.IsPositionValid(transform.position))
+        if (dungeonManager.IsPositionValid(transform.position))
         {
-            templates.SpawnedCoords.Add(new Vector2Int((int)transform.position.x, (int)transform.position.y));
+            dungeonManager.spawnedRooms.Add(new Vector2Int((int)transform.position.x, (int)transform.position.y), this);
         }
     }
 
