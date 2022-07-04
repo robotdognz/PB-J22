@@ -21,6 +21,7 @@ public class DungeonManager : MonoBehaviour
     public int dungeonSize = 20;
     [Range(0f, 1f)] public float enemyProbability = 0.5f;
     [Range(1, 10)] public int enemyLevel = 1;
+    [Range(1, 10)] public int playerLevel = 1;
     public DungeonType dungeonType = DungeonType.Forest;
     // Dungeon theme
 
@@ -77,6 +78,7 @@ public class DungeonManager : MonoBehaviour
             dungeonSize = SettingsSingleton.instance.dungeonSize;
             enemyProbability = SettingsSingleton.instance.enemyProbability;
             enemyLevel = SettingsSingleton.instance.enemyLevel;
+            playerLevel = SettingsSingleton.instance.playerLevel;
             dungeonType = SettingsSingleton.instance.dungeonType;
         }
 
@@ -113,6 +115,9 @@ public class DungeonManager : MonoBehaviour
         rooms = new List<Room>();
 
         ConstructDungeon();
+
+        // set player level
+        FindObjectOfType<PlayerMovement>().GetComponent<ActorStats>().CurrentLevel = playerLevel;
     }
 
     public void ConstructDungeon()

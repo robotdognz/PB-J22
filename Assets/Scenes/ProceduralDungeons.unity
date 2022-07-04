@@ -1054,6 +1054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee12cc4dfc27ef44a015deb0dcfc133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreRoomSystem: 0
   CameraSpeed: 25
 --- !u!114 &519420034
 MonoBehaviour:
@@ -1572,7 +1573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: overwriteSettings
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
