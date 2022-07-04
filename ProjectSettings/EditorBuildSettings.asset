@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MusicManager.unity
     guid: 23b16f6cb1bba3a418b865bb2815dfd2
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 5864c44a6dfa33b44a52adb342e1abb9
   m_configObjects: {}

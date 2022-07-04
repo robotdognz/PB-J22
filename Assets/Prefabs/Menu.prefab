@@ -2116,7 +2116,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quit to Title
+  m_Text: Wake up
 --- !u!1 &9034493136090831376
 GameObject:
   m_ObjectHideFlags: 0

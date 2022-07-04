@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stats: {fileID: 11400000, guid: 520497004edf60445984240c24237635, type: 2}
-  ActorName: Alchemist
+  ActorName: Dreamer
   DecisionMaker: 0
   CurrentLevel: 1
   Skills: []
