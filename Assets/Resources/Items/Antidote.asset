@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2667e0a7436d63469e7e74e6d9e7bcc, type: 3}
+  m_Name: Antidote
+  m_EditorClassIdentifier: 
+  Sound: {fileID: 8300000, guid: 4d1ba80e6886ea24c8c307784739edde, type: 3}
+  ItemName: Antidote
+  RestoreHPAsPercent: 1
+  HealthRestore: 0.3
+  RestoreSPAsPercent: 0
+  StaminaRestore: 0
+  SkillToLearn: {fileID: 0}
+  Effects: []
+  Removes:
+  - {fileID: 11400000, guid: 027c1d48993db4d4d98d4c724f8e2577, type: 2}

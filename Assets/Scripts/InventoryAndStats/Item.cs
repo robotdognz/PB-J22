@@ -19,6 +19,7 @@ namespace Alchemy.Inventory
         [Space]
         public Skill SkillToLearn;
         public StatusEffectValue[] Effects;
+        public StatusEffect[] Removes;
 
         public void UseItem(ActorStats Target)
         {
@@ -48,6 +49,21 @@ namespace Alchemy.Inventory
                             if (Roll + Target.Luck <= V.Chance || V.Certain)
                             {
                                 StatusEffects.Add(V.Effect);
+                            }
+                        }
+                    }
+                }
+
+                if (Removes != null)
+                {
+                    foreach (StatusEffect Effect in Removes)
+                    {
+                        foreach (InstancedStatusEffect E in Target.StatusEffects)
+                        {
+                            if (E.Effect == Effect)
+                            {
+                                Target.StatusEffects.Remove(E);
+                                break;
                             }
                         }
                     }

@@ -17,5 +17,5 @@ MonoBehaviour:
   StopsMovement: 1
   HealthDrainPerTurn: 0
   StaminaDrainPerTurn: 0
-  MinimumDuration: 2
-  MaximumDuration: 4
+  MinimumDuration: 1
+  MaximumDuration: 3
