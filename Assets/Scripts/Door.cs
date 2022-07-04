@@ -14,6 +14,8 @@ public class Door : MonoBehaviour
 
     private bool hasBeenOpened = false;
 
+    public bool AutoClose = false;
+
     public Sprite[] Animation;
     public float Duration = 0.75f;
 
