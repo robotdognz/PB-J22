@@ -3009,7 +3009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203735022017193076, guid: d9a24998c608465488a74adbafdf98a1, type: 3}
       propertyPath: AutoClose
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2574267516488484084, guid: d9a24998c608465488a74adbafdf98a1, type: 3}
       propertyPath: m_Name
@@ -3339,7 +3339,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2898930837046548001, guid: d9a24998c608465488a74adbafdf98a1, type: 3}
   m_PrefabInstance: {fileID: 364377051}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &958988565
+--- !u!114 &958988570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3355,7 +3355,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 958988565}
+      - m_Target: {fileID: 958988570}
         m_TargetAssemblyTypeName: InteractiveObject, Assembly-CSharp
         m_MethodName: ShowDialogueMessage
         m_Mode: 5

@@ -18,6 +18,8 @@ public class DoorBody : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("Exit");
+
         if (other.CompareTag("Player"))
         {
             if (door.AutoClose)

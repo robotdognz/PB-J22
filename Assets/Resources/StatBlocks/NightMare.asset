@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46fb49237bfa6c649ae8f827c9e1dd1e, type: 3}
-  m_Name: PaleHorse
+  m_Name: NightMare
   m_EditorClassIdentifier: 
-  DefaultName: Pale Horse
+  DefaultName: Night Mare
   HealthOverLevel:
     serializedVersion: 2
     m_Curve:
