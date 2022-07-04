@@ -6,6 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static bool MenuOpen
+    {
+        get
+        {
+            return Instance.Menu.activeSelf || Instance.GetComponent<DialogueManager>().DialogueScreen.activeSelf;
+        }
+    }
+
+    private static PauseMenu Instance;
     public GameObject Menu;
     public Transform ItemSpawn;
     public GameObject ItemButton;
@@ -39,11 +48,16 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Update()
     {
         Time.timeScale = Menu.activeSelf ? 0 : 1;
 
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel") && !MenuOpen)
         {
             Menu.SetActive(true);
         }

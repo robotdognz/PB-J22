@@ -8,9 +8,20 @@ public class DoorBody : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log($"TIRGER");
+
         if (other.CompareTag("Player"))
         {
             door.OpenDoor();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (door.AutoClose)
+                door.CloseDoor();
         }
     }
 }
