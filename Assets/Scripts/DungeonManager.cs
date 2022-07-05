@@ -134,6 +134,7 @@ public class DungeonManager : MonoBehaviour
     {
         // setup first room
         Room firstRoom = FindObjectOfType<Room>();
+        rooms.Add(firstRoom);
         firstRoom.Init();
         spawnedRooms.Add(new Vector2Int((int)firstRoom.transform.position.x, (int)firstRoom.transform.position.y), firstRoom);
 
