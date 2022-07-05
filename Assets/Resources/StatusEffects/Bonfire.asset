@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Sleep
   Overlay: {fileID: 21300000, guid: dbf1789041181374ea987b762c91edb2, type: 3}
   StopsMovement: 1
-  HealthDrainPerTurn: 0
-  StaminaDrainPerTurn: -10
+  HealthDrainPerTurn: -10
+  StaminaDrainPerTurn: -20
   MinimumDuration: 3
   MaximumDuration: 3

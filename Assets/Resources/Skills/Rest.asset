@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Restores 5 Stamina to the player
   Icon: {fileID: -721035515, guid: 92e457da1dcb0d9489fc6c6623ff4aba, type: 3}
   BasedStat: 1
-  StaminaCost: -15
+  StaminaCost: -20
   CanCrit: 0
   CritMultiplier: 1.3
   Variance: 0

@@ -11,10 +11,15 @@ namespace Alchemy.Inventory
         public int Count;
         [Range(0, 1)]public float DropProbability = 1;
 
-        public ItemInstance(Item Base, int Count)
+        public ItemInstance(Item Base, int Count, float DropProbability = 1)
         {
             this.Base = Base;
             this.Count = Count;
+        }
+
+        public ItemInstance CreateInstance()
+        {
+            return new ItemInstance(Base, Count, DropProbability);
         }
     }
 

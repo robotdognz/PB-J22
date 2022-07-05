@@ -15,7 +15,7 @@ MonoBehaviour:
   DisplayedName: Bite
   Description: Type your description here!
   Icon: {fileID: 0}
-  BasedStat: 3
+  BasedStat: 2
   StaminaCost: 2
   CanCrit: 1
   CritMultiplier: 1.3

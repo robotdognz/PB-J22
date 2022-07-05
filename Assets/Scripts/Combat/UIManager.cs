@@ -145,7 +145,7 @@ namespace Alchemy.Combat
                             }
 
                             if (!GotItem)
-                                Items.Add(Item);
+                                Items.Add(Item.CreateInstance());
                         }
                     }
                 }

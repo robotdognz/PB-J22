@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Cast a fireball at one foe
   Icon: {fileID: 21300000, guid: 06603ee1871711643b3ca35a6e43f66d, type: 3}
   BasedStat: 3
-  StaminaCost: 20
+  StaminaCost: 10
   CanCrit: 1
   CritMultiplier: 1.4
   Variance: 0.2
