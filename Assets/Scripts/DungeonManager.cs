@@ -127,6 +127,7 @@ public class DungeonManager : MonoBehaviour
         BuildDoors();
         SetupLevelEnd();
         Invoke("RemoveLoadingScreen", 1f);
+        PlayerMovement.PreviousRoom = rooms[0];
     }
 
     public void ConstructRooms()
