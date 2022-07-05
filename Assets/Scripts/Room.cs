@@ -23,14 +23,7 @@ public class Room : MonoBehaviour
 
     float roomDiameter = 3.5f;
 
-    // private void Awake()
-    // {
-    //     // setup required rooms
-    //     top = doorTop;
-    //     right = doorRight;
-    //     bottom = doorBottom;
-    //     left = doorLeft;
-    // }
+    private string winScene = "WinScreen"; // scene to load when beating final boss
 
     public void Init()
     {
@@ -44,8 +37,8 @@ public class Room : MonoBehaviour
     private void Start()
     {
         DungeonManager dungeonManager = FindObjectOfType<DungeonManager>();
-        // dungeonManager.rooms.Add(this);
 
+        // it would probably be better to move this into the main algorithm
         if (dungeonManager.IsPositionValid(transform.position))
         {
             dungeonManager.spawnedRooms.Add(new Vector2Int((int)transform.position.x, (int)transform.position.y), this);
@@ -87,8 +80,6 @@ public class Room : MonoBehaviour
 
     public void AddDoor(Door door)
     {
-        //door.transform.parent = transform;
-
         if (!childDoors.Contains(door))
         {
             childDoors.Add(door);
@@ -211,6 +202,7 @@ public class Room : MonoBehaviour
                     if (boss)
                     {
                         Debug.Log("You win!");
+                        UnityEngine.SceneManagement.SceneManager.LoadScene(winScene);
                         // win condition
                     }
 
