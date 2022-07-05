@@ -27,22 +27,11 @@ public class Room : MonoBehaviour
 
     public void Init()
     {
-        // setup required rooms
+        // setup required neighbors for this room
         top = doorTop;
         right = doorRight;
         bottom = doorBottom;
         left = doorLeft;
-    }
-
-    private void Start()
-    {
-        DungeonManager dungeonManager = FindObjectOfType<DungeonManager>();
-
-        // it would probably be better to move this into the main algorithm
-        if (dungeonManager.IsPositionValid(transform.position))
-        {
-            dungeonManager.spawnedRooms.Add(new Vector2Int((int)transform.position.x, (int)transform.position.y), this);
-        }
     }
 
     public bool IsComplete()

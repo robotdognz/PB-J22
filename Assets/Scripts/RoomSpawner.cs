@@ -47,8 +47,6 @@ public class RoomSpawner : MonoBehaviour
                 return null; // Break the code if the direction is invalid
         }
 
-        dungeonManager.DecrementRemainingRooms();
-
         if (spawnedRoom != null)
         {
             // spawn enemies in room
@@ -60,6 +58,8 @@ public class RoomSpawner : MonoBehaviour
                     spawnedRoom.GetComponentInChildren<Room>().AddEnemies(enemies);
                 }
             }
+
+            // tell dungeon generator about this room and set it up
             dungeonManager.spawnedRooms.Add(new Vector2Int((int)transform.position.x, (int)transform.position.y), spawnedRoom.GetComponentInChildren<Room>());
             dungeonManager.rooms.Add(spawnedRoom.GetComponentInChildren<Room>());
             spawnedRoom.GetComponentInChildren<Room>().Init();

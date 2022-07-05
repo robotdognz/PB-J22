@@ -123,9 +123,14 @@ public class DungeonManager : MonoBehaviour
     public void ConstructDungeon()
     {
         Debug.Log("Build dungeon");
+
+        // setup first room
+        Room firstRoom = FindObjectOfType<Room>();
+        firstRoom.Init();
+        spawnedRooms.Add(new Vector2Int((int)firstRoom.transform.position.x, (int)firstRoom.transform.position.y), firstRoom);
+
         // setup spawn queue
         Queue<RoomSpawner> spawnQueue = new Queue<RoomSpawner>();
-
         // get initial spawners and queue them
         RoomSpawner[] initialSpawners = FindObjectsOfType<RoomSpawner>();
         foreach (RoomSpawner spawner in initialSpawners)
@@ -149,9 +154,12 @@ public class DungeonManager : MonoBehaviour
                     GameObject spawnedRoom = currentSpawner.Spawn(); // make the room
                     if (spawnedRoom != null)
                     {
-                        RoomSpawner[] tempSpawners = spawnedRoom.GetComponentsInChildren<RoomSpawner>(); // get the new spawners
-                        // Debug.Log("Spawners found in room: " + tempSpawners.Length);
-                        foreach (RoomSpawner spawner in tempSpawners) // enqueue them
+                        DecrementRemainingRooms();
+
+                        // get the new spawners
+                        RoomSpawner[] tempSpawners = spawnedRoom.GetComponentsInChildren<RoomSpawner>();
+                        // enqueue them
+                        foreach (RoomSpawner spawner in tempSpawners)
                         {
                             spawnQueue.Enqueue(spawner);
                         }
