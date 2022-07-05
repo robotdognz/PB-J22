@@ -5412,7 +5412,7 @@ GameObject:
   - component: {fileID: 1714411429}
   - component: {fileID: 1714411428}
   m_Layer: 5
-  m_Name: Start
+  m_Name: WakeUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5483,8 +5483,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1862841389}
-        m_TargetAssemblyTypeName: TitleScreenLogic, Assembly-CSharp
+      - m_Target: {fileID: 1862841391}
+        m_TargetAssemblyTypeName: WinScreenLogic, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -10355,27 +10355,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1862841390}
-  - component: {fileID: 1862841389}
+  - component: {fileID: 1862841391}
   m_Layer: 0
-  m_Name: TitleScreenLogic
+  m_Name: WinScreenLogic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1862841389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862841388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d731823baa3a7d4a89a595aa93e35a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneIndex: 0
 --- !u!4 &1862841390
 Transform:
   m_ObjectHideFlags: 0
@@ -10391,6 +10378,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1862841391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862841388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc183c79e67cde547b3628a9aa222f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2022574335
 GameObject:
   m_ObjectHideFlags: 0
