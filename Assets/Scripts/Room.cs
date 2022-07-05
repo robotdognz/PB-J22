@@ -5,11 +5,11 @@ using Alchemy;
 
 public class Room : MonoBehaviour
 {
-    // starting doors
-    [SerializeField] bool doorTop;
-    [SerializeField] bool doorRight;
-    [SerializeField] bool doorBottom;
-    [SerializeField] bool doorLeft;
+    // starting doors for room
+    [SerializeField] DoorSpawner doorTop;
+    [SerializeField] DoorSpawner doorRight;
+    [SerializeField] DoorSpawner doorBottom;
+    [SerializeField] DoorSpawner doorLeft;
 
     // currently required rooms
     public bool top; //[HideInInspector]
@@ -45,25 +45,41 @@ public class Room : MonoBehaviour
 
     public void RemoveTopDoor()
     {
-        doorTop = false;
+        if (doorTop)
+        {
+            Destroy(doorTop.gameObject);
+            doorTop = null;
+        }
         top = false;
     }
 
     public void RemoveRightDoor()
     {
-        doorRight = false;
+        if (doorRight)
+        {
+            Destroy(doorRight.gameObject);
+            doorRight = null;
+        }
         right = false;
     }
 
     public void RemoveBottomDoor()
     {
-        doorBottom = false;
+        if (doorBottom)
+        {
+            Destroy(doorBottom.gameObject);
+            doorBottom = null;
+        }
         bottom = false;
     }
 
     public void RemoveLeftDoor()
     {
-        doorLeft = false;
+        if (doorLeft)
+        {
+            Destroy(doorLeft.gameObject);
+            doorLeft = null;
+        }
         left = false;
     }
 

@@ -20,10 +20,6 @@ public class DoorSpawner : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        if (other.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
     }
 
     public void AddRooms(List<Room> rooms)
