@@ -8,7 +8,6 @@ public class RoomSpawner : MonoBehaviour
     public Direction openingDirection;
 
     private DungeonManager dungeonManager;
-    // public bool spawned = false;
     int rand;
 
     private void Awake()

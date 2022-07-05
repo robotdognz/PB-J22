@@ -91,6 +91,30 @@ public class Room : MonoBehaviour
         }
     }
 
+    public DoorSpawner GetDoorSpawner(int index)
+    {
+        DoorSpawner result = null;
+        switch (index)
+        {
+            case 0:
+                result = doorTop;
+                break;
+            case 1:
+                result = doorRight;
+                break;
+            case 2:
+                result = doorBottom;
+                break;
+            case 3:
+                result = doorLeft;
+                break;
+            default:
+                break;
+
+        }
+        return result;
+    }
+
     public static Vector3 TargetPos { get; private set; }
 
     void OnTriggerEnter2D(Collider2D other)

@@ -23,7 +23,6 @@ public class DungeonManager : MonoBehaviour
     [Range(1, 10)] public int enemyLevel = 1;
     [Range(1, 10)] public int playerLevel = 1;
     public DungeonType dungeonType = DungeonType.Forest;
-    // Dungeon theme
 
     [Header("Randomizer")]
     public bool EnableRandomizer = true;
@@ -114,16 +113,24 @@ public class DungeonManager : MonoBehaviour
         roomCount = dungeonSize - 1; // minus one to account for first room
         rooms = new List<Room>();
 
-        ConstructDungeon();
+        Build(); // build the dungeon
 
         // set player level
         FindObjectOfType<PlayerMovement>().GetComponent<ActorStats>().CurrentLevel = playerLevel;
     }
 
-    public void ConstructDungeon()
+    public void Build()
     {
         Debug.Log("Build dungeon");
+        ConstructRooms();
+        CloseRoomsAndAddEnemies();
+        BuildDoors();
+        SetupLevelEnd();
+        Invoke("RemoveLoadingScreen", 1f);
+    }
 
+    public void ConstructRooms()
+    {
         // setup first room
         Room firstRoom = FindObjectOfType<Room>();
         firstRoom.Init();
@@ -194,25 +201,6 @@ public class DungeonManager : MonoBehaviour
             // remove the spawner
             Destroy(currentSpawner.gameObject);
         }
-
-        FinishBuild();
-    }
-
-    public void FinishBuild()
-    {
-        CloseRoomsAndAddEnemies();
-        SetupLevelEnd();
-        Invoke("BuildDoors", 1f);
-    }
-
-    public int GetRemainingRooms()
-    {
-        return roomCount;
-    }
-
-    public void DecrementRemainingRooms()
-    {
-        roomCount--;
     }
 
     public void CloseRoomsAndAddEnemies()
@@ -227,7 +215,7 @@ public class DungeonManager : MonoBehaviour
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(topWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                Debug.Log("Made top wall");
+                // Debug.Log("Made top wall");
                 room.RemoveTopDoor();
             }
             if (room.right)
@@ -235,7 +223,7 @@ public class DungeonManager : MonoBehaviour
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(rightWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                Debug.Log("Made right wall");
+                // Debug.Log("Made right wall");
                 room.RemoveRightDoor();
             }
             if (room.bottom)
@@ -243,7 +231,7 @@ public class DungeonManager : MonoBehaviour
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(bottomWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                Debug.Log("Made bottom wall");
+                // Debug.Log("Made bottom wall");
                 room.RemoveBottomDoor();
             }
             if (room.left)
@@ -251,7 +239,7 @@ public class DungeonManager : MonoBehaviour
                 GameObject roomParent = room.gameObject.transform.parent.gameObject;
                 GameObject newWall = Instantiate(leftWall, roomParent.transform.position, Quaternion.identity);
                 newWall.transform.parent = roomParent.transform;
-                Debug.Log("Made left wall");
+                // Debug.Log("Made left wall");
                 room.RemoveLeftDoor();
             }
 
@@ -270,13 +258,38 @@ public class DungeonManager : MonoBehaviour
 
     public void BuildDoors()
     {
-        // add doors
-        DoorSpawner[] doorSpawners = FindObjectsOfType<DoorSpawner>();
-        for (int i = doorSpawners.Length - 1; i >= 0; i--)
-        {
-            // get the door spawner
-            DoorSpawner ds = doorSpawners[i];
+        // get rooms
+        Room[] roomsToGetSpawners = FindObjectsOfType<Room>();
+        // Debug.Log("Rooms: " + roomsToGetSpawners.Length);
 
+        // find valid door spawners and remove invalid ones
+        List<DoorSpawner> validDoorSpawners = new List<DoorSpawner>();
+        Dictionary<Vector2Int, DoorSpawner> validDoorSpawnerCheck = new Dictionary<Vector2Int, DoorSpawner>();
+        foreach (Room room in roomsToGetSpawners)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                DoorSpawner ds = room.GetDoorSpawner(i);
+                if (ds)
+                {
+                    Vector2Int dsLocation = new Vector2Int((int)ds.transform.position.x, (int)ds.transform.position.y);
+                    if (!validDoorSpawnerCheck.TryAdd(dsLocation, ds))
+                    {
+                        // there is already a door spawner at this location
+                        Destroy(ds.gameObject);
+                    }
+                    else
+                    {
+                        validDoorSpawners.Add(ds);
+                    }
+                }
+            }
+        }
+        // Debug.Log("Valid door spawners: " + validDoorSpawners.Count);
+
+        // add doors
+        foreach (DoorSpawner ds in validDoorSpawners)
+        {
             // build the door
             GameObject tempDoorObject = Instantiate(door, ds.transform.position, Quaternion.identity);
             Door tempDoor = tempDoorObject.GetComponent<Door>();
@@ -294,8 +307,6 @@ public class DungeonManager : MonoBehaviour
             // Cleanup
             Destroy(ds.gameObject);
         }
-
-        GameObject.Find("[DARKINATOR]").SetActive(false);
     }
 
     public void SetupLevelEnd()
@@ -315,5 +326,20 @@ public class DungeonManager : MonoBehaviour
         }
 
         rooms[rooms.Count - 1].AddEnemies(enemies);
+    }
+
+    public void RemoveLoadingScreen()
+    {
+        GameObject.Find("[DARKINATOR]").SetActive(false);
+    }
+
+    public int GetRemainingRooms()
+    {
+        return roomCount;
+    }
+
+    public void DecrementRemainingRooms()
+    {
+        roomCount--;
     }
 }

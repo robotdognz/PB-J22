@@ -30,7 +30,7 @@ public class Door : MonoBehaviour
     public AudioClip OpenSound;
     public AudioClip CloseSound;
 
-    private void Awake()
+    private void Start()
     {
         if (GetComponent<AudioSource>())
             AS = GetComponent<AudioSource>();
