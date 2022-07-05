@@ -15,6 +15,17 @@ public class SettingsSingleton : MonoBehaviour
     public int playerLevel = 1;
     public DungeonType dungeonType = DungeonType.Forest;
 
+    // win or lose? used by title screen
+    public TitleScreenMessage titleScreenState = TitleScreenMessage.Normal;
+
+    public enum TitleScreenMessage 
+    { 
+        Normal,
+        Quit,
+        Lose,
+        Win
+    }
+
     private void Awake()
     {
         // setup singleton

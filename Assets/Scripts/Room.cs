@@ -212,6 +212,11 @@ public class Room : MonoBehaviour
         BattleStarter.OnBattleEnd += BattleEnded;
     }
 
+    public void WinGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(winScene);
+    }
+
     public void BattleEnded(BattleEndResult result)
     {
         // Sky here, just added a condition so that if it's a game over the game will reload. Might add a GameOver screen if there's enough time!
@@ -230,9 +235,9 @@ public class Room : MonoBehaviour
                     bool boss = enemies.GetComponent<EnemyLayout>().isBoss;
                     if (boss)
                     {
-                        Debug.Log("You win!");
-                        UnityEngine.SceneManagement.SceneManager.LoadScene(winScene);
                         // win condition
+                        Debug.Log("You win!");
+                        Invoke("WinGame", .2f);
                     }
 
                     // clear enemies
@@ -249,6 +254,10 @@ public class Room : MonoBehaviour
                 break;
             case BattleEndResult.Defeat:
                 PlayerMovement.PreviousRoom = null;
+                // tell the title screen to display the lose message
+                SettingsSingleton singleton = FindObjectOfType<SettingsSingleton>();
+                singleton.titleScreenState = SettingsSingleton.TitleScreenMessage.Lose;
+                // load title screen
                 UnityEngine.SceneManagement.SceneManager.LoadScene(0);
                 break;
             case BattleEndResult.Fled:

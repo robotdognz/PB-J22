@@ -14631,6 +14631,14 @@ MonoBehaviour:
   - {fileID: 362613844}
   - {fileID: 766886882}
   - {fileID: 945505461}
+  alchemistDialogue: {fileID: 1986391192}
+  normalDialogue: "Welcome to my alchemy store, young one. You seem troubled. Choose
+    the ingredients that speak to you and I will brew you a healing dream potion\u2026"
+  quitDialogue: "Was that potion a tad strong for you? Try choosing different ingredients
+    this time\u2026"
+  loseDialogue: "Oh dear. Perhaps you should look deeper within before choosing your
+    ingredients this time\u2026"
+  winDialogue: Welcome back, you look refreshed. Would you like to try another potion?
   settingsSingleton: {fileID: 0}
 --- !u!4 &1862841390
 Transform:
