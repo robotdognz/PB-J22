@@ -14,3 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemies:
   - {fileID: 11400000, guid: f7ccf652a51697d47a6b933d96f5e95f, type: 2}
+  - {fileID: 11400000, guid: f7ccf652a51697d47a6b933d96f5e95f, type: 2}
+  - {fileID: 11400000, guid: f7ccf652a51697d47a6b933d96f5e95f, type: 2}
+  - {fileID: 11400000, guid: f7ccf652a51697d47a6b933d96f5e95f, type: 2}
+  - {fileID: 11400000, guid: f7ccf652a51697d47a6b933d96f5e95f, type: 2}
+  - {fileID: 11400000, guid: f7ccf652a51697d47a6b933d96f5e95f, type: 2}
+  - {fileID: 11400000, guid: f7ccf652a51697d47a6b933d96f5e95f, type: 2}
+  - {fileID: 11400000, guid: f7ccf652a51697d47a6b933d96f5e95f, type: 2}
+  - {fileID: 11400000, guid: f7ccf652a51697d47a6b933d96f5e95f, type: 2}
+  - {fileID: 11400000, guid: ac30931bae5a94a459403384e496f875, type: 2}
