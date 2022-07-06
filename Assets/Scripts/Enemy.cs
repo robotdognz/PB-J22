@@ -6,19 +6,19 @@ using Alchemy.Stats;
 public class Enemy : MonoBehaviour
 {
     SpriteRenderer sRenderer;
-    public bool UseRandom = true;
+    [SerializeField] bool isBoss = false;
 
     private void Awake()
     {
         sRenderer = GetComponent<SpriteRenderer>();
 
-        if (UseRandom)
+        if (!isBoss)
         {
             // Get a random enemy from the current enemy palette. Allows different dungeons to have different enemies
             GetComponent<ActorStats>().Stats = DungeonManager.ActiveEnemyPalette.GetEnemy;
-            GetComponent<ActorStats>().ResetStats();
-            GetComponent<ActorStats>().InitializeActor();
         }
+        GetComponent<ActorStats>().InitializeActor();
+        GetComponent<ActorStats>().ResetStats();
     }
 
     public void DisableEnemy()

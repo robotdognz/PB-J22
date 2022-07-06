@@ -11,6 +11,8 @@ public class Door : MonoBehaviour
     [SerializeField] List<Room> parentRooms;
     [SerializeField] GameObject lockedInteraction;
 
+    public bool isVertical = false;
+
     public bool isLocked = false;
 
     private bool hasBeenOpened = false;
@@ -47,6 +49,12 @@ public class Door : MonoBehaviour
 
         Col = GetComponentInChildren<Collider2D>();
         Refresh();
+
+        // adjust door position if it is a vertical door
+        if (isVertical)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y - 0.3f);
+        }
     }
 
     public void Refresh()

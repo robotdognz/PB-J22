@@ -321,7 +321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 200, y: -184}
+  m_AnchoredPosition: {x: 200, y: -163}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &26292746
@@ -1002,7 +1002,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Flavour A
+  m_Text: Fiend Stone
 --- !u!222 &279899962
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2551,7 +2551,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 352, y: -192.2}
+  m_AnchoredPosition: {x: 352, y: -171.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &905650471
@@ -8883,7 +8883,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sweet Type
+  m_Text: 'Base metal
+
+'
 --- !u!222 &1510342442
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9597,8 +9599,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 49.5}
-  m_SizeDelta: {x: 121.87, y: 53}
+  m_AnchoredPosition: {x: 0, y: 41}
+  m_SizeDelta: {x: 200, y: 53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1714411428
 MonoBehaviour:
@@ -14629,6 +14631,14 @@ MonoBehaviour:
   - {fileID: 362613844}
   - {fileID: 766886882}
   - {fileID: 945505461}
+  alchemistDialogue: {fileID: 1986391192}
+  normalDialogue: "Welcome to my alchemy store, young one. You seem troubled. Choose
+    the ingredients that speak to you and I will brew you a healing dream potion\u2026"
+  quitDialogue: "Was that potion a tad strong for you? Try choosing different ingredients
+    this time\u2026"
+  loseDialogue: "Oh dear. Perhaps you should look deeper within before choosing your
+    ingredients this time\u2026"
+  winDialogue: Welcome back, you look refreshed. Would you like to try another potion?
   settingsSingleton: {fileID: 0}
 --- !u!4 &1862841390
 Transform:
@@ -14684,7 +14694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -167, y: -181.09999}
+  m_AnchoredPosition: {x: -167, y: -160.09999}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1868696383
@@ -14847,7 +14857,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Flavour B
+  m_Text: Elixir
 --- !u!222 &1985710986
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14927,8 +14937,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Welcome to my alchemy store, young one. Create your sweet from our fine
-    ingredients and begin your dream...
+  m_Text: "Welcome to my alchemy store, young one. You seem troubled. Choose the
+    ingredients that speak to you and I will brew you a dream potion\u2026"
 --- !u!222 &1986391193
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15088,7 +15098,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Consume
+  m_Text: Drink Potion
 --- !u!222 &2022574338
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15235,7 +15245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -298, y: -183.7}
+  m_AnchoredPosition: {x: -298, y: -162.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2032534594
