@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorSpawner : MonoBehaviour
 {
     [SerializeField] List<Room> parentRooms;
+    [SerializeField] public bool isVertical = false;
 
     public void AddRooms(List<Room> rooms)
     {

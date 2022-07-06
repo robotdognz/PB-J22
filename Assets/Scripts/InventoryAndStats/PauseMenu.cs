@@ -56,6 +56,10 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+        // tell the title screen to display the quit message
+        SettingsSingleton.instance.titleScreenState = SettingsSingleton.TitleScreenMessage.Quit;
+
+        // go to title screen
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }

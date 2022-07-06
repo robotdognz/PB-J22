@@ -7,25 +7,54 @@ using Alchemy.Music;
 public class TitleScreenLogic : MonoBehaviour
 {
     [HideInInspector] int sceneIndex = 1;
+    [Header("Ingredient Toggles")]
     [SerializeField] Toggle[] dungeonSizeToggles;
     [SerializeField] Toggle[] dungeonThemeToggles;
     [SerializeField] Toggle[] enemyDifficultyToggles;
     [SerializeField] Toggle[] playerStrengthToggles;
 
+    [Header("Alchemist Dialogue")]
+    [SerializeField] Text alchemistDialogue;
+    [SerializeField] string normalDialogue = "";
+    [SerializeField] string quitDialogue = "";
+    [SerializeField] string loseDialogue = "";
+    [SerializeField] string winDialogue = "";
+
     [HideInInspector] public SettingsSingleton settingsSingleton;
 
     private void Awake()
     {
-        settingsSingleton = FindObjectOfType<SettingsSingleton>();
+        // restart time (restarting it in the pause menu doesn't work)
+        Time.timeScale = 1;
 
-        // set default settings
-        // settingsSingleton.dungeonSize = 5;
-        // settingsSingleton.dungeonType = DungeonType.Forest;
-        // settingsSingleton.enemyProbability = 0.5f;
-        // settingsSingleton.enemyLevel = 1;
-        // settingsSingleton.playerLevel = 1;
+        // get settings
+        settingsSingleton = SettingsSingleton.instance;
 
-        // save settings between runs
+        Debug.Log(settingsSingleton.titleScreenState);
+
+        switch (settingsSingleton.titleScreenState)
+        {
+            case SettingsSingleton.TitleScreenMessage.Normal:
+                // normal dialogue
+                alchemistDialogue.text = normalDialogue;
+                break;
+            case SettingsSingleton.TitleScreenMessage.Quit:
+                // quit dialogue
+                alchemistDialogue.text = quitDialogue;
+                break;
+            case SettingsSingleton.TitleScreenMessage.Lose:
+                // lose dialogue
+                alchemistDialogue.text = loseDialogue;
+                break;
+            case SettingsSingleton.TitleScreenMessage.Win:
+                // win dialogue
+                alchemistDialogue.text = winDialogue;
+                break;
+        }
+        settingsSingleton.titleScreenState = SettingsSingleton.TitleScreenMessage.Normal;
+        
+
+        // load previous settings
 
         // dungeon size
         int dungeonSizeIndex = PlayerPrefs.GetInt("DungeonSize", 0);
@@ -38,28 +67,28 @@ public class TitleScreenLogic : MonoBehaviour
 
         // dungeon theme
         int dungeonThemeIndex = PlayerPrefs.GetInt("DungeonTheme", 0);
-        SetDungeonSize(dungeonThemeIndex);
+        SetDungeonTheme(dungeonThemeIndex);
         if (dungeonThemeToggles != null && dungeonThemeToggles.Length > dungeonThemeIndex)
         {
-            Debug.Log("DungeonTheme: " + dungeonThemeIndex);
+            // Debug.Log("DungeonTheme: " + dungeonThemeIndex);
             dungeonThemeToggles[dungeonThemeIndex].SetIsOnWithoutNotify(true);
         }
 
         // enemy difficulty
         int enemyDifficultyIndex = PlayerPrefs.GetInt("EnemyDifficulty", 0);
-        SetDungeonSize(enemyDifficultyIndex);
+        SetEnemyDifficulty(enemyDifficultyIndex);
         if (enemyDifficultyToggles != null && enemyDifficultyToggles.Length > enemyDifficultyIndex)
         {
-            Debug.Log("EnemyDifficulty: " + enemyDifficultyIndex);
+            // Debug.Log("EnemyDifficulty: " + enemyDifficultyIndex);
             enemyDifficultyToggles[enemyDifficultyIndex].SetIsOnWithoutNotify(true);
         }
 
         // player strength
         int playerStrengthIndex = PlayerPrefs.GetInt("PlayerStrength", 0);
-        SetDungeonSize(playerStrengthIndex);
+        SetPlayerStrength(playerStrengthIndex);
         if (playerStrengthToggles != null && playerStrengthToggles.Length > playerStrengthIndex)
         {
-            Debug.Log("PlayerStrength: " + playerStrengthIndex);
+            // Debug.Log("PlayerStrength: " + playerStrengthIndex);
             playerStrengthToggles[playerStrengthIndex].SetIsOnWithoutNotify(true);
         }
     }
@@ -75,13 +104,13 @@ public class TitleScreenLogic : MonoBehaviour
         switch (index)
         {
             case 0:
-                settingsSingleton.dungeonSize = 5;
-                break;
-            case 1:
                 settingsSingleton.dungeonSize = 10;
                 break;
+            case 1:
+                settingsSingleton.dungeonSize = 20;
+                break;
             case 2:
-                settingsSingleton.dungeonSize = 15;
+                settingsSingleton.dungeonSize = 30;
                 break;
             default:
                 break;
