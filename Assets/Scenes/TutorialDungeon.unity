@@ -3952,6 +3952,9 @@ MonoBehaviour:
   - Base: {fileID: 11400000, guid: ec5b78069b8fe9d4b8c3dfdd6bb18dff, type: 2}
     Count: 1
     DropProbability: 1
+  - Base: {fileID: 11400000, guid: 06a60dd858a37f440bb4a2e24f59a8eb, type: 2}
+    Count: 1
+    DropProbability: 1
   OpenedSprite: {fileID: 21300000, guid: ded44ff4f8bec6a48bef0df7d04832a1, type: 3}
 --- !u!70 &1446114532
 CapsuleCollider2D:

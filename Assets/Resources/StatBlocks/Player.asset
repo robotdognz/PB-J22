@@ -183,10 +183,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   EXPGained: 5
   IsWeakTo: 
-  StartingSkills:
-  - {fileID: 11400000, guid: 434a9bac54fe7b845a969da3a9144736, type: 2}
-  - {fileID: 11400000, guid: a6294d4768a3b64469d09dd3268d511d, type: 2}
-  - {fileID: 11400000, guid: 689d837580f8ec64a85f44f2148918dd, type: 2}
+  StartingSkills: []
   HurtSound: {fileID: 8300000, guid: 48d19959beb494e4589b0c1c808ca0f2, type: 3}
   DeathSound: {fileID: 8300000, guid: 47c200f5ab5a1974ba207724aaaf4778, type: 3}
   NormalSprite: {fileID: 0}
