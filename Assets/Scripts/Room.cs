@@ -238,6 +238,7 @@ public class Room : MonoBehaviour
                         // win condition
                         Debug.Log("You win!");
                         Invoke("WinGame", .2f);
+                        break;
                     }
 
                     // clear enemies
