@@ -404,7 +404,7 @@ namespace Alchemy.Combat
 
         public void ResetPlayer()
         {
-            PlayerStats.ResetStats();
+            // PlayerStats.ResetStats();
 
             StartCoroutine(UpdateStatLabels());
         }

@@ -91,6 +91,8 @@ namespace Alchemy.Stats
                 InitializeActor();
         }
 
+        public void SetHealth(int Value) => CurrentHealth = Value;
+
         public void UseSkill(int Skill, ActorStats Target)
         {
             UseSkill(Skills[Skill], Target);

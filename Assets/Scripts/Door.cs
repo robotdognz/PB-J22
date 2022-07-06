@@ -5,7 +5,6 @@ using Alchemy.Music;
 
 public class Door : MonoBehaviour
 {
-    public bool isVertical;
     private Collider2D Col;
 
     [SerializeField] GameObject doorBody;

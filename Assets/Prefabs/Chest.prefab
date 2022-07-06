@@ -119,16 +119,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
-  LootTable:
-  - Base: {fileID: 11400000, guid: 5c5ff226eb4c5c34f8f27525a6e92703, type: 2}
-    Count: 3
-    DropProbability: 1
-  - Base: {fileID: 11400000, guid: 0fcc2982f8c712d408cce16da8a053d1, type: 2}
-    Count: 5
-    DropProbability: 1
-  - Base: {fileID: 11400000, guid: ec5b78069b8fe9d4b8c3dfdd6bb18dff, type: 2}
-    Count: 1
-    DropProbability: 1
+  LootTable: []
   OpenedSprite: {fileID: 21300000, guid: ded44ff4f8bec6a48bef0df7d04832a1, type: 3}
 --- !u!82 &7677040196753165081
 AudioSource:
