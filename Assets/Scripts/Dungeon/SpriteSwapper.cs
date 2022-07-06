@@ -8,12 +8,19 @@ namespace Alchemy.Dungeon
     {
         private MusicStarter Mus;
 
+        public bool RefreshOnAwake;
         public Sprite TargetSprite;
         [Space]
         public Texture2D Forest;
         public Texture2D MidnightDesert;
         public Texture2D Castle;
         public Texture2D Sewers;
+
+        private void Awake()
+        {
+            if (RefreshOnAwake)
+                Refresh();
+        }
 
         public void Refresh()
         {

@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorBody: {fileID: 2898930837046548001}
   parentRooms: []
+  lockedInteraction: {fileID: 442801674}
   isLocked: 0
   AutoClose: 1
   Animation:

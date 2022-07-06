@@ -20,6 +20,12 @@ public class PauseMenu : MonoBehaviour
     public GameObject ItemButton;
     private List<GameObject> Buttons = new List<GameObject>();
 
+    [Space]
+
+    public UnityEngine.UI.Text NameAndLevel;
+    public UnityEngine.UI.Text HealthValue;
+    public UnityEngine.UI.Image HealthBar;
+
     public void RefreshItems()
     {
         if (Buttons.Count > 0)
@@ -32,6 +38,18 @@ public class PauseMenu : MonoBehaviour
         {
             GameObject Btn = Instantiate(ItemButton, ItemSpawn);
             Btn.GetComponentInChildren<UnityEngine.UI.Text>().text = $"{I.Base.ItemName} x{I.Count}";
+            Btn.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
+            {
+                I.Base.UseItem(PlayerMovement.Instance.GetComponent<Alchemy.Stats.ActorStats>());
+                I.Count--;
+
+                if (I.Count <= 0)
+                {
+                    Inventory.Items.Remove(I);
+                }
+
+                RefreshItems();
+            });
             Buttons.Add(Btn);
         }
     }
@@ -61,5 +79,13 @@ public class PauseMenu : MonoBehaviour
         {
             Menu.SetActive(true);
         }
+
+        #region Player Health and Stats
+        Alchemy.Stats.ActorStats Player = PlayerMovement.Instance.GetComponent<Alchemy.Stats.ActorStats>();
+
+        NameAndLevel.text = $"{Player.ActorName}\nLevel {Player.CurrentLevel}";
+        HealthBar.fillAmount = (float)Player.CurrentHealth / Player.MaxHealth;
+        HealthValue.text = $"Health: {Player.CurrentHealth}/{Player.MaxHealth}";
+        #endregion
     }
 }

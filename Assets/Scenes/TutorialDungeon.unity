@@ -3362,11 +3362,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9a24998c608465488a74adbafdf98a1, type: 3}
---- !u!1 &442801674 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 442801674, guid: d9a24998c608465488a74adbafdf98a1, type: 3}
-  m_PrefabInstance: {fileID: 1929716412}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3716,6 +3711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c735745b9c69e3478e32d635dd70474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RefreshOnAwake: 1
   TargetSprite: {fileID: 789540234, guid: 630584b0564f0fd4a9ce8f5f7d6ad33d, type: 3}
   Forest: {fileID: 2800000, guid: a39441cd928fb374d972ff30c32aed25, type: 3}
   MidnightDesert: {fileID: 2800000, guid: 5d18b7d792096f847a8527a415c67b81, type: 3}
@@ -4685,10 +4681,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2203735022017193076, guid: d9a24998c608465488a74adbafdf98a1, type: 3}
-      propertyPath: lockedInteraction
-      value: 
-      objectReference: {fileID: 442801674}
     - target: {fileID: 2574267516488484084, guid: d9a24998c608465488a74adbafdf98a1, type: 3}
       propertyPath: m_Name
       value: Door (1)
@@ -4944,14 +4936,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1930897829, guid: 52097f3f22e2593438cb94562561844b, type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930897829, guid: 52097f3f22e2593438cb94562561844b, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: dcd520e27b58a39439150683022cdccd, type: 3}
     - target: {fileID: 9034493135966230033, guid: 52097f3f22e2593438cb94562561844b, type: 3}
       propertyPath: m_Name
       value: Menu

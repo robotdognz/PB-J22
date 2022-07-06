@@ -74,6 +74,8 @@ namespace Alchemy.Stats
                     Inventory.Inventory.AddItem(Item.Base, Item.Count);
                 }
             }
+
+            ResetStats();
         }
 
         protected AudioSource Src;
@@ -205,32 +207,38 @@ namespace Alchemy.Stats
         {
             CurrentHealth += Amount;
 
-            if (CurrentHealth <= 0)
+            try
             {
-                GetComponent<SpriteRenderer>().sprite = DeadSprite;
-
-                if (Stats.DeathSound)
-                    Src.PlayOneShot(Stats.DeathSound);
-
-                return true;
-            }
-            else
-            {
-                if (Amount < 0)
-                    if (Stats.HurtSound)
-                        Src.PlayOneShot(Stats.HurtSound);
-
-                if (HealthPercent <= 0.2f)
+                if (CurrentHealth <= 0)
                 {
-                    GetComponent<SpriteRenderer>().sprite = DamagedSprite;
+                    GetComponent<SpriteRenderer>().sprite = DeadSprite;
+
+                    if (Stats.DeathSound)
+                        Src.PlayOneShot(Stats.DeathSound);
+
+                    return true;
                 }
                 else
                 {
-                    GetComponent<SpriteRenderer>().sprite = NormalSprite;
-                }
-            }
+                    if (Amount < 0)
+                        if (Stats.HurtSound)
+                            Src.PlayOneShot(Stats.HurtSound);
 
-            Combat.UIManager.Instance.OnDamagePlayer();
+                    if (HealthPercent <= 0.2f)
+                    {
+                        GetComponent<SpriteRenderer>().sprite = DamagedSprite;
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().sprite = NormalSprite;
+                    }
+                }
+            } catch { }
+
+            CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+
+            if (Combat.UIManager.Instance)
+                Combat.UIManager.Instance.OnDamagePlayer();
 
             return false;
         }
@@ -238,6 +246,8 @@ namespace Alchemy.Stats
         public void ModifyStamina(int Amount)
         {
             CurrentStamina -= Amount;
+
+            CurrentStamina = Mathf.Clamp(CurrentStamina, 0, MaxStamina);
 
             Combat.UIManager.Instance.OnDamagePlayer();
         }
