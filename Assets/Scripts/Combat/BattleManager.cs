@@ -21,6 +21,8 @@ namespace Alchemy.Combat
         public float BattleSpeed = 1;
         private bool Initialized = false;
 
+        public void SetLoadedSkill(Skill Skill) => PlayerLoadedSkill = Skill;
+
         public Battler[] Battlers
         {
             get
