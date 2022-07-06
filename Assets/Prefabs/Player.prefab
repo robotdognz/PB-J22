@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 236336858811139889}
   - component: {fileID: 5617313402428781526}
   - component: {fileID: 628724679783982279}
+  - component: {fileID: 1379008362}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -103,6 +104,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 0}
   moveSpeed: 5
+  WalkAnimationLength: 0.75
+  WalkUp:
+  - {fileID: 1616004640, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: -1420373571, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: 85192468, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: 1319680813, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  WalkLeft:
+  - {fileID: -1548647949, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: -1672504289, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: 2084232154, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: -1450302147, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  WalkDown:
+  - {fileID: -519849981, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: 1701179135, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: 1409728785, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: -1218905834, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  WalkRight:
+  - {fileID: -1092105540, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: 669998538, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: -2073395775, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
+  - {fileID: -1890924817, guid: 4a90214176e49b4489c260d26b37396e, type: 3}
 --- !u!114 &236336858811139889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +184,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4
+--- !u!95 &1379008362
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744850376965863084}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3827d22c375516a449026342a50e269f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8633027673115654485
 GameObject:
   m_ObjectHideFlags: 0
