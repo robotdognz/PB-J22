@@ -255,8 +255,7 @@ public class Room : MonoBehaviour
             case BattleEndResult.Defeat:
                 PlayerMovement.PreviousRoom = null;
                 // tell the title screen to display the lose message
-                SettingsSingleton singleton = FindObjectOfType<SettingsSingleton>();
-                singleton.titleScreenState = SettingsSingleton.TitleScreenMessage.Lose;
+                SettingsSingleton.instance.titleScreenState = SettingsSingleton.TitleScreenMessage.Lose;
                 // load title screen
                 UnityEngine.SceneManagement.SceneManager.LoadScene(0);
                 break;

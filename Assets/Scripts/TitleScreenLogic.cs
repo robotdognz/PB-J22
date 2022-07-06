@@ -22,7 +22,7 @@ public class TitleScreenLogic : MonoBehaviour
 
     [HideInInspector] public SettingsSingleton settingsSingleton;
 
-    private void Start()
+    private void Awake()
     {
         // restart time (restarting it in the pause menu doesn't work)
         Time.timeScale = 1;
@@ -36,27 +36,23 @@ public class TitleScreenLogic : MonoBehaviour
         {
             case SettingsSingleton.TitleScreenMessage.Normal:
                 // normal dialogue
-                Debug.Log("Norm");
                 alchemistDialogue.text = normalDialogue;
                 break;
             case SettingsSingleton.TitleScreenMessage.Quit:
                 // quit dialogue
-                Debug.Log("Quit");
                 alchemistDialogue.text = quitDialogue;
                 break;
             case SettingsSingleton.TitleScreenMessage.Lose:
                 // lose dialogue
-                Debug.Log("Lose");
                 alchemistDialogue.text = loseDialogue;
                 break;
             case SettingsSingleton.TitleScreenMessage.Win:
                 // win dialogue
-                Debug.Log("Win");
                 alchemistDialogue.text = winDialogue;
                 break;
         }
         settingsSingleton.titleScreenState = SettingsSingleton.TitleScreenMessage.Normal;
-
+        
 
         // load previous settings
 
@@ -65,13 +61,13 @@ public class TitleScreenLogic : MonoBehaviour
         SetDungeonSize(dungeonSizeIndex);
         if (dungeonSizeToggles != null && dungeonSizeToggles.Length > dungeonSizeIndex)
         {
-            // Debug.Log("DungeonSize: " + dungeonSizeIndex);
+            Debug.Log("DungeonSize: " + dungeonSizeIndex);
             dungeonSizeToggles[dungeonSizeIndex].SetIsOnWithoutNotify(true);
         }
 
         // dungeon theme
         int dungeonThemeIndex = PlayerPrefs.GetInt("DungeonTheme", 0);
-        SetDungeonSize(dungeonThemeIndex);
+        SetDungeonTheme(dungeonThemeIndex);
         if (dungeonThemeToggles != null && dungeonThemeToggles.Length > dungeonThemeIndex)
         {
             // Debug.Log("DungeonTheme: " + dungeonThemeIndex);
@@ -80,7 +76,7 @@ public class TitleScreenLogic : MonoBehaviour
 
         // enemy difficulty
         int enemyDifficultyIndex = PlayerPrefs.GetInt("EnemyDifficulty", 0);
-        SetDungeonSize(enemyDifficultyIndex);
+        SetEnemyDifficulty(enemyDifficultyIndex);
         if (enemyDifficultyToggles != null && enemyDifficultyToggles.Length > enemyDifficultyIndex)
         {
             // Debug.Log("EnemyDifficulty: " + enemyDifficultyIndex);
@@ -89,7 +85,7 @@ public class TitleScreenLogic : MonoBehaviour
 
         // player strength
         int playerStrengthIndex = PlayerPrefs.GetInt("PlayerStrength", 0);
-        SetDungeonSize(playerStrengthIndex);
+        SetPlayerStrength(playerStrengthIndex);
         if (playerStrengthToggles != null && playerStrengthToggles.Length > playerStrengthIndex)
         {
             // Debug.Log("PlayerStrength: " + playerStrengthIndex);
@@ -105,10 +101,6 @@ public class TitleScreenLogic : MonoBehaviour
     // dungeon size
     private void SetDungeonSize(int index)
     {
-        if(!settingsSingleton)
-        {
-            return;
-        }
         switch (index)
         {
             case 0:
@@ -129,28 +121,27 @@ public class TitleScreenLogic : MonoBehaviour
     {
         int index = 0;
         PlayerPrefs.SetInt("DungeonSize", index);
+        // Debug.Log("Test: " + PlayerPrefs.GetInt("DungeonSize", 0));
         SetDungeonSize(index);
     }
     public void SetDungeonSize1()
     {
         int index = 1;
         PlayerPrefs.SetInt("DungeonSize", index);
+        // Debug.Log("Test: " + PlayerPrefs.GetInt("DungeonSize", 0));
         SetDungeonSize(index);
     }
     public void SetDungeonSize2()
     {
         int index = 2;
         PlayerPrefs.SetInt("DungeonSize", index);
+        // Debug.Log("Test: " + PlayerPrefs.GetInt("DungeonSize", 0));
         SetDungeonSize(index);
     }
 
     // dungeon theme
     private void SetDungeonTheme(int index)
     {
-        if(!settingsSingleton)
-        {
-            return;
-        }
         switch (index)
         {
             case 0:
@@ -198,10 +189,6 @@ public class TitleScreenLogic : MonoBehaviour
     // enemy difficulty
     private void SetEnemyDifficulty(int index)
     {
-        if(!settingsSingleton)
-        {
-            return;
-        }
         switch (index)
         {
             case 0:
@@ -243,10 +230,6 @@ public class TitleScreenLogic : MonoBehaviour
     // player strength
     private void SetPlayerStrength(int index)
     {
-        if(!settingsSingleton)
-        {
-            return;
-        }
         switch (index)
         {
             case 0:
