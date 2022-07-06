@@ -768,14 +768,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5842754764636005123, guid: 52097f3f22e2593438cb94562561844b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.0009765625
-      objectReference: {fileID: 0}
-    - target: {fileID: 5842754764636005123, guid: 52097f3f22e2593438cb94562561844b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 107.90033
-      objectReference: {fileID: 0}
     - target: {fileID: 9034493135966230033, guid: 52097f3f22e2593438cb94562561844b, type: 3}
       propertyPath: m_Name
       value: Menu

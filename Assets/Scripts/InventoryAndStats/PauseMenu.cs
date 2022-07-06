@@ -55,7 +55,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        Time.timeScale = Menu.activeSelf ? 0 : 1;
+        Time.timeScale = MenuOpen  ? 0 : 1;
 
         if (Input.GetButtonDown("Cancel") && !MenuOpen)
         {

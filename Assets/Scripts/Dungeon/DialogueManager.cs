@@ -32,7 +32,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (AwaitSubmit)
         {
-            if (Input.GetButtonDown("Cancel"))
+            if (Input.GetButtonDown("Back"))
             {
                 DialogueScreen.SetActive(false);
                 AwaitSubmit = false;
@@ -62,8 +62,8 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        yield return new WaitForSecondsRealtime(1);
-        T.text += "\n\nPress [ESC] or (B) to close the dialogue...";
+        yield return new WaitForSecondsRealtime(0.5f);
+        T.text += "\n\nPress [TAB] or (B) to close the dialogue...";
 
         AwaitSubmit = true;
     }

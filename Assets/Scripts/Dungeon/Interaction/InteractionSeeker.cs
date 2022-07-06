@@ -18,6 +18,12 @@ public class InteractionSeeker : MonoBehaviour
 
     private void Update()
     {
+        if (PlayerMovement.Instance.isDisabled)
+        {
+            InteractPrompt.SetActive(false);
+            return;
+        }
+
         InteractiveObject Interaction = null;
 
         foreach (Collider2D Col in Physics2D.OverlapCircleAll(transform.position, InteractRadius))

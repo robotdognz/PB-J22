@@ -192,10 +192,4 @@ MonoBehaviour:
   NormalSprite: {fileID: 0}
   DamagedSprite: {fileID: 0}
   DeadSprite: {fileID: 0}
-  Drops:
-  - Base: {fileID: 11400000, guid: 0fcc2982f8c712d408cce16da8a053d1, type: 2}
-    Count: 5
-    DropProbability: 1
-  - Base: {fileID: 11400000, guid: 5c5ff226eb4c5c34f8f27525a6e92703, type: 2}
-    Count: 3
-    DropProbability: 1
+  Drops: []

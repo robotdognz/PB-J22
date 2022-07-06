@@ -29,7 +29,10 @@ namespace Alchemy.Inventory
 
                 Debug.Log($"Use {ItemName}");
                 if (SkillToLearn)
+                {
                     Target.Skills.Add(SkillToLearn);
+                    DialogueManager.ShowMessage($"You learnt how to use {SkillToLearn.DisplayedName}!");
+                }
 
                 Target.ModifyHealth(Mathf.RoundToInt(RestoreHPAsPercent ? HealthRestore * Target.MaxHealth : HealthRestore));
                 Target.ModifyStamina(-Mathf.RoundToInt(RestoreSPAsPercent ? StaminaRestore * Target.MaxStamina : StaminaRestore));

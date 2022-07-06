@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
 
     [SerializeField] GameObject doorBody;
     [SerializeField] List<Room> parentRooms;
+    [SerializeField] GameObject lockedInteraction;
 
     public bool isLocked = false;
 
@@ -29,6 +30,11 @@ public class Door : MonoBehaviour
     private AudioSource AS;
     public AudioClip OpenSound;
     public AudioClip CloseSound;
+
+    private void Update()
+    {
+        lockedInteraction.SetActive(isLocked);
+    }
 
     private void Start()
     {
@@ -92,6 +98,12 @@ public class Door : MonoBehaviour
 
         if (GetComponentInChildren<SpriteRenderer>().isVisible)
             AS.PlayOneShot(CloseSound);
+    }
+
+    public void CloseAndLockDoor()
+    {
+        CloseDoor();
+        isLocked = true;
     }
 
     public void AddRooms(List<Room> rooms)
