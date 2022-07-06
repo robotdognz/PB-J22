@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stats: {fileID: 11400000, guid: 48fdb44afd0878e48829f7d90f383061, type: 2}
-  ActorName: Repressed Memory
+  ActorName: Darkness Within
   DecisionMaker: 1
   CurrentLevel: 1
   Skills: []
