@@ -249,7 +249,8 @@ namespace Alchemy.Stats
 
             CurrentStamina = Mathf.Clamp(CurrentStamina, 0, MaxStamina);
 
-            Combat.UIManager.Instance.OnDamagePlayer();
+            if (Combat.UIManager.Instance)
+                Combat.UIManager.Instance.OnDamagePlayer();
         }
 
         public int MaxHealth => Mathf.RoundToInt(Stats.HealthOverLevel.Evaluate(CurrentLevel));
