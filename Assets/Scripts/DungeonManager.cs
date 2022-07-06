@@ -96,17 +96,18 @@ public class DungeonManager : MonoBehaviour
         roomCount = dungeonSize - 1; // minus one to account for first room
         rooms = new List<Room>();
 
-        Build(); // build the dungeon
-
         // set player level
         FindObjectOfType<PlayerMovement>().GetComponent<ActorStats>().CurrentLevel = playerLevel;
+
+        // Build(); // build the dungeon
+        Invoke("Build", 0.1f);
     }
 
     public void Build()
     {
         Debug.Log("Build dungeon");
         ConstructRooms();
-        CloseRoomsAndAddEnemies();
+        CloseRoomsAndInitEnemies();
         BuildDoors();
         SetupLevelEnd();
         Invoke("RemoveLoadingScreen", 1f);
@@ -116,15 +117,18 @@ public class DungeonManager : MonoBehaviour
     public void ConstructRooms()
     {
         // setup first room
-        Room firstRoom = FindObjectOfType<Room>();
-        rooms.Add(firstRoom);
-        firstRoom.Init();
-        spawnedRooms.Add(new Vector2Int((int)firstRoom.transform.position.x, (int)firstRoom.transform.position.y), firstRoom);
+        if (rooms.Count == 0)
+        {
+            Room firstRoom = FindObjectOfType<Room>();
+            rooms.Add(firstRoom);
+        }
+        rooms[0].Init();
+        spawnedRooms.Add(new Vector2Int((int)rooms[0].transform.position.x, (int)rooms[0].transform.position.y), rooms[0]);
 
         // setup spawn queue
         Queue<RoomSpawner> spawnQueue = new Queue<RoomSpawner>();
         // get initial spawners and queue them
-        RoomSpawner[] initialSpawners = FindObjectsOfType<RoomSpawner>();
+        RoomSpawner[] initialSpawners = rooms[0].transform.parent.GetComponentsInChildren<RoomSpawner>();
         foreach (RoomSpawner spawner in initialSpawners)
         {
             spawnQueue.Enqueue(spawner);
@@ -186,13 +190,48 @@ public class DungeonManager : MonoBehaviour
             // remove the spawner
             Destroy(currentSpawner.gameObject);
         }
+
+
+        // return to start conditions if dungeon failed
+        if (rooms.Count < dungeonSize - 1)
+        {
+            Debug.Log("Build failed with " + rooms.Count + " rooms");
+            roomCount = dungeonSize - 1; // minus one to account for first room
+
+            // remove all rooms except for the original
+            while (rooms.Count > 1)
+            {
+                Destroy(rooms[rooms.Count - 1].transform.parent.gameObject);
+                rooms.RemoveAt(rooms.Count - 1);
+            }
+            // remove all enemies
+            EnemyLayout[] enemies = FindObjectsOfType<EnemyLayout>();
+            foreach (EnemyLayout enemy in enemies)
+            {
+                Destroy(enemy.gameObject);
+            }
+            // restore start room spawners
+            foreach (RoomSpawner spawner in initialSpawners)
+            {
+                GameObject temp = Instantiate(spawner.gameObject, spawner.transform.position, Quaternion.identity);
+                temp.transform.parent = rooms[0].transform.parent.transform;
+            }
+            // clear location checking dictionary
+            spawnedRooms = new Dictionary<Vector2Int, Room>();
+
+            ConstructRooms();
+        }
+        else
+        {
+            Debug.Log("Build succeeded with " + rooms.Count + " rooms");
+        }
     }
 
-    public void CloseRoomsAndAddEnemies()
+    public void CloseRoomsAndInitEnemies()
     {
-        // Debug.Log("Close up rooms");
+        Debug.Log("Close up rooms: " + rooms.Count);
 
-        // close off rooms and add sprites
+        // close off rooms and init enemies
         foreach (Room room in rooms)
         {
             if (room.top)
@@ -243,14 +282,10 @@ public class DungeonManager : MonoBehaviour
 
     public void BuildDoors()
     {
-        // get rooms
-        Room[] roomsToGetSpawners = FindObjectsOfType<Room>();
-        // Debug.Log("Rooms: " + roomsToGetSpawners.Length);
-
         // find valid door spawners and remove invalid ones
         List<DoorSpawner> validDoorSpawners = new List<DoorSpawner>();
         Dictionary<Vector2Int, DoorSpawner> validDoorSpawnerCheck = new Dictionary<Vector2Int, DoorSpawner>();
-        foreach (Room room in roomsToGetSpawners)
+        foreach (Room room in rooms)
         {
             for (int i = 0; i < 4; i++)
             {

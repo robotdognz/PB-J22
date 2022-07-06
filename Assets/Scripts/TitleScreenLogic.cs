@@ -104,13 +104,13 @@ public class TitleScreenLogic : MonoBehaviour
         switch (index)
         {
             case 0:
-                settingsSingleton.dungeonSize = 5;
-                break;
-            case 1:
                 settingsSingleton.dungeonSize = 10;
                 break;
+            case 1:
+                settingsSingleton.dungeonSize = 20;
+                break;
             case 2:
-                settingsSingleton.dungeonSize = 15;
+                settingsSingleton.dungeonSize = 30;
                 break;
             default:
                 break;
@@ -121,21 +121,18 @@ public class TitleScreenLogic : MonoBehaviour
     {
         int index = 0;
         PlayerPrefs.SetInt("DungeonSize", index);
-        // Debug.Log("Test: " + PlayerPrefs.GetInt("DungeonSize", 0));
         SetDungeonSize(index);
     }
     public void SetDungeonSize1()
     {
         int index = 1;
         PlayerPrefs.SetInt("DungeonSize", index);
-        // Debug.Log("Test: " + PlayerPrefs.GetInt("DungeonSize", 0));
         SetDungeonSize(index);
     }
     public void SetDungeonSize2()
     {
         int index = 2;
         PlayerPrefs.SetInt("DungeonSize", index);
-        // Debug.Log("Test: " + PlayerPrefs.GetInt("DungeonSize", 0));
         SetDungeonSize(index);
     }
 
