@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46fb49237bfa6c649ae8f827c9e1dd1e, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  DefaultName: Repressed Memory
+  DefaultName: The Repressed
   HealthOverLevel:
     serializedVersion: 2
     m_Curve:
@@ -181,7 +181,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  EXPGained: 10
+  EXPGained: 25
   IsWeakTo: 02000000
   StartingSkills:
   - {fileID: 11400000, guid: 1ce1f6a89c9677945b2c35eeeb999ec9, type: 2}
@@ -190,8 +190,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a708ba2714aed424da5b38f27ad113ad, type: 2}
   - {fileID: 11400000, guid: a708ba2714aed424da5b38f27ad113ad, type: 2}
   - {fileID: 11400000, guid: f9e7e06a75357af4faa317e13c72032f, type: 2}
-  HurtSound: {fileID: 8300000, guid: 171a76a66b715564d8cf4bd5a2acb27b, type: 3}
-  DeathSound: {fileID: 8300000, guid: 70dc82f462065dd418c1c46d111589ff, type: 3}
+  HurtSound: {fileID: 8300000, guid: 1dcb6c3c85cec204ea391b19a1acc0a2, type: 3}
+  DeathSound: {fileID: 8300000, guid: c44693ca87013704c8a7f826795eff43, type: 3}
   NormalSprite: {fileID: 21300000, guid: a4fdc639d95e9a2488c4e0471e237ae0, type: 3}
   DamagedSprite: {fileID: 0}
   DeadSprite: {fileID: 21300000, guid: 19d3c5e7bb801034ebf147a59512a9cf, type: 3}
