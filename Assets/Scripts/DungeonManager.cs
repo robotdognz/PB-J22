@@ -377,11 +377,23 @@ public class DungeonManager : MonoBehaviour
 
     public void SetupLevelEnd()
     {
-        // add end/boss to end room
+        // clear out the end room
+        // remove any enemies
         if (rooms[rooms.Count - 1].HasEnemies())
         {
             rooms[rooms.Count - 1].RemoveEnemies();
         }
+        // remove any chests
+        GameObject finalRoom = rooms[rooms.Count - 1].gameObject.transform.parent.gameObject;
+        Chest chestInBossRoom = finalRoom.GetComponentInChildren<Chest>();
+        if (chestInBossRoom)
+        {
+            GameObject chestLayout = chestInBossRoom.gameObject.transform.parent.gameObject;
+            Destroy(chestLayout);
+            Debug.Log("Removed chest from boss room");
+        }
+
+        // add boss to end room
         GameObject enemies = Instantiate(bossLayout, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
 
         // setup boss level
