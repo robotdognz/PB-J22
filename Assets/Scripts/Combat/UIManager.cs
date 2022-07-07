@@ -169,6 +169,9 @@ namespace Alchemy.Combat
             }
         }
 
+        public Button SkillsBack;
+        public Button ItemsBack;
+
         public void RefreshSkillsList()
         {
             if (SkillButtons.Count > 0)
@@ -194,7 +197,12 @@ namespace Alchemy.Combat
                 SkillButtons.Add(Btn.gameObject);
             }
 
-            SkillButtons[0].GetComponent<Button>().Select();
+            if (SkillButtons.Count > 0)
+            {
+                SkillButtons[0].GetComponent<Button>().Select();
+            }
+            else
+                SkillsBack.Select();
         }
 
         public void RefreshItemsList()
@@ -208,7 +216,7 @@ namespace Alchemy.Combat
             foreach (ItemInstance Item in Inventory.Inventory.Items)
             {
                 Button Btn = Instantiate(ItemButton, ItemsRoot).GetComponentInChildren<Button>();
-                Btn.onClick.AddListener(() => 
+                Btn.onClick.AddListener(() =>
                 {
                     Item.Base.UseItem(PlayerStats);
                     StartCoroutine(UpdateStatLabels());
@@ -249,7 +257,14 @@ namespace Alchemy.Combat
                 ItemButtons.Add(Btn.gameObject);
             }
 
-            ItemButtons[0].GetComponent<Button>().Select();
+            if (ItemButtons.Count > 0)
+            {
+                ItemButtons[0].GetComponent<Button>().Select();
+            }
+            else
+            {
+                ItemsBack.Select();
+            }
         }
 
         public void RefreshTargetsList()
@@ -407,7 +422,7 @@ namespace Alchemy.Combat
 
         public void Init()
         {
-            ResetPlayer();
+            // ResetPlayer();
             
             StartCoroutine(UpdateStatLabels());
         }

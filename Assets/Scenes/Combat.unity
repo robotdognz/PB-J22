@@ -10935,6 +10935,8 @@ MonoBehaviour:
   LevelUpAnnounce: {fileID: 1262786245}
   ItemsGained: {fileID: 141070730}
   GainedItemObject: {fileID: 772503460453355804, guid: 22c9fb1906939b944921aae0632c0b49, type: 3}
+  SkillsBack: {fileID: 482965581}
+  ItemsBack: {fileID: 691954282}
 --- !u!114 &2132418180
 MonoBehaviour:
   m_ObjectHideFlags: 0

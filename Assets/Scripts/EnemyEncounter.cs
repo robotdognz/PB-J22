@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Alchemy;
 using Alchemy.Combat;
 using Alchemy.Stats;
@@ -12,6 +13,7 @@ public class EnemyEncounter : MonoBehaviour
     public EnemyPalette Palette;
     [Space]
     public ActorStats[] Enemies;
+    public bool LoadVictoryOnEnd;
 
     private void Awake()
     {
@@ -47,6 +49,11 @@ public class EnemyEncounter : MonoBehaviour
         {
             default:
                 PlayerMovement.Instance.EnablePlayer();
+
+                if (LoadVictoryOnEnd)
+                {
+                    SceneManager.LoadScene("WinScreen");
+                }
                 break;
             case BattleEndResult.Fled:
                 StartEncounter();

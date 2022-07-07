@@ -102,6 +102,11 @@ namespace Alchemy
 
                 P.ResetStats();
 
+                if (Actor.DecisionMaker == DecisionStyle.PlayerControlled)
+                {
+                    P.SetHealth(Actor.CurrentHealth);
+                }
+
                 P.transform.localScale = Vector3.one * 0.098439f;
                 P.GetComponent<SpriteRenderer>().sprite = P.NormalSprite;
 
