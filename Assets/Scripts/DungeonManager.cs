@@ -4,6 +4,7 @@ using UnityEngine;
 using Alchemy.Stats;
 using Alchemy.Music;
 using Alchemy.Combat;
+using Alchemy.Inventory;
 
 public class DungeonManager : MonoBehaviour
 {
@@ -40,6 +41,10 @@ public class DungeonManager : MonoBehaviour
     // enemies
     public GameObject[] enemyLayouts;
     public GameObject bossLayout;
+
+    // chests
+    public GameObject[] chestLayouts;
+    public Item[] chestItems;
 
     // doors
     [SerializeField] GameObject door;
@@ -151,6 +156,37 @@ public class DungeonManager : MonoBehaviour
                     GameObject spawnedRoom = currentSpawner.Spawn(); // make the room
                     if (spawnedRoom != null)
                     {
+                        // store this room and set it up
+                        spawnedRooms.Add(new Vector2Int((int)spawnedRoom.transform.position.x, (int)spawnedRoom.transform.position.y), spawnedRoom.GetComponentInChildren<Room>());
+                        rooms.Add(spawnedRoom.GetComponentInChildren<Room>());
+                        spawnedRoom.GetComponentInChildren<Room>().Init();
+
+                        // spawn enemies in room
+                        if (Random.value <= enemyProbability)
+                        {
+                            rand = Random.Range(0, enemyLayouts.Length);
+                            GameObject enemies = Instantiate(enemyLayouts[rand], spawnedRoom.transform.position, Quaternion.identity);
+                            spawnedRoom.GetComponentInChildren<Room>().AddEnemies(enemies);
+                        }
+                        else if (Random.value <= .5f) // spawn chests in room, temp implementation. probability shouldn't be hard coded
+                        {
+                            // spawn the chest
+                            rand = Random.Range(0, chestLayouts.Length);
+                            GameObject chestObject = Instantiate(chestLayouts[rand], spawnedRoom.transform.position, Quaternion.identity);
+                            chestObject.transform.parent = spawnedRoom.transform;
+
+                            // setup chest contents
+                            Chest chest = chestObject.GetComponentInChildren<Chest>();
+
+                            rand = Random.Range(0, chestItems.Length);
+                            Item item = chestItems[rand];
+                            ItemInstance loot = new ItemInstance(item, 1);
+
+                            ItemInstance[] lootTable = new ItemInstance[] { loot };
+                            chest.LootTable = lootTable;
+                        }
+
+                        // decrement. obviously
                         DecrementRemainingRooms();
 
                         // get the new spawners
@@ -297,6 +333,13 @@ public class DungeonManager : MonoBehaviour
                     if (!validDoorSpawnerCheck.TryAdd(dsLocation, ds))
                     {
                         // there is already a door spawner at this location
+
+                        // add the parent rooms of the current door spawner to the existing one
+                        DoorSpawner existingDoor = null;
+                        validDoorSpawnerCheck.TryGetValue(dsLocation, out existingDoor);
+                        existingDoor.AddRooms(ds.GetParentRooms());
+
+                        // destroy the current door spawner
                         Destroy(ds.gameObject);
                     }
                     else

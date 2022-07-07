@@ -169,7 +169,7 @@ public class Room : MonoBehaviour
                 }
 
                 // activate doors
-                foreach (Door door in FindObjectsOfType<Door>())
+                foreach (Door door in childDoors)
                 {
                     door.isLocked = true;
                     door.CloseDoor();
@@ -246,7 +246,7 @@ public class Room : MonoBehaviour
                 }
 
                 // deactivate doors
-                foreach (Door door in FindObjectsOfType<Door>()) // Changed code to fix an issue where they just wouldn't open again for some reason
+                foreach (Door door in childDoors)
                 {
                     door.EndCombat();
                 }
@@ -270,7 +270,7 @@ public class Room : MonoBehaviour
                 }
 
                 // deactivate doors
-                foreach (Door door in FindObjectsOfType<Door>()) // Changed code to fix an issue where they just wouldn't open again for some reason
+                foreach (Door door in childDoors)
                 {
                     door.EndCombat();
                 }

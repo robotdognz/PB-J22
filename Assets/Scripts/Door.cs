@@ -128,10 +128,10 @@ public class Door : MonoBehaviour
     public void EndCombat()
     {
         isLocked = false;
-        if (hasBeenOpened)
-        {
-            OpenDoor();
-        }
+        // if (hasBeenOpened)
+        // {
+        //     OpenDoor();
+        // }
 
     }
 
