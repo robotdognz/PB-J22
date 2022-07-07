@@ -137,6 +137,7 @@ MonoBehaviour:
   doorBody: {fileID: 2898930837046548001}
   parentRooms: []
   lockedInteraction: {fileID: 442801674}
+  isVertical: 0
   isLocked: 0
   AutoClose: 1
   Animation:
@@ -373,4 +374,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 2203735022017193076}
-  AutocloseDistance: 2
+  AutocloseDistance: 2.5

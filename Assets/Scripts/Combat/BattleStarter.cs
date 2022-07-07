@@ -37,6 +37,11 @@ namespace Alchemy
         {
             OnBattleEnd = new UnityAction<BattleEndResult>((BattleEndResult R) =>
             {
+                if (UIManager.Instance)
+                {
+                    PlayerMovement.Instance.GetComponent<ActorStats>().SetHealth(UIManager.Instance.PlayerStats.CurrentHealth);
+                }
+
                 Debug.Log($"Battle ended with result: {R}!");
                 Music.MusicManager.SetTrack(Music.Track.Explore);
                 ClearBattleEnd();

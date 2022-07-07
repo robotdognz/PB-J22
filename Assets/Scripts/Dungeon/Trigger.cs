@@ -21,6 +21,11 @@ namespace Alchemy.Dungeon
             
         }
 
+        public void ShowDialogueText(string Message)
+        {
+            DialogueManager.ShowMessage(Message);
+        }
+
         protected virtual void OnPlayerExit()
         {
             PlayerExit.Invoke();

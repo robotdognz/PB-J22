@@ -92,11 +92,11 @@ namespace Alchemy.Music
             {
                 if (i == TrackNumber)
                 {
-                    Sources[i].volume += Time.deltaTime * 4;
+                    Sources[i].volume += Time.unscaledDeltaTime * 4;
                 }
                 else
                 {
-                    Sources[i].volume -= Time.deltaTime * 8;
+                    Sources[i].volume -= Time.unscaledDeltaTime * 8;
                 }
             }
         }

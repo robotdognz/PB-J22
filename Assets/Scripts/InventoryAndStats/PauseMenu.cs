@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
     {
         get
         {
-            return Instance.Menu.activeSelf || Instance.GetComponent<DialogueManager>().DialogueScreen.activeSelf;
+            return Instance.Menu.activeSelf || Instance.GetComponent<DialogueManager>().DialogueScreen.activeSelf || WasUIExitThisFrame;
         }
     }
 
@@ -21,11 +21,19 @@ public class PauseMenu : MonoBehaviour
     public GameObject ItemButton;
     private List<GameObject> Buttons = new List<GameObject>();
 
+    private static bool WasUIExitThisFrame;
+
     [Space]
 
     public UnityEngine.UI.Text NameAndLevel;
     public UnityEngine.UI.Text HealthValue;
     public UnityEngine.UI.Image HealthBar;
+
+    public void ClosePauseMenu()
+    {
+        Menu.SetActive(false);
+        WasUIExitThisFrame = true;
+    }
 
     public void RefreshItems()
     {
@@ -78,6 +86,9 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
+        if (WasUIExitThisFrame)
+            WasUIExitThisFrame = false;
+
         Time.timeScale = MenuOpen  ? 0 : 1;
 
         if (Input.GetButtonDown("Cancel") && !MenuOpen)

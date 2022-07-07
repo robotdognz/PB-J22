@@ -90,8 +90,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -458,6 +458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15da9f9d7ba54a04ab7e52111748755c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PitchFactor: 0.5
+  Mute: 0
   Source: {fileID: 1243986979}
   Footsteps:
   - {fileID: 8300000, guid: 6736f81e01655b94eb7b5e9f8f9e3538, type: 3}

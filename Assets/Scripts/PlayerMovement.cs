@@ -91,6 +91,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (movement.magnitude != 0 && !isDisabled && !PauseMenu.MenuOpen)
         {
+            Footsteps.Mute = false;
+
             if (!MidAnimation)
             {
                 StartCoroutine(WalkAnimation());
@@ -100,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StopCoroutine(WalkAnimation());
             SetCharacterSprite(1); // Index 1 should be the "idle" sprite
+            Footsteps.Mute = true;
         }
 
         if (isDisabled || PauseMenu.MenuOpen)
