@@ -100,8 +100,11 @@ public class MinimapSystem : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerMovement.Instance.isDisabled || PauseMenu.MenuOpen)
+        if (PauseMenu.MenuOpen || UnityEngine.SceneManagement.SceneManager.GetSceneByName("Combat").isLoaded)
+        {
+            Minimap.enabled = false;
             return;
+        }
 
         if (Input.GetButtonDown("Minimap"))
             DrawMap(MinimapDrawType.Minimap);
@@ -109,11 +112,13 @@ public class MinimapSystem : MonoBehaviour
         if (Input.GetButton("Minimap"))
         {
             Minimap.enabled = true;
+            Time.timeScale = 0;
         }
 
         if (Input.GetButtonUp("Minimap"))
         {
             Minimap.enabled = false;
+            Time.timeScale = 1;
         }
     }
 }

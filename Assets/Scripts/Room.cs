@@ -116,11 +116,14 @@ public class Room : MonoBehaviour
     }
 
     public static Vector3 TargetPos { get; private set; }
+    public GameObject FOW;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            //FOW.SetActive(false);
+
             // snap camera to this room
             TargetPos = transform.position + -Vector3.forward * 10;
 
