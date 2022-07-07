@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public UnityEngine.UI.Button ContinueButton;
     private static PauseMenu Instance;
     public GameObject Menu;
     public Transform ItemSpawn;
@@ -82,6 +83,7 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetButtonDown("Cancel") && !MenuOpen)
         {
             Menu.SetActive(true);
+            ContinueButton.Select();
         }
 
         #region Player Health and Stats

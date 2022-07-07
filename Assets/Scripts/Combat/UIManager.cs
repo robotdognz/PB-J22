@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Alchemy.Stats;
 using Alchemy.Inventory;
@@ -11,11 +12,15 @@ namespace Alchemy.Combat
     public class Menu
     {
         public GameObject ThisMenu;
+        public Button FirstButton;
         public int ParentMenu;
     }
 
     public class UIManager : MonoBehaviour
     {
+        public Button FirstAttackOption;
+        public Button AftermathFinish;
+
         public static UIManager Instance;
 
         public ActorStats PlayerStats;
@@ -117,6 +122,7 @@ namespace Alchemy.Combat
 
             yield return null;
 
+            AftermathFinish.Select();
             SetMenu(7);
 
             List<ItemInstance> Items = new List<ItemInstance>();
@@ -187,6 +193,8 @@ namespace Alchemy.Combat
                 Btn.transform.GetChild(0).GetComponent<Image>().sprite = S.Icon;
                 SkillButtons.Add(Btn.gameObject);
             }
+
+            SkillButtons[0].GetComponent<Button>().Select();
         }
 
         public void RefreshItemsList()
@@ -248,6 +256,8 @@ namespace Alchemy.Combat
                 foreach (GameObject Btn in TargetButtons)
                     Destroy(Btn);
 
+            TargetButtons.Clear();
+
             foreach (Battler B in BattleManager.Instance.Battlers)
             {
                 ActorStats Actor = B.Stats;
@@ -289,6 +299,11 @@ namespace Alchemy.Combat
                 Btn.transform.GetChild(0).GetComponent<Image>().color = Color.clear;
                 TargetButtons.Add(Btn.gameObject);
             }
+
+            try
+            {
+                TargetButtons[0].GetComponent<Button>().Select();
+            } catch { }
         }
 
         public void SetATBBarValue(float Value)
@@ -316,6 +331,7 @@ namespace Alchemy.Combat
                     if (!FreezePlayer)
                     {
                         CurrentMenu = 1;
+                        FirstAttackOption.Select();
                     }
                     else
                     {
@@ -430,6 +446,8 @@ namespace Alchemy.Combat
         {
             int OldMenu = CurrentMenu;
             CurrentMenu = Menus[OldMenu].ParentMenu;
+
+            Menus[CurrentMenu].FirstButton.Select();
 
             UpdateUI();
         }

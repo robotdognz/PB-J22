@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Alchemy.Combat;
 using Alchemy.Stats;
+using UnityEngine.EventSystems;
 
 namespace Alchemy.Inventory
 {
@@ -21,6 +22,8 @@ namespace Alchemy.Inventory
         public StatusEffectValue[] Effects;
         public StatusEffect[] Removes;
 
+        private UnityEngine.UI.Button LastSelected;
+
         public void UseItem(ActorStats Target)
         {
             if (Target)
@@ -31,6 +34,17 @@ namespace Alchemy.Inventory
                 if (SkillToLearn)
                 {
                     Target.Skills.Add(SkillToLearn);
+
+                    LastSelected = EventSystem.current.currentSelectedGameObject.GetComponent<UnityEngine.UI.Button>();
+
+                    DialogueManager.OnDialogueClose += () =>
+                    {
+                        if (LastSelected)
+                            LastSelected.Select();
+                        else
+                            FindObjectOfType<PauseMenu>().ContinueButton.Select();
+                    };
+
                     DialogueManager.ShowMessage($"You learnt how to use {SkillToLearn.DisplayedName}!");
                 }
 

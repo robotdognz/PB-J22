@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -28,12 +29,16 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(Show(Message));
     }
 
+    public static UnityAction OnDialogueClose = new UnityAction(() => { });
+
     private void Update()
     {
         if (AwaitSubmit)
         {
             if (Input.GetButtonDown("Back"))
             {
+                OnDialogueClose.Invoke();
+                OnDialogueClose = new UnityAction(() => { });
                 DialogueScreen.SetActive(false);
                 AwaitSubmit = false;
             }

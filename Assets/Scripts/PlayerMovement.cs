@@ -85,14 +85,27 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (isDisabled)
-        {
-            return;
-        }
-
         // do input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        if (movement.magnitude != 0 && !isDisabled && !PauseMenu.MenuOpen)
+        {
+            if (!MidAnimation)
+            {
+                StartCoroutine(WalkAnimation());
+            }
+        }
+        else
+        {
+            StopCoroutine(WalkAnimation());
+            SetCharacterSprite(1); // Index 1 should be the "idle" sprite
+        }
+
+        if (isDisabled || PauseMenu.MenuOpen)
+        {
+            return;
+        }
 
         if (movement.x > 0)
         {
@@ -113,19 +126,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Debug.Log(Direction);
-
-        if (movement.magnitude != 0)
-        {
-            if (!MidAnimation)
-            {
-                StartCoroutine(WalkAnimation());
-            }
-        }
-        else
-        {
-            StopCoroutine(WalkAnimation());
-            SetCharacterSprite(1); // Index 1 should be the "idle" sprite
-        }
     }
 
     void FixedUpdate()
