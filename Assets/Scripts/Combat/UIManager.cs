@@ -248,6 +248,8 @@ namespace Alchemy.Combat
 
                 ItemButtons.Add(Btn.gameObject);
             }
+
+            ItemButtons[0].GetComponent<Button>().Select();
         }
 
         public void RefreshTargetsList()
