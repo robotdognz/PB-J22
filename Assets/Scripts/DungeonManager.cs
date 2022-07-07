@@ -46,6 +46,8 @@ public class DungeonManager : MonoBehaviour
 
     // dungeon generation
     private int roomCount;
+    private int genAttemptsCurrent;
+    private int genAttemptsMax = 4;
     int rand;
 
     // keep track of rooms
@@ -98,6 +100,7 @@ public class DungeonManager : MonoBehaviour
 
         // set player level
         FindObjectOfType<PlayerMovement>().GetComponent<ActorStats>().CurrentLevel = playerLevel;
+        PlayerMovement.Instance.GetComponent<ActorStats>().ResetStats();
 
         // Build(); // build the dungeon
         Invoke("Build", 0.1f);
@@ -106,6 +109,7 @@ public class DungeonManager : MonoBehaviour
     public void Build()
     {
         Debug.Log("Build dungeon");
+        genAttemptsCurrent = 0;
         ConstructRooms();
         CloseRoomsAndInitEnemies();
         BuildDoors();
@@ -196,6 +200,15 @@ public class DungeonManager : MonoBehaviour
         if (rooms.Count < dungeonSize - 1)
         {
             Debug.Log("Build failed with " + rooms.Count + " rooms");
+
+            // stop after too many attempts
+            if (genAttemptsCurrent >= genAttemptsMax)
+            {
+                Debug.Log("Max generation attempts reached");
+                return;
+            }
+
+
             roomCount = dungeonSize - 1; // minus one to account for first room
 
             // remove all rooms except for the original
@@ -219,6 +232,7 @@ public class DungeonManager : MonoBehaviour
             // clear location checking dictionary
             spawnedRooms = new Dictionary<Vector2Int, Room>();
 
+            genAttemptsCurrent++;
             ConstructRooms();
         }
         else
