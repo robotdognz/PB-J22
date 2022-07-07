@@ -53,8 +53,11 @@ public class DungeonManager : MonoBehaviour
     private int roomCount;
     int rand;
 
-    // keep track of rooms
-    public List<Room> rooms;
+    // keep track of rooms and final dungeon
+    public List<Room> rooms { get; private set; }
+    public Vector2Int topLeft { get; private set; }
+    public Vector2Int bottomRight { get; private set; }
+    public Vector2Int bossPosition { get; private set; }
 
     public bool IsPositionValid(Vector2 Position)
     {
@@ -122,6 +125,7 @@ public class DungeonManager : MonoBehaviour
 
     public void ConstructRooms()
     {
+
         // setup first room
         if (rooms.Count == 0)
         {
@@ -130,6 +134,10 @@ public class DungeonManager : MonoBehaviour
         }
         rooms[0].Init();
         spawnedRooms.Add(new Vector2Int((int)rooms[0].transform.position.x, (int)rooms[0].transform.position.y), rooms[0]);
+
+        // setup fields to keep track of edges of map
+        topLeft = new Vector2Int((int)rooms[0].transform.position.x, (int)rooms[0].transform.position.y);
+        bottomRight = new Vector2Int((int)rooms[0].transform.position.x, (int)rooms[0].transform.position.y);
 
         // setup spawn queue
         Queue<RoomSpawner> spawnQueue = new Queue<RoomSpawner>();
@@ -157,9 +165,11 @@ public class DungeonManager : MonoBehaviour
                     if (spawnedRoom != null)
                     {
                         // store this room and set it up
-                        spawnedRooms.Add(new Vector2Int((int)spawnedRoom.transform.position.x, (int)spawnedRoom.transform.position.y), spawnedRoom.GetComponentInChildren<Room>());
-                        rooms.Add(spawnedRoom.GetComponentInChildren<Room>());
-                        spawnedRoom.GetComponentInChildren<Room>().Init();
+                        Room spawnedRoomPoint = spawnedRoom.GetComponentInChildren<Room>();
+                        spawnedRooms.Add(new Vector2Int((int)spawnedRoom.transform.position.x, (int)spawnedRoom.transform.position.y), spawnedRoomPoint);
+                        rooms.Add(spawnedRoomPoint);
+                        spawnedRoomPoint.Init();
+                        UpdateMapFields(spawnedRoomPoint);
 
                         // spawn enemies in room
                         if (Random.value <= enemyProbability)
@@ -396,6 +406,9 @@ public class DungeonManager : MonoBehaviour
         // add boss to end room
         GameObject enemies = Instantiate(bossLayout, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
 
+        // store position
+        bossPosition = new Vector2Int((int)enemies.transform.position.x, (int)enemies.transform.position.y);
+
         // setup boss level
         List<Enemy> bossWave = enemies.GetComponent<EnemyLayout>().GetEnemies();
         foreach (Enemy enemy in bossWave)
@@ -404,6 +417,27 @@ public class DungeonManager : MonoBehaviour
         }
 
         rooms[rooms.Count - 1].AddEnemies(enemies);
+    }
+
+    private void UpdateMapFields(Room room)
+    {
+        if ((int)room.transform.position.x < topLeft.x)
+        {
+            topLeft = new Vector2Int((int)room.transform.position.x, topLeft.y);
+        }
+        if ((int)room.transform.position.y > topLeft.y)
+        {
+            topLeft = new Vector2Int(topLeft.x, (int)room.transform.position.y);
+        }
+
+        if ((int)room.transform.position.x > bottomRight.x)
+        {
+            bottomRight = new Vector2Int((int)room.transform.position.x, bottomRight.y);
+        }
+        if ((int)room.transform.position.y < bottomRight.y)
+        {
+            bottomRight = new Vector2Int(bottomRight.x, (int)room.transform.position.y);
+        }
     }
 
     public void RemoveLoadingScreen()
