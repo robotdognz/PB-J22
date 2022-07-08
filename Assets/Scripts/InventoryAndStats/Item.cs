@@ -33,19 +33,26 @@ namespace Alchemy.Inventory
                 Debug.Log($"Use {ItemName}");
                 if (SkillToLearn)
                 {
-                    Target.Skills.Add(SkillToLearn);
-
-                    LastSelected = EventSystem.current.currentSelectedGameObject.GetComponent<UnityEngine.UI.Button>();
-
-                    DialogueManager.OnDialogueClose += () =>
+                    if (!Target.Skills.Contains(SkillToLearn))
                     {
-                        if (LastSelected)
-                            LastSelected.Select();
-                        else
-                            FindObjectOfType<PauseMenu>().ContinueButton.Select();
-                    };
+                        Target.Skills.Add(SkillToLearn);
 
-                    DialogueManager.ShowMessage($"You learnt how to use {SkillToLearn.DisplayedName}!");
+                        LastSelected = EventSystem.current.currentSelectedGameObject.GetComponent<UnityEngine.UI.Button>();
+
+                        DialogueManager.OnDialogueClose += () =>
+                        {
+                            if (LastSelected)
+                                LastSelected.Select();
+                            else
+                                FindObjectOfType<PauseMenu>().ContinueButton.Select();
+                        };
+
+                        DialogueManager.ShowMessage($"You learned how to use {SkillToLearn.DisplayedName}!");
+                    }
+                    else
+                    {
+                        DialogueManager.ShowMessage($"You attempt to scrutinize the scroll for more knowledge...\nAlas, there was nothing left to learn about {SkillToLearn.DisplayedName}...");
+                    }
                 }
 
                 Target.ModifyHealth(Mathf.RoundToInt(RestoreHPAsPercent ? HealthRestore * Target.MaxHealth : HealthRestore));

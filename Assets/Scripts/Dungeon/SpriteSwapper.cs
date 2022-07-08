@@ -15,6 +15,7 @@ namespace Alchemy.Dungeon
         public Texture2D MidnightDesert;
         public Texture2D Castle;
         public Texture2D Sewers;
+        public Texture2D Maze;
 
         private void Awake()
         {
@@ -42,6 +43,10 @@ namespace Alchemy.Dungeon
                     break;
                 case DungeonType.Sewers:
                     TargetSprite.texture.LoadImage(Sewers.EncodeToPNG());
+                    TargetSprite.texture.Apply();
+                    break;
+                case DungeonType.Maze:
+                    TargetSprite.texture.LoadImage(Maze.EncodeToPNG());
                     TargetSprite.texture.Apply();
                     break;
             }

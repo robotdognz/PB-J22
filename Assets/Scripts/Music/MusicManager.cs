@@ -17,7 +17,8 @@ namespace Alchemy.Music
         Forest,
         MidnightDesert,
         Castle,
-        Sewers
+        Sewers,
+        Maze
     }
 
     public class MusicManager : MonoBehaviour
@@ -77,7 +78,7 @@ namespace Alchemy.Music
         {
             get
             {
-                return (int)MusicTrack < 1 ? (int)MusicTrack : MusicTrack == Track.Explore ? (int)MusicTrack + (int)DungeonType : (int)MusicTrack + 3;
+                return (int)MusicTrack < 1 ? (int)MusicTrack : MusicTrack == Track.Explore ? (int)MusicTrack + (int)DungeonType : (int)MusicTrack + 4;
             }
         }
 

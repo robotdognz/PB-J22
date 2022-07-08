@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b048aef8c26b38444bb4b9ed424ec308, type: 3}
   m_Name: Sludge
   m_EditorClassIdentifier: 
-  DisplayedName: Sludge
+  DisplayedName: Poison
   Description: Type your description here!
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 4f5e17016a2eeaf47845b2c3684a5c8a, type: 3}
   BasedStat: 3
   StaminaCost: 2
   CanCrit: 1
@@ -27,3 +27,4 @@ MonoBehaviour:
   StatusEffects:
   - Effect: {fileID: 11400000, guid: 027c1d48993db4d4d98d4c724f8e2577, type: 2}
     Chance: 75
+    Certain: 0

@@ -98,19 +98,36 @@ public class TitleScreenLogic : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
     }
 
+    [Header("Dungeon Properties")]
+    public int SmallDungeonSize = 25;
+    public int MediumDungeonSize = 50;
+    public int LargeDungeonSize = 150;
+    [Space]
+    public float EasyEnemyProbability = 0.1f;
+    public float MediumEnemyProbability = 0.2f;
+    public float HardEnemyProbability = 0.4f;
+    [Space]
+    public int EasyEnemyLevel = 1;
+    public int MediumEnemyLevel = 4;
+    public int HardEnemyLevel = 8;
+    [Space]
+    public int EasyPlayerLevel = 1;
+    public int MediumPlayerLevel = 4;
+    public int HardPlayerLevel = 8;
+
     // dungeon size
     private void SetDungeonSize(int index)
     {
         switch (index)
         {
             case 0:
-                settingsSingleton.dungeonSize = 10;
+                settingsSingleton.dungeonSize = SmallDungeonSize;
                 break;
             case 1:
-                settingsSingleton.dungeonSize = 20;
+                settingsSingleton.dungeonSize = MediumDungeonSize;
                 break;
             case 2:
-                settingsSingleton.dungeonSize = 30;
+                settingsSingleton.dungeonSize = LargeDungeonSize;
                 break;
             default:
                 break;
@@ -153,6 +170,9 @@ public class TitleScreenLogic : MonoBehaviour
             case 3:
                 settingsSingleton.dungeonType = DungeonType.Sewers;
                 break;
+            case 4:
+                settingsSingleton.dungeonType = DungeonType.Maze;
+                break;
             default:
                 break;
 
@@ -183,22 +203,29 @@ public class TitleScreenLogic : MonoBehaviour
         SetDungeonTheme(index);
     }
 
+    public void SetDungeonTheme4()
+    {
+        int index = 4;
+        PlayerPrefs.SetInt("DungeonTheme", index);
+        SetDungeonTheme(index);
+    }
+
     // enemy difficulty
     private void SetEnemyDifficulty(int index)
     {
         switch (index)
         {
             case 0:
-                settingsSingleton.enemyProbability = 0.5f;
-                settingsSingleton.enemyLevel = 1;
+                settingsSingleton.enemyProbability = EasyEnemyProbability;
+                settingsSingleton.enemyLevel = EasyEnemyLevel;
                 break;
             case 1:
-                settingsSingleton.enemyProbability = 0.75f;
-                settingsSingleton.enemyLevel = 4;
+                settingsSingleton.enemyProbability = MediumEnemyProbability;
+                settingsSingleton.enemyLevel = MediumEnemyLevel;
                 break;
             case 2:
-                settingsSingleton.enemyProbability = 0.9f;
-                settingsSingleton.enemyLevel = 8;
+                settingsSingleton.enemyProbability = HardEnemyProbability;
+                settingsSingleton.enemyLevel = HardEnemyLevel;
                 break;
             default:
                 break;
@@ -230,13 +257,13 @@ public class TitleScreenLogic : MonoBehaviour
         switch (index)
         {
             case 0:
-                settingsSingleton.playerLevel = 1;
+                settingsSingleton.playerLevel = EasyPlayerLevel;
                 break;
             case 1:
-                settingsSingleton.playerLevel = 4;
+                settingsSingleton.playerLevel = MediumPlayerLevel;
                 break;
             case 2:
-                settingsSingleton.playerLevel = 8;
+                settingsSingleton.playerLevel = HardPlayerLevel;
                 break;
             default:
                 break;

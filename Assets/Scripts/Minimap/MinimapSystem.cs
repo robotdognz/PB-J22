@@ -23,6 +23,12 @@ public class MinimapSystem : MonoBehaviour
 
     private void RefreshMinimap()
     {
+        StartCoroutine(AwaitMapRefresh());
+    }
+
+    private IEnumerator AwaitMapRefresh()
+    {
+        yield return new WaitForSeconds(0.6f);
         DrawMap(MinimapDrawType.Minimap);
     }
 
@@ -137,19 +143,6 @@ public class MinimapSystem : MonoBehaviour
             return;
         }
 
-        if (InputManager.GetButtonDown("Minimap"))
-            DrawMap(MinimapDrawType.Minimap);
-
-        if (InputManager.GetButton("Minimap"))
-        {
-            Minimap.enabled = true;
-            Time.timeScale = 0;
-        }
-
-        if (InputManager.GetButtonUp("Minimap"))
-        {
-            Minimap.enabled = false;
-            Time.timeScale = 1;
-        }
+        Minimap.enabled = true;
     }
 }

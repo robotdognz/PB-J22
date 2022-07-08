@@ -68,7 +68,7 @@ public class Door : MonoBehaviour
 
         switch (Mus.DungeonType)
         {
-            case DungeonType.Forest:
+            case DungeonType.Forest: case DungeonType.Maze:
                 Master.texture.LoadImage(Forest.EncodeToPNG());
                 Master.texture.Apply();
                 break;

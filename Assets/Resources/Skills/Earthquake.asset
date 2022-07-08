@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b048aef8c26b38444bb4b9ed424ec308, type: 3}
+  m_Name: Earthquake
+  m_EditorClassIdentifier: 
+  DisplayedName: Earthquake
+  Description: Cast Earthquake on one foe
+  Icon: {fileID: 21300000, guid: 33f18e08f5053964bbd716bdccc64958, type: 3}
+  BasedStat: 3
+  StaminaCost: 20
+  CanCrit: 1
+  CritMultiplier: 2
+  Variance: 0.2
+  m_Damage: -10
+  DamageElement: 4
+  IndicatorDelay: 0.6
+  Effect: {fileID: 4653059587843408715, guid: 5fc8db10f63918143afa1fd9bd99aa02, type: 3}
+  StatusEffects: []
