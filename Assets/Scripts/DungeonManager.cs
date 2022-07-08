@@ -383,6 +383,9 @@ public class DungeonManager : MonoBehaviour
             // Cleanup
             Destroy(ds.gameObject);
         }
+
+        // activate doors in first room on map
+        rooms[0].EnableDoorsOnMap();
     }
 
     public void SetupLevelEnd()

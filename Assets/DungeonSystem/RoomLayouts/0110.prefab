@@ -1500,6 +1500,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4186806727723328424, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
+      propertyPath: fogOfWar
+      value: 
+      objectReference: {fileID: 7931352196231832608}
+    - target: {fileID: 4186806727723328424, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
       propertyPath: doorRight
       value: 
       objectReference: {fileID: 4012263236466167544}
@@ -1633,6 +1637,11 @@ PrefabInstance:
 --- !u!4 &3512352324483397969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 476698556771918902, guid: 8b4894a4b34561f428a1187157bf512f, type: 3}
+  m_PrefabInstance: {fileID: 3901229002736360807}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7931352196231832608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6355179233008220487, guid: 8b4894a4b34561f428a1187157bf512f, type: 3}
   m_PrefabInstance: {fileID: 3901229002736360807}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8407976896028140864

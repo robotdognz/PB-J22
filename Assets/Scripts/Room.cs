@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Alchemy;
+using UnityEngine.Events;
 
 public class Room : MonoBehaviour
 {
+    public UnityEvent PlayerEnter;
+
     // starting doors for room
     [SerializeField] DoorSpawner doorTop;
     [SerializeField] DoorSpawner doorRight;
@@ -17,13 +20,21 @@ public class Room : MonoBehaviour
     public bool bottom;
     public bool left;
 
+    [SerializeField] GameObject fogOfWar;
+
     [SerializeField] List<Door> childDoors;
 
     private GameObject enemies = null;
+    private GameObject chests = null;
 
     float roomDiameter = 3.5f;
 
     private string winScene = "WinScreen"; // scene to load when beating final boss
+
+    protected virtual void OnPlayerEnter()
+    {
+        PlayerEnter.Invoke();
+    }
 
     public void Init()
     {
@@ -118,11 +129,27 @@ public class Room : MonoBehaviour
     public static Vector3 TargetPos { get; private set; }
     public GameObject FOW;
 
+    public void EnableDoorsOnMap()
+    {
+        // draw doors on map
+        foreach (Door door in childDoors)
+        {
+            door.EnableDoorOnMap();
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            //FOW.SetActive(false);
+            OnPlayerEnter();
+
+            // disable fog of war for this room and draw doors
+            if (fogOfWar)
+            {
+                fogOfWar.SetActive(false);
+            }
+            EnableDoorsOnMap();
 
             // snap camera to this room
             TargetPos = transform.position + -Vector3.forward * 10;
@@ -292,11 +319,11 @@ public class Room : MonoBehaviour
         }
     }
 
+    // enemies
     public void AddEnemies(GameObject enemyLayout)
     {
         enemies = enemyLayout;
     }
-
     public List<Enemy> GetIndividualEnemies()
     {
         if (enemies != null)
@@ -305,16 +332,29 @@ public class Room : MonoBehaviour
         }
         return null;
     }
-
     public bool HasEnemies()
     {
         return enemies != null;
     }
-
     public void RemoveEnemies()
     {
         Destroy(enemies);
         enemies = null;
+    }
+
+    // chests
+    public void AddChests(GameObject chestLayout)
+    {
+        chests = chestLayout;
+    }
+    public bool HasChests()
+    {
+        return chests != null;
+    }
+    public void RemoveChests()
+    {
+        Destroy(chests);
+        chests = null;
     }
 
 }

@@ -588,7 +588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: overwriteSettings
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}

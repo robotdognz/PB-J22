@@ -53,8 +53,13 @@ public class Door : MonoBehaviour
         // adjust door position if it is a vertical door
         if (isVertical)
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y - 0.3f);
+            doorBody.transform.position = new Vector2(transform.position.x, transform.position.y - 0.3f);
         }
+    }
+
+    public void EnableDoorOnMap()
+    {
+        GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public void Refresh()
@@ -86,12 +91,12 @@ public class Door : MonoBehaviour
 
     private IEnumerator OpenAnimation()
     {
-        if (GetComponentInChildren<SpriteRenderer>().isVisible)
+        if (doorBody.GetComponent<SpriteRenderer>().isVisible)
             AS.PlayOneShot(OpenSound);
 
         for (int I = 0; I < Animation.Length; I++)
         {
-            GetComponentInChildren<SpriteRenderer>().sprite = Animation[I];
+            doorBody.GetComponent<SpriteRenderer>().sprite = Animation[I];
             yield return new WaitForSeconds(Duration / Animation.Length);
         }
     }
@@ -100,11 +105,11 @@ public class Door : MonoBehaviour
     {
         for (int I = Animation.Length - 1; I >= 0; I--)
         {
-            GetComponentInChildren<SpriteRenderer>().sprite = Animation[I];
+            doorBody.GetComponent<SpriteRenderer>().sprite = Animation[I];
             yield return new WaitForSeconds(Duration / Animation.Length);
         }
 
-        if (GetComponentInChildren<SpriteRenderer>().isVisible)
+        if (doorBody.GetComponent<SpriteRenderer>().isVisible)
             AS.PlayOneShot(CloseSound);
     }
 

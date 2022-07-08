@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2793205307738273592}
   - component: {fileID: 5102112028127621397}
   m_Layer: 0
-  m_Name: SpawnPoint (3)
+  m_Name: SpawnPoint Top
   m_TagString: SpawnPoint
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8486601113098030503}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1711135586689494378
 MonoBehaviour:
@@ -1316,7 +1316,7 @@ GameObject:
   - component: {fileID: 8486601112801459745}
   - component: {fileID: 8486601112801459744}
   m_Layer: 0
-  m_Name: SpawnPoint (1)
+  m_Name: SpawnPoint Right
   m_TagString: SpawnPoint
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1410,7 +1410,7 @@ GameObject:
   - component: {fileID: 8486601112921261889}
   - component: {fileID: 8486601112921261888}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: SpawnPoint Left
   m_TagString: SpawnPoint
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1429,7 +1429,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8486601113098030503}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &656504168832735723
 MonoBehaviour:
@@ -1520,10 +1520,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5651458180757859142}
-  - {fileID: 8486601112921261895}
+  - {fileID: 7591118922215524991}
   - {fileID: 8486601112801459751}
   - {fileID: 2911012917102676481}
-  - {fileID: 7591118922215524991}
+  - {fileID: 8486601112921261895}
   - {fileID: 1284082755121669124}
   - {fileID: 6887675037991063201}
   - {fileID: 6075838451606386472}
@@ -1591,7 +1591,7 @@ GameObject:
   - component: {fileID: 4565576229990600716}
   - component: {fileID: 7848903045553639780}
   m_Layer: 0
-  m_Name: SpawnPoint (2)
+  m_Name: SpawnPoint Bottom
   m_TagString: SpawnPoint
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1695,6 +1695,10 @@ PrefabInstance:
       propertyPath: doorLeft
       value: 
       objectReference: {fileID: 5786233755301329278}
+    - target: {fileID: 4186806727723328424, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
+      propertyPath: fogOfWar
+      value: 
+      objectReference: {fileID: 3620386635116760497}
     - target: {fileID: 4186806727723328424, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
       propertyPath: doorRight
       value: 
@@ -1992,6 +1996,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b4894a4b34561f428a1187157bf512f, type: 3}
+--- !u!1 &3620386635116760497 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6355179233008220487, guid: 8b4894a4b34561f428a1187157bf512f, type: 3}
+  m_PrefabInstance: {fileID: 7641504253656184054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7823176337459564736 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 476698556771918902, guid: 8b4894a4b34561f428a1187157bf512f, type: 3}
