@@ -15,6 +15,16 @@ public class MinimapSystem : MonoBehaviour
     public RawImage Fullmap;
     [SerializeField] private Camera Cam;
 
+    private void Awake()
+    {
+        Room.PlayerEnter += RefreshMinimap;
+    }
+
+    private void RefreshMinimap()
+    {
+        DrawMap(MinimapDrawType.Minimap);
+    }
+
     public Texture2D MinimapTex
     {
         get

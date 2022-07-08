@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class Room : MonoBehaviour
 {
-    public UnityEvent PlayerEnter;
+    public static UnityAction PlayerEnter;
 
     // starting doors for room
     [SerializeField] DoorSpawner doorTop;
