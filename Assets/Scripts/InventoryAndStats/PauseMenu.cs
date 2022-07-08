@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     public UnityEngine.UI.Button ContinueButton;
+    public UnityEngine.UI.Button ItemsButton;
     private static PauseMenu Instance;
     public GameObject Menu;
     public Transform ItemSpawn;
@@ -35,6 +36,8 @@ public class PauseMenu : MonoBehaviour
         WasUIExitThisFrame = true;
     }
 
+    private int SelectedItem = 0;
+
     public void RefreshItems()
     {
         if (Buttons.Count > 0)
@@ -43,10 +46,18 @@ public class PauseMenu : MonoBehaviour
 
         Buttons.Clear();
 
+        int Index = 0;
+
+        if (Inventory.Items.Count <= 0)
+        {
+            ItemsButton.Select();
+        }
+
         foreach (ItemInstance I in Inventory.Items)
         {
             GameObject Btn = Instantiate(ItemButton, ItemSpawn);
             Btn.GetComponentInChildren<UnityEngine.UI.Text>().text = $"{I.Base.ItemName} x{I.Count}";
+            Btn.name = $"{Index}";
             Btn.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
             {
                 I.Base.UseItem(PlayerMovement.Instance.GetComponent<Alchemy.Stats.ActorStats>());
@@ -57,9 +68,21 @@ public class PauseMenu : MonoBehaviour
                     Inventory.Items.Remove(I);
                 }
 
+                SelectedItem = int.Parse(Btn.name);
+
                 RefreshItems();
             });
             Buttons.Add(Btn);
+
+            if (Inventory.Items.Count > 0)
+            {
+                if (SelectedItem == Mathf.Clamp(Index, 0, Inventory.Items.Count - 1))
+                {
+                    Btn.GetComponent<UnityEngine.UI.Button>().Select();
+                }
+            }
+
+            Index++;
         }
     }
 

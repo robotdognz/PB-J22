@@ -14,6 +14,7 @@ namespace Alchemy.Combat
         public GameObject ThisMenu;
         public Button FirstButton;
         public int ParentMenu;
+        public bool UseLastMenu;
     }
 
     public class UIManager : MonoBehaviour
@@ -454,6 +455,11 @@ namespace Alchemy.Combat
 
         public void SetMenu(int Menu)
         {
+            if (Menus[Menu].UseLastMenu)
+            {
+                Menus[Menu].ParentMenu = CurrentMenu;
+            }
+
             CurrentMenu = Menu;
 
             UpdateUI();

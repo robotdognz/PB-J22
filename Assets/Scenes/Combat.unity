@@ -10890,27 +10890,35 @@ MonoBehaviour:
   - ThisMenu: {fileID: 487201768}
     FirstButton: {fileID: 0}
     ParentMenu: 0
+    UseLastMenu: 0
   - ThisMenu: {fileID: 664084419}
     FirstButton: {fileID: 744203010}
     ParentMenu: 1
+    UseLastMenu: 0
   - ThisMenu: {fileID: 1058790301}
     FirstButton: {fileID: 482965581}
     ParentMenu: 1
+    UseLastMenu: 0
   - ThisMenu: {fileID: 781902672}
     FirstButton: {fileID: 1616254415}
     ParentMenu: 1
+    UseLastMenu: 0
   - ThisMenu: {fileID: 1052401805}
     FirstButton: {fileID: 691954282}
     ParentMenu: 1
+    UseLastMenu: 0
   - ThisMenu: {fileID: 1980162628}
     FirstButton: {fileID: 1365938886}
     ParentMenu: 2
+    UseLastMenu: 1
   - ThisMenu: {fileID: 143647761}
     FirstButton: {fileID: 0}
     ParentMenu: 6
+    UseLastMenu: 0
   - ThisMenu: {fileID: 1151848917}
     FirstButton: {fileID: 0}
     ParentMenu: 7
+    UseLastMenu: 0
   ActorNameLabel: {fileID: 608637734}
   ActorPortrait: {fileID: 1353078848}
   ValueLerpSpeed: 0.5
