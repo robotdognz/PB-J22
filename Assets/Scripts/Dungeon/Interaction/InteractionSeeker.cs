@@ -47,7 +47,7 @@ public class InteractionSeeker : MonoBehaviour
                 PlayedInteractSound = true;
             }
 
-            if (Input.GetButtonDown("Interact"))
+            if (InputManager.GetButtonDown("Interact"))
             {
                 if (!PauseMenu.MenuOpen)
                 {

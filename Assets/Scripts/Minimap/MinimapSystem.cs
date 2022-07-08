@@ -120,16 +120,16 @@ public class MinimapSystem : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("Minimap"))
+        if (InputManager.GetButtonDown("Minimap"))
             DrawMap(MinimapDrawType.Minimap);
 
-        if (Input.GetButton("Minimap"))
+        if (InputManager.GetButton("Minimap"))
         {
             Minimap.enabled = true;
             Time.timeScale = 0;
         }
 
-        if (Input.GetButtonUp("Minimap"))
+        if (InputManager.GetButtonUp("Minimap"))
         {
             Minimap.enabled = false;
             Time.timeScale = 1;

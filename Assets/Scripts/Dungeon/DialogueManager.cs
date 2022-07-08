@@ -35,7 +35,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (AwaitSubmit)
         {
-            if (Input.GetButtonDown("Back"))
+            if (InputManager.GetButtonDown("Back"))
             {
                 OnDialogueClose.Invoke();
                 OnDialogueClose = new UnityAction(() => { });

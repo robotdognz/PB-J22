@@ -86,8 +86,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // do input
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        movement.x = InputManager.GetAxis("Horizontal");
+        movement.y = InputManager.GetAxis("Vertical");
 
         if (movement.magnitude != 0 && !isDisabled && !PauseMenu.MenuOpen)
         {
