@@ -109,12 +109,12 @@ public class MinimapSystem : MonoBehaviour
                 Minimap.texture = MinimapTex;
                 break;
             case MinimapDrawType.FullMap:
-                Cam.transform.position = Vector2.Lerp(FromInt(DM.topLeft), FromInt(DM.bottomRight), 0.5f);
+                Cam.transform.position = Vector2.Lerp(FromInt(DungeonManager.topLeft), FromInt(DungeonManager.bottomRight), 0.5f);
                 Cam.transform.position -= Vector3.forward * 10;
 
                 // is the map tall, or fat?
-                float mapWidth = Mathf.Abs(DM.topLeft.x - DM.bottomRight.x);
-                float mapHeight = Mathf.Abs(DM.topLeft.y - DM.bottomRight.y);
+                float mapWidth = Mathf.Abs(DungeonManager.topLeft.x - DungeonManager.bottomRight.x);
+                float mapHeight = Mathf.Abs(DungeonManager.topLeft.y - DungeonManager.bottomRight.y);
                 if (mapHeight > mapWidth)
                 {
                     Cam.orthographicSize = mapHeight * 0.55f;

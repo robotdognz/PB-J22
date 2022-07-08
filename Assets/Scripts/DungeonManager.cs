@@ -55,9 +55,9 @@ public class DungeonManager : MonoBehaviour
 
     // keep track of rooms and final dungeon
     public List<Room> rooms { get; private set; }
-    public Vector2Int topLeft { get; private set; }
-    public Vector2Int bottomRight { get; private set; }
-    public Vector2Int bossPosition { get; private set; }
+    public static Vector2Int topLeft { get; private set; }
+    public static Vector2Int bottomRight { get; private set; }
+    public static Vector2Int bossPosition { get; private set; }
 
     public bool IsPositionValid(Vector2 Position)
     {
