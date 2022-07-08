@@ -11,6 +11,7 @@ public enum MinimapDrawType
 
 public class MinimapSystem : MonoBehaviour
 {
+    private int mapResolution = 256; // 128
     public RawImage Minimap;
     public RawImage Fullmap;
     [SerializeField] private Camera Cam;
@@ -29,8 +30,8 @@ public class MinimapSystem : MonoBehaviour
     {
         get
         {
-            int Width = 128;
-            int Height = 128;
+            int Width = mapResolution;
+            int Height = mapResolution;
 
             Rect R = new Rect(0, 0, Width, Height);
             RenderTexture RT = new RenderTexture(Width, Height, 24);
@@ -67,9 +68,13 @@ public class MinimapSystem : MonoBehaviour
                         {
                             Final.SetPixel(X, Y, Color.white);
                         }
+                        else if (Tex.GetPixel(X, Y) == Color.green) // boss
+                        {
+                            Final.SetPixel(X, Y, Color.red);
+                        }
                         else // visited rooms (uses an off green, to save clean colors for other things)
                         {
-                            Final.SetPixel(X, Y, Color.grey); 
+                            Final.SetPixel(X, Y, Color.grey);
                         }
                     }
                 }
@@ -106,7 +111,19 @@ public class MinimapSystem : MonoBehaviour
             case MinimapDrawType.FullMap:
                 Cam.transform.position = Vector2.Lerp(FromInt(DM.topLeft), FromInt(DM.bottomRight), 0.5f);
                 Cam.transform.position -= Vector3.forward * 10;
-                Cam.orthographicSize = Vector2Int.Distance(DM.topLeft, DM.bottomRight);
+
+                // is the map tall, or fat?
+                float mapWidth = Mathf.Abs(DM.topLeft.x - DM.bottomRight.x);
+                float mapHeight = Mathf.Abs(DM.topLeft.y - DM.bottomRight.y);
+                if (mapHeight > mapWidth)
+                {
+                    Cam.orthographicSize = mapHeight * 0.55f;
+                }
+                else
+                {
+                    Cam.orthographicSize = mapWidth * 0.55f;
+                }
+                
                 Fullmap.texture = MinimapTex;
                 break;
         }
