@@ -12,7 +12,7 @@ public class InputSettings
     {
         this.Name = Name;
         Value = 0;
-        WasPressedThisFrame = true;
+        WasPressedThisFrame = false;
     }
 }
 
@@ -39,7 +39,8 @@ public static class InputManager
         }
 
         bool Down = Input.GetButtonDown(Key) || (Inputs[Key].Value != 0 && Inputs[Key].WasPressedThisFrame == false);
-        Inputs[Key].WasPressedThisFrame = true;
+        if (Down)
+            Inputs[Key].WasPressedThisFrame = true;
         return Down;
     }
 
@@ -51,7 +52,8 @@ public static class InputManager
         }
 
         bool Up = Input.GetButtonUp(Key) || (Inputs[Key].Value != 0 && Inputs[Key].WasPressedThisFrame == true);
-        Inputs[Key].WasPressedThisFrame = false;
+        if (Up)
+            Inputs[Key].WasPressedThisFrame = false;
         return Up;
     }
 
@@ -75,6 +77,8 @@ public static class InputManager
         }
 
         Inputs[Key].Value = Value ? 1 : 0;
+        if (Value == false)
+            Inputs[Key].WasPressedThisFrame = false;
     }
 
     public static void SetAxis(string Key, float Value)
