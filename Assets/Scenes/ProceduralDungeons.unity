@@ -677,18 +677,6 @@ PrefabInstance:
       propertyPath: Cam
       value: 
       objectReference: {fileID: 1668143874}
-    - target: {fileID: 1721573905430386780, guid: 52097f3f22e2593438cb94562561844b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8626180021985978236, guid: 52097f3f22e2593438cb94562561844b, type: 3}
-      propertyPath: m_Color.a
-      value: 0.5019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 8626180021985978236, guid: 52097f3f22e2593438cb94562561844b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9034493135966230033, guid: 52097f3f22e2593438cb94562561844b, type: 3}
       propertyPath: m_Name
       value: Menu
