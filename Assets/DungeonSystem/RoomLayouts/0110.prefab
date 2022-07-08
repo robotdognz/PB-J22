@@ -1496,6 +1496,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4186806727723328424, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
+      propertyPath: mapRoom
+      value: 
+      objectReference: {fileID: 7931352196231832608}
+    - target: {fileID: 4186806727723328424, guid: 7454ea1b421848448bfd015dd15d0342, type: 3}
       propertyPath: doorLeft
       value: 
       objectReference: {fileID: 0}
@@ -1630,7 +1634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6355179233008220487, guid: 8b4894a4b34561f428a1187157bf512f, type: 3}
       propertyPath: m_Name
-      value: FogOfWar
+      value: MapRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b4894a4b34561f428a1187157bf512f, type: 3}

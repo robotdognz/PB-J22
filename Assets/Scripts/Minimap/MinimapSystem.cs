@@ -59,17 +59,17 @@ public class MinimapSystem : MonoBehaviour
                     }
                     else
                     {
-                        if (Tex.GetPixel(X, Y) != Color.red && Tex.GetPixel(X, Y) != Color.blue)
-                        {
-                            Final.SetPixel(X, Y, Color.grey);
-                        }
-                        else if (Tex.GetPixel(X, Y) == Color.red) // current room
+                        if (Tex.GetPixel(X, Y) == Color.red) // current room
                         {
                             Final.SetPixel(X, Y, Color.cyan);
                         }
-                        else // doors
+                        else if (Tex.GetPixel(X, Y) == Color.blue) // doors
                         {
                             Final.SetPixel(X, Y, Color.white);
+                        }
+                        else // visited rooms (uses an off green, to save clean colors for other things)
+                        {
+                            Final.SetPixel(X, Y, Color.grey); 
                         }
                     }
                 }

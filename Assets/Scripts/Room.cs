@@ -20,7 +20,7 @@ public class Room : MonoBehaviour
     public bool bottom;
     public bool left;
 
-    [SerializeField] GameObject fogOfWar;
+    [SerializeField] GameObject mapRoom;
 
     [SerializeField] List<Door> childDoors;
 
@@ -145,9 +145,9 @@ public class Room : MonoBehaviour
             OnPlayerEnter();
 
             // disable fog of war for this room and draw doors
-            if (fogOfWar)
+            if (mapRoom)
             {
-                fogOfWar.SetActive(false);
+                mapRoom.SetActive(true);
             }
             EnableDoorsOnMap();
 
