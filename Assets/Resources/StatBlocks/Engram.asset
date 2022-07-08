@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46fb49237bfa6c649ae8f827c9e1dd1e, type: 3}
-  m_Name: DreamSnatcher
+  m_Name: Engram
   m_EditorClassIdentifier: 
-  DefaultName: Dream Snatcher
+  DefaultName: Engram
   HealthOverLevel:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 200
+      value: 250
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 2
+      value: 3
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 2
+      value: 4
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 99
-      value: 40
+      value: 45
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -114,7 +114,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 7.5
+      value: 8
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 99
+      time: 99.15637
       value: 80
       inSlope: 0
       outSlope: 0
@@ -181,33 +181,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  EXPGained: 10
-  IsWeakTo: 02000000
+  EXPGained: 25
+  IsWeakTo: 04000000
   StartingSkills:
   - {fileID: 11400000, guid: 1ce1f6a89c9677945b2c35eeeb999ec9, type: 2}
   - {fileID: 11400000, guid: 1ce1f6a89c9677945b2c35eeeb999ec9, type: 2}
-  - {fileID: 11400000, guid: 1ce1f6a89c9677945b2c35eeeb999ec9, type: 2}
-  - {fileID: 11400000, guid: a708ba2714aed424da5b38f27ad113ad, type: 2}
-  - {fileID: 11400000, guid: a708ba2714aed424da5b38f27ad113ad, type: 2}
-  - {fileID: 11400000, guid: f9e7e06a75357af4faa317e13c72032f, type: 2}
-  HurtSound: {fileID: 8300000, guid: 171a76a66b715564d8cf4bd5a2acb27b, type: 3}
-  DeathSound: {fileID: 8300000, guid: 70dc82f462065dd418c1c46d111589ff, type: 3}
-  NormalSprite: {fileID: 21300000, guid: da5331973e44a4c4fa3ffff3f9b057ca, type: 3}
+  - {fileID: 11400000, guid: 434a9bac54fe7b845a969da3a9144736, type: 2}
+  - {fileID: 11400000, guid: 434a9bac54fe7b845a969da3a9144736, type: 2}
+  - {fileID: 11400000, guid: f451c7b529db8f04fa05c253050b626f, type: 2}
+  - {fileID: 11400000, guid: f451c7b529db8f04fa05c253050b626f, type: 2}
+  HurtSound: {fileID: 8300000, guid: bcd85d13824661b4caad0c362f513774, type: 3}
+  DeathSound: {fileID: 8300000, guid: 17483e40359db714d96395d30af0d540, type: 3}
+  NormalSprite: {fileID: 21300000, guid: b875c22d53bb04045bcdff232b894228, type: 3}
   DamagedSprite: {fileID: 0}
-  DeadSprite: {fileID: 21300000, guid: 0937e8b58f753fd4eadc245c1ebface3, type: 3}
+  DeadSprite: {fileID: 21300000, guid: 904c0ee2dfa900243a8fa7f0c9b809ff, type: 3}
   Drops:
   - Base: {fileID: 11400000, guid: 0fcc2982f8c712d408cce16da8a053d1, type: 2}
     Count: 2
     DropProbability: 1
   - Base: {fileID: 11400000, guid: 4dfd97f04fa2f294084eeb0e5a6553c0, type: 2}
-    Count: 1
-    DropProbability: 0.5
-  - Base: {fileID: 11400000, guid: 41c6e7564b6ccb945b7853a02f76a683, type: 2}
     Count: 2
-    DropProbability: 0.2
+    DropProbability: 0.5
+  - Base: {fileID: 11400000, guid: 4dfd97f04fa2f294084eeb0e5a6553c0, type: 2}
+    Count: 1
+    DropProbability: 0.3
   - Base: {fileID: 11400000, guid: 5c5ff226eb4c5c34f8f27525a6e92703, type: 2}
     Count: 1
     DropProbability: 0.6
   - Base: {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
     Count: 2
-    DropProbability: 0.6
+    DropProbability: 0.75

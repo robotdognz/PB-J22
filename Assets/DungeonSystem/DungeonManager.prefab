@@ -48,12 +48,13 @@ MonoBehaviour:
   MidnightDesert: {fileID: 11400000, guid: b20c153f8bd58044faa13eb891f88b2b, type: 2}
   Castle: {fileID: 11400000, guid: 5e8794ac959cc514286ecc0122da14c3, type: 2}
   Sewers: {fileID: 11400000, guid: 54b6bed8df9067342aa161dca237a5ac, type: 2}
+  Maze: {fileID: 11400000, guid: b355aa83130f0c04daefca85330e7d1e, type: 2}
   overwriteSettings: 0
   dungeonSize: 100
   enemyProbability: 0.2
   enemyLevel: 1
   playerLevel: 1
-  dungeonType: 1
+  dungeonType: 4
   topWall: {fileID: 5318475198461444993, guid: a4cced3f902d611409f9dfef9b69e77f, type: 3}
   rightWall: {fileID: 5318475198461444993, guid: 7f9d5a33d50392b42b7f8429564c5e9b, type: 3}
   bottomWall: {fileID: 5318475198461444993, guid: efd5eb4b7b9a11e4a8d31f154f4d9aed, type: 3}
@@ -96,6 +97,11 @@ MonoBehaviour:
   bossLayout: {fileID: 2474554416018938132, guid: 7dd10057d5d6f8d4f817f0319f352996, type: 3}
   chestLayouts:
   - {fileID: 5653920367887999707, guid: b40ec2f79c4b57243a1f1c5f43b3dbb0, type: 3}
+  - {fileID: 5653920367887999707, guid: 0c65a530a8df73e488d1587c309614cd, type: 3}
+  - {fileID: 5653920367887999707, guid: 802f54b721c4ce944b7f3a14d77a3dfc, type: 3}
+  - {fileID: 5653920367887999707, guid: 94f9daf21f5cba34ba2951b4d1a12c42, type: 3}
+  - {fileID: 5653920367887999707, guid: 14e2b9a70c1f60543984b03b20cb64ab, type: 3}
+  - {fileID: 5653920367887999707, guid: 0fce17c51f959ff40b591c29d097de23, type: 3}
   chestItems:
   - {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
   - {fileID: 11400000, guid: 709ba0ff52bd9a740919559be0956a40, type: 2}

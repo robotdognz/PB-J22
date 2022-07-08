@@ -15,6 +15,7 @@ public class DungeonManager : MonoBehaviour
     public EnemyPalette MidnightDesert;
     public EnemyPalette Castle;
     public EnemyPalette Sewers;
+    public EnemyPalette Maze;
 
     [Header("Dungeon Settings")]
     [Tooltip("Set this to true to use the below settings, otherwise the game will decide")]
@@ -98,6 +99,9 @@ public class DungeonManager : MonoBehaviour
                 break;
             case DungeonType.Sewers:
                 ActiveEnemyPalette = Sewers;
+                break;
+            case DungeonType.Maze:
+                ActiveEnemyPalette = Maze;
                 break;
         }
 
@@ -186,14 +190,18 @@ public class DungeonManager : MonoBehaviour
                             chestObject.transform.parent = spawnedRoom.transform;
 
                             // setup chest contents
-                            Chest chest = chestObject.GetComponentInChildren<Chest>();
+                            // Sky's Edit: Allowed for multiple chests in a Chest Layout
+                            Chest[] chests = chestObject.GetComponentsInChildren<Chest>();
 
-                            rand = Random.Range(0, chestItems.Length);
-                            Item item = chestItems[rand];
-                            ItemInstance loot = new ItemInstance(item, 1);
+                            foreach (Chest chest in chests)
+                            {
+                                rand = Random.Range(0, chestItems.Length);
+                                Item item = chestItems[rand];
+                                ItemInstance loot = new ItemInstance(item, 1);
 
-                            ItemInstance[] lootTable = new ItemInstance[] { loot };
-                            chest.LootTable = lootTable;
+                                ItemInstance[] lootTable = new ItemInstance[] { loot };
+                                chest.LootTable = lootTable;
+                            }
                         }
 
                         // decrement. obviously

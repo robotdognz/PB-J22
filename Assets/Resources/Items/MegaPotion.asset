@@ -15,8 +15,9 @@ MonoBehaviour:
   Sound: {fileID: 8300000, guid: c17c4fbb0b5c2c346af9600927677518, type: 3}
   ItemName: Mega Potion
   RestoreHPAsPercent: 1
-  HealthRestore: 0.6
+  HealthRestore: 0.8
   RestoreSPAsPercent: 1
   StaminaRestore: 0.15
   SkillToLearn: {fileID: 0}
   Effects: []
+  Removes: []

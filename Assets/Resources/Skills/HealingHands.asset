@@ -20,7 +20,7 @@ MonoBehaviour:
   CanCrit: 1
   CritMultiplier: 1.3
   Variance: 0.2
-  m_Damage: 6
+  m_Damage: 12
   DamageElement: 0
   IndicatorDelay: 0.6
   Effect: {fileID: 8143230463268424904, guid: 9610bb6f585263b4289a33b5eabff780, type: 3}
