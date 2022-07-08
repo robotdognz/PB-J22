@@ -15,7 +15,7 @@ public class Room : MonoBehaviour
     [SerializeField] DoorSpawner doorLeft;
 
     // currently required rooms
-    public bool top; //[HideInInspector]
+    public bool top;
     public bool right;
     public bool bottom;
     public bool left;
@@ -30,6 +30,11 @@ public class Room : MonoBehaviour
     float roomDiameter = 3.5f;
 
     private string winScene = "WinScreen"; // scene to load when beating final boss
+
+    public static void ResetPlayerEnter()
+    {
+        PlayerEnter = null;
+    }
 
     protected virtual void OnPlayerEnter()
     {
@@ -142,7 +147,7 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            OnPlayerEnter();
+            // OnPlayerEnter();
 
             // disable fog of war for this room and draw doors
             if (mapRoom)
@@ -211,6 +216,8 @@ public class Room : MonoBehaviour
             {
                 PlayerMovement.PreviousRoom = this;
             }
+
+            OnPlayerEnter();
         }
     }
 
@@ -244,6 +251,7 @@ public class Room : MonoBehaviour
 
     public void WinGame()
     {
+        Room.ResetPlayerEnter();
         UnityEngine.SceneManagement.SceneManager.LoadScene(winScene);
     }
 
