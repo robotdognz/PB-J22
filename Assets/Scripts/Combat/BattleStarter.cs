@@ -26,6 +26,8 @@ namespace Alchemy
             if (UIManager.Instance)
             {
                 PlayerMovement.Instance.GetComponent<ActorStats>().SetHealth(UIManager.Instance.PlayerStats.CurrentHealth);
+                PlayerMovement.Instance.GetComponent<ActorStats>().CurrentEXP = UIManager.Instance.PlayerStats.CurrentEXP;
+                PlayerMovement.Instance.GetComponent<ActorStats>().CurrentLevel = UIManager.Instance.PlayerStats.CurrentLevel;
             }
 
             Debug.Log($"Battle ended with result: {R}!");
@@ -40,6 +42,8 @@ namespace Alchemy
                 if (UIManager.Instance)
                 {
                     PlayerMovement.Instance.GetComponent<ActorStats>().SetHealth(UIManager.Instance.PlayerStats.CurrentHealth);
+                    PlayerMovement.Instance.GetComponent<ActorStats>().CurrentEXP = UIManager.Instance.PlayerStats.CurrentEXP;
+                    PlayerMovement.Instance.GetComponent<ActorStats>().CurrentLevel = UIManager.Instance.PlayerStats.CurrentLevel;
                 }
 
                 Debug.Log($"Battle ended with result: {R}!");
@@ -54,10 +58,18 @@ namespace Alchemy
         /// Make sure the player is listed as the first actor in the list. Otherwise you could have some funky issues!-
         /// </summary>
         /// <param name="Actors"></param>
-        public static void StartBattle(List<ActorStats> Actors, bool AllowFlee = true)
+        public static void StartBattle(List<ActorStats> Actors, bool AllowFlee = true, bool IsBoss = false)
         {
             CanPlayerFlee = AllowFlee;
-            Music.MusicManager.SetTrack(Music.Track.Battle); // Switch to Battle music without forgetting the dungeon type
+            Debug.Log($"Boss Fight: {IsBoss}");
+            if (IsBoss)
+            {
+                Music.MusicManager.SetTrack(Music.Track.BossFight);
+            }
+            else
+            {
+                Music.MusicManager.SetTrack(Music.Track.Battle);
+            }
             Actors[0].StartCoroutine(BEGIN(Actors)); // Use the player to start the battle coroutine because silly
         }
 
@@ -66,7 +78,7 @@ namespace Alchemy
             Debug.LogError("BEEGIN");
             Music.MusicManager.Initialize();
             yield return new WaitForSecondsRealtime(0.1f);
-            Music.MusicManager.SetTrack(Music.Track.Battle); // Switch to Battle music without forgetting the dungeon type
+            // Music.MusicManager.SetTrack(Music.Track.Battle); // Switch to Battle music without forgetting the dungeon type
 
             AsyncOperation Op = SceneManager.LoadSceneAsync("Combat", LoadSceneMode.Additive);
 
@@ -91,6 +103,7 @@ namespace Alchemy
 
                 P.ActorName = Actor.ActorName;
                 P.CurrentLevel = Actor.CurrentLevel;
+                P.CurrentEXP = Actor.CurrentEXP;
                 P.DamagedSprite = Actor.DamagedSprite;
                 P.DeadSprite = Actor.DeadSprite;
                 P.DecisionMaker = Actor.DecisionMaker;

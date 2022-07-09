@@ -10884,6 +10884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FirstAttackOption: {fileID: 744203010}
   AftermathFinish: {fileID: 1644485200}
+  AftermathNext: {fileID: 740679954}
   PlayerStats: {fileID: 0}
   FleeButton: {fileID: 1880383450}
   Menus:

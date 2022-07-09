@@ -8,6 +8,7 @@ namespace Alchemy.Music
         Title,
         Explore,
         Battle,
+        BossFight,
         Victory,
         GameOver
     }

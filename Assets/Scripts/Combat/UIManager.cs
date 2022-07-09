@@ -21,6 +21,7 @@ namespace Alchemy.Combat
     {
         public Button FirstAttackOption;
         public Button AftermathFinish;
+        public Button AftermathNext;
 
         public static UIManager Instance;
 
@@ -82,7 +83,7 @@ namespace Alchemy.Combat
 
         private IEnumerator Aftermath()
         {
-            /*
+            AftermathNext.Select();
             int TotalEXP = 0;
             foreach (Battler B in BattleManager.Instance.Battlers)
             {
@@ -119,12 +120,10 @@ namespace Alchemy.Combat
 
             while (CurrentMenu == 6)
                 yield return null;
-            */
 
             yield return null;
 
             AftermathFinish.Select();
-            SetMenu(7);
 
             List<ItemInstance> Items = new List<ItemInstance>();
             foreach (Battler B in BattleManager.Instance.ThisCombat)

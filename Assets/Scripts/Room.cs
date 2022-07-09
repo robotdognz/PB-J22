@@ -245,7 +245,7 @@ public class Room : MonoBehaviour
 
         bool boss = enemyWave.isBoss;
 
-        BattleStarter.StartBattle(actors, !boss); // if it is a boss, then you can't flee
+        BattleStarter.StartBattle(actors, !boss, boss); // if it is a boss, then you can't flee
         BattleStarter.OnBattleEnd += BattleEnded;
     }
 
