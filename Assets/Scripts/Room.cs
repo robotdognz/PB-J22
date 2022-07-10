@@ -38,7 +38,20 @@ public class Room : MonoBehaviour
 
     protected virtual void OnPlayerEnter()
     {
+        // draw this room and it's doors on the map
+        mapRoom.GetComponent<SpriteRenderer>().color = Color.cyan;
+        EnableDoorsOnMap();
+
+        // store current room position
+        DungeonManager.currentRoom = transform.position;
+
+        // trigger event
         PlayerEnter.Invoke();
+    }
+
+    protected virtual void OnPlayerExit()
+    {
+        mapRoom.GetComponent<SpriteRenderer>().color = Color.gray;
     }
 
     public void Init()
@@ -147,21 +160,14 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // OnPlayerEnter();
-
-            // disable fog of war for this room and draw doors
-            if (mapRoom)
-            {
-                mapRoom.SetActive(true);
-            }
-            EnableDoorsOnMap();
-
             // snap camera to this room
             TargetPos = transform.position + -Vector3.forward * 10;
 
             // if the room has enemies, snap player to this room (so they are't inside the door when it closes)
             if (enemies != null)
             {
+                enemies.GetComponent<EnemyLayout>().ActivateMarker();
+
                 Rigidbody2D playerBody = other.gameObject.GetComponentInParent<Rigidbody2D>();
                 Vector2 playerTemp = other.transform.position;
 
@@ -218,6 +224,14 @@ public class Room : MonoBehaviour
             }
 
             OnPlayerEnter();
+        }
+    }
+
+    protected void OnTriggerExit2D(Collider2D Other)
+    {
+        if (Other.CompareTag("Player"))
+        {
+            OnPlayerExit();
         }
     }
 

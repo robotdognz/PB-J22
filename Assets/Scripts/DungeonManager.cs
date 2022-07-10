@@ -59,6 +59,9 @@ public class DungeonManager : MonoBehaviour
     public static Vector2Int topLeft { get; private set; }
     public static Vector2Int bottomRight { get; private set; }
     public static Vector2Int bossPosition { get; private set; }
+    public static Vector3 currentRoom { get; set; }
+
+    public static bool darkScreen = true;
 
     public bool IsPositionValid(Vector2 Position)
     {
@@ -454,6 +457,7 @@ public class DungeonManager : MonoBehaviour
     public void RemoveLoadingScreen()
     {
         GameObject.Find("[DARKINATOR]").SetActive(false);
+        darkScreen = false;
     }
 
     public int GetRemainingRooms()

@@ -93,14 +93,12 @@ public class PauseMenu : MonoBehaviour
 
         // go to title screen
         Time.timeScale = 1;
-        Room.ResetPlayerEnter();
         SceneManager.LoadScene(0);
     }
 
     public void ReloadDungeon()
     {
         Time.timeScale = 1;
-        Room.ResetPlayerEnter();
         SceneManager.LoadScene(1);
     }
 
