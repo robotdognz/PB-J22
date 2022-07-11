@@ -1002,6 +1002,7 @@ RectTransform:
   - {fileID: 905650470}
   - {fileID: 1714411427}
   - {fileID: 2046442067}
+  - {fileID: 330956504}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1409,6 +1410,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &330956504 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+  m_PrefabInstance: {fileID: 6438489403941002484}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &348467583
 GameObject:
   m_ObjectHideFlags: 0
@@ -9202,6 +9208,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8193182263992636012, guid: c72e98ec1235b4b42bbdcefdba648fc2, type: 3}
+      propertyPath: dungeonSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193182263992636012, guid: c72e98ec1235b4b42bbdcefdba648fc2, type: 3}
+      propertyPath: enemyProbability
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c72e98ec1235b4b42bbdcefdba648fc2, type: 3}
 --- !u!1 &1466476840
@@ -15263,8 +15277,8 @@ MonoBehaviour:
     ingredients this time\u2026"
   winDialogue: Welcome back, you look refreshed. Would you like to try another potion?
   settingsSingleton: {fileID: 0}
-  SmallDungeonSize: 25
-  MediumDungeonSize: 50
+  SmallDungeonSize: 50
+  MediumDungeonSize: 100
   LargeDungeonSize: 150
   EasyEnemyProbability: 0.1
   MediumEnemyProbability: 0.2
@@ -16489,3 +16503,100 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &6438489403941002484
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 259480915}
+    m_Modifications:
+    - target: {fileID: 6438489403734942241, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_Name
+      value: Debug Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 220.43219
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 128.84921
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -112.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 17.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}

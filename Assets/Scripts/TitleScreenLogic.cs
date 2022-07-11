@@ -52,6 +52,16 @@ public class TitleScreenLogic : MonoBehaviour
                 break;
         }
         settingsSingleton.titleScreenState = SettingsSingleton.TitleScreenMessage.Normal;
+    }
+
+    private void Start() {
+        Setup();
+    }
+
+    private void Setup()
+    {
+        // get settings
+        settingsSingleton = SettingsSingleton.instance;
         
 
         // load previous settings
