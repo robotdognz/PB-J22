@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 7624982640228478574}
+  enemyMarker: {fileID: 0}
   isBoss: 1
 --- !u!1 &4837804234893771848
 GameObject:
@@ -123,7 +124,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 100
   m_Sprite: {fileID: 7482667652216324306, guid: 69dcd4a988c91a34a9811fc7a5bcfc27, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.20784314, g: 0.50980395, b: 0.8862745, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
