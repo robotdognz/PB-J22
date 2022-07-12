@@ -116,3 +116,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 46f6094c557c4d148b77d275ad2f69ec, type: 2}
   - {fileID: 11400000, guid: 1ac413d185d6c3b498bea0e7c09a1a70, type: 2}
   door: {fileID: 2574267516488484084, guid: d9a24998c608465488a74adbafdf98a1, type: 3}
+  bossArrowColor: {r: 0.20784314, g: 0.50980395, b: 0.8862745, a: 0}
+  dungeonArrows: []
+  dungeonArrowPrefab: {fileID: 3862382625336519198, guid: 80b9a6d2c5e148b41a0c7d07c7d343d9, type: 3}

@@ -26,6 +26,7 @@ public class Room : MonoBehaviour
 
     private GameObject enemies = null;
     private GameObject chests = null;
+    private DungeonPointer roomArrow = null;
 
     float roomDiameter = 3.5f;
 
@@ -163,10 +164,16 @@ public class Room : MonoBehaviour
             // snap camera to this room
             TargetPos = transform.position + -Vector3.forward * 10;
 
+            if (roomArrow != null)
+            {
+                roomArrow.gameObject.SetActive(false);
+            }
+
             // if the room has enemies, snap player to this room (so they are't inside the door when it closes)
             if (enemies != null)
             {
-                enemies.GetComponent<EnemyLayout>().ActivateMarker();
+                EnemyLayout layout = enemies.GetComponent<EnemyLayout>();
+                layout.ActivateMarker(); // mark this room on the map
 
                 Rigidbody2D playerBody = other.gameObject.GetComponentInParent<Rigidbody2D>();
                 Vector2 playerTemp = other.transform.position;
@@ -231,6 +238,11 @@ public class Room : MonoBehaviour
     {
         if (Other.CompareTag("Player"))
         {
+            if (roomArrow != null)
+            {
+                roomArrow.gameObject.SetActive(true);
+            }
+
             OnPlayerExit();
         }
     }
@@ -377,6 +389,21 @@ public class Room : MonoBehaviour
     {
         Destroy(chests);
         chests = null;
+    }
+
+    // arrow
+    public void AddArrow(DungeonPointer arrow)
+    {
+        roomArrow = arrow;
+    }
+    public bool HasArrow()
+    {
+        return roomArrow != null;
+    }
+    public void RemoveArrow()
+    {
+        Destroy(roomArrow.gameObject);
+        roomArrow = null;
     }
 
 }

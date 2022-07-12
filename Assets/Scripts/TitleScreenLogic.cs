@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Alchemy.Music;
+using System.Runtime.InteropServices;
 
 public class TitleScreenLogic : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class TitleScreenLogic : MonoBehaviour
     [SerializeField] string winDialogue = "";
 
     [HideInInspector] public SettingsSingleton settingsSingleton;
+
+    [DllImport("__Internal")]
+    private static extern bool IsMobile();
+    [SerializeField] PlayerPrefsToggle mobileToggle;
 
     private void Awake()
     {
@@ -52,9 +57,16 @@ public class TitleScreenLogic : MonoBehaviour
                 break;
         }
         settingsSingleton.titleScreenState = SettingsSingleton.TitleScreenMessage.Normal;
+
+        if (isMobile())
+        {
+            mobileToggle.GetComponent<Toggle>().isOn = true;
+        }
+
     }
 
-    private void Start() {
+    private void Start()
+    {
         Setup();
     }
 
@@ -62,7 +74,7 @@ public class TitleScreenLogic : MonoBehaviour
     {
         // get settings
         settingsSingleton = SettingsSingleton.instance;
-        
+
 
         // load previous settings
 
@@ -297,5 +309,13 @@ public class TitleScreenLogic : MonoBehaviour
         int index = 2;
         PlayerPrefs.SetInt("PlayerStrength", index);
         SetPlayerStrength(index);
+    }
+
+    public bool isMobile()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+             return IsMobile();
+#endif
+        return false;
     }
 }

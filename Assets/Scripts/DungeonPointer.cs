@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class DungeonPointer : MonoBehaviour
 {
-    float screenDiam = 5f;
-    private Vector3 pointingTo;
+    public float screenDiam = 5f;
+    public Vector3 pointingTo;
+
+    public void SetColor(Color color)
+    {
+        GetComponentInChildren<SpriteRenderer>().color = color;
+    }
 
     private void LateUpdate()
     {
-        // TODO: don't hard code this
-        pointingTo = new Vector3(DungeonManager.bossPosition.x, DungeonManager.bossPosition.y);
-
         // move to correct position on edge of screen
         Vector3 diff = pointingTo - Camera.main.transform.position;
         float xDiffAbs = Mathf.Abs(diff.x);

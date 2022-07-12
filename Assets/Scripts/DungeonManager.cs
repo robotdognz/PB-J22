@@ -50,6 +50,10 @@ public class DungeonManager : MonoBehaviour
     // doors
     [SerializeField] GameObject door;
 
+    // arrows
+    [SerializeField] Color bossArrowColor;
+    [SerializeField] GameObject dungeonArrowPrefab;
+
     // dungeon generation
     private int roomCount;
     int rand;
@@ -58,7 +62,7 @@ public class DungeonManager : MonoBehaviour
     public List<Room> rooms { get; private set; }
     public static Vector2Int topLeft { get; private set; }
     public static Vector2Int bottomRight { get; private set; }
-    public static Vector2Int bossPosition { get; private set; }
+    public static Vector3 bossPosition { get; private set; }
     public static Vector3 currentRoom { get; set; }
 
     public static bool darkScreen = true;
@@ -420,8 +424,12 @@ public class DungeonManager : MonoBehaviour
         // add boss to end room
         GameObject enemies = Instantiate(bossLayout, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
 
-        // store position
-        bossPosition = new Vector2Int((int)enemies.transform.position.x, (int)enemies.transform.position.y);
+        // store position of boss and create arrow to guide player
+        bossPosition = enemies.transform.position;
+        DungeonPointer bossArrow = Instantiate(dungeonArrowPrefab, transform.position, Quaternion.identity).GetComponent<DungeonPointer>();;
+        bossArrow.SetColor(bossArrowColor);
+        bossArrow.pointingTo = new Vector3(bossPosition.x, bossPosition.y);
+        rooms[rooms.Count - 1].AddArrow(bossArrow);
 
         // setup boss level
         List<Enemy> bossWave = enemies.GetComponent<EnemyLayout>().GetEnemies();

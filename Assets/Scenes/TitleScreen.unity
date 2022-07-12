@@ -15277,6 +15277,7 @@ MonoBehaviour:
     ingredients this time\u2026"
   winDialogue: Welcome back, you look refreshed. Would you like to try another potion?
   settingsSingleton: {fileID: 0}
+  mobileToggle: {fileID: 2046442069}
   SmallDungeonSize: 50
   MediumDungeonSize: 100
   LargeDungeonSize: 150
