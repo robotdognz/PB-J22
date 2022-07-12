@@ -28,6 +28,7 @@ public class Room : MonoBehaviour
     private GameObject enemies = null;
     private GameObject chests = null;
     private DungeonPointer roomArrow = null;
+    [SerializeField] GameObject dungeonArrowPrefab;
 
     float roomDiameter = 3.5f;
 
@@ -147,7 +148,6 @@ public class Room : MonoBehaviour
     }
 
     public static Vector3 TargetPos { get; private set; }
-    public GameObject FOW;
 
     public void EnableDoorsOnMap()
     {
@@ -415,9 +415,16 @@ public class Room : MonoBehaviour
         return false;
     }
 
+
+
+
     // arrow
-    public void AddArrow(DungeonPointer arrow)
+    public void AddArrowToRoom(Color color, float scale)
     {
+        DungeonPointer arrow = Instantiate(dungeonArrowPrefab, transform.position, Quaternion.identity).GetComponent<DungeonPointer>(); ;
+        arrow.SetColor(color);
+        arrow.SetScale(scale);
+        arrow.SetPointingTo(transform.position);
         roomArrow = arrow;
     }
     public bool HasArrow()

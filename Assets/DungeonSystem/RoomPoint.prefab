@@ -107,7 +107,9 @@ MonoBehaviour:
   right: 0
   bottom: 1
   left: 0
+  mapRoom: {fileID: 0}
   childDoors: []
+  dungeonArrowPrefab: {fileID: 3862382625336519198, guid: 80b9a6d2c5e148b41a0c7d07c7d343d9, type: 3}
   FOW: {fileID: 0}
 --- !u!61 &6324843429124159923
 BoxCollider2D:

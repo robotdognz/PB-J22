@@ -435,7 +435,7 @@ public class DungeonManager : MonoBehaviour
                         Debug.Log("Created specific chest at " + room.transform.position);
                         setChestItemsIndex++;
 
-                        AddArrowToRoom(room, scrollArrowColor, 0.5f);
+                        room.AddArrowToRoom(scrollArrowColor, 0.5f);
                     }
                     else
                     {
@@ -487,16 +487,13 @@ public class DungeonManager : MonoBehaviour
 
         // add the boss to the room and setup arrow
         bossRoom.AddEnemies(boss);
-        AddArrowToRoom(bossRoom, bossArrowColor, 1);
+        bossRoom.AddArrowToRoom(bossArrowColor, 1);
     }
 
-    private void AddArrowToRoom(Room room, Color color, float scale)
+    public ItemInstance[] GetChestItems()
     {
-        DungeonPointer arrow = Instantiate(dungeonArrowPrefab, transform.position, Quaternion.identity).GetComponent<DungeonPointer>(); ;
-        arrow.SetColor(color);
-        arrow.SetScale(scale);
-        arrow.SetPointingTo(room.transform.position);
-        room.AddArrow(arrow);
+        // TODO: dynamically create items for the player
+        return null;
     }
 
     private void UpdateMapFields(Room room)

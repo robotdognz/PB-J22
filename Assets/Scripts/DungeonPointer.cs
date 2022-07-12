@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class DungeonPointer : MonoBehaviour
 {
+    [SerializeField] GameObject pointerObject;
     public float screenDiam = 5f;
     private Vector3 pointingTo;
 
     public void SetColor(Color color)
     {
-        GetComponentInChildren<SpriteRenderer>().color = color;
+        SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            sprite.color = color;
+        }
     }
 
     public void SetScale(float scale)
     {
-        transform.localScale = new Vector2(scale, scale);
+        pointerObject.transform.localScale = new Vector2(scale, scale);
     }
 
     public void SetPointingTo(Vector3 position)
@@ -54,12 +59,12 @@ public class DungeonPointer : MonoBehaviour
             y = Mathf.Clamp(pointingTo.y, Camera.main.transform.position.y - screenDiam, Camera.main.transform.position.y + screenDiam);
         }
         Vector2 newPos = new Vector2(x, y);
-        transform.position = newPos;
+        pointerObject.transform.position = newPos;
 
         // rotate to point at location
-        Vector3 difference = pointingTo - transform.position;
+        Vector3 difference = pointingTo - pointerObject.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+        pointerObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
     }
 
 }

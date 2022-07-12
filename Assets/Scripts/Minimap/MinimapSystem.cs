@@ -26,7 +26,7 @@ public class MinimapSystem : MonoBehaviour
     private IEnumerator AwaitMapRefresh()
     {
         yield return new WaitForSeconds(0.5f);
-        MiniMapCam.transform.position = DungeonManager.currentRoom - Vector3.forward;
+        MiniMapCam.transform.position = DungeonManager.currentRoom - Vector3.forward * 10;
     }
 
     public Texture2D FullMapTex

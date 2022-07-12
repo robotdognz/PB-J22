@@ -513,7 +513,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: chestItems.Array.data[10]
@@ -534,15 +534,15 @@ PrefabInstance:
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 06a60dd858a37f440bb4a2e24f59a8eb, type: 2}
+      objectReference: {fileID: 11400000, guid: 709ba0ff52bd9a740919559be0956a40, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 709ba0ff52bd9a740919559be0956a40, type: 2}
+      objectReference: {fileID: 11400000, guid: ec5b78069b8fe9d4b8c3dfdd6bb18dff, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: ec5b78069b8fe9d4b8c3dfdd6bb18dff, type: 2}
+      objectReference: {fileID: 11400000, guid: 33caed1e74ddd524689e2267068a5c6c, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[4]
       value: 
