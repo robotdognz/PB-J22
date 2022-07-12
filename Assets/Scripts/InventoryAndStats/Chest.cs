@@ -11,19 +11,30 @@ namespace Alchemy.Inventory
         public ItemInstance[] LootTable;
         public Sprite OpenedSprite;
 
+        public bool isDynamic;
+        private DungeonManager dungeonManager;
+        public bool isUsed = false;
+
         private void Awake()
         {
             Renderer = GetComponent<SpriteRenderer>();
+            dungeonManager = FindObjectOfType<DungeonManager>();
         }
 
         public override void Interact()
         {
             base.Interact();
 
+            isUsed = true;
+
             GetComponent<AudioSource>().Play();
             string GotString = "You obtained:\n";
 
-            if (LootTable.Length > 0)
+            if (isDynamic)
+            {
+                // TODO: dynamic chest contents
+            }
+            else if (LootTable.Length > 0)
             {
                 foreach (ItemInstance Item in LootTable)
                 {

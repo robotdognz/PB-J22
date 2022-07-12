@@ -5,11 +5,21 @@ using UnityEngine;
 public class DungeonPointer : MonoBehaviour
 {
     public float screenDiam = 5f;
-    public Vector3 pointingTo;
+    private Vector3 pointingTo;
 
     public void SetColor(Color color)
     {
         GetComponentInChildren<SpriteRenderer>().color = color;
+    }
+
+    public void SetScale(float scale)
+    {
+        transform.localScale = new Vector2(scale, scale);
+    }
+
+    public void SetPointingTo(Vector3 position)
+    {
+        pointingTo = new Vector3(position.x, position.y);
     }
 
     private void LateUpdate()
@@ -24,7 +34,7 @@ public class DungeonPointer : MonoBehaviour
         {
             x = Mathf.Clamp(pointingTo.x, Camera.main.transform.position.x - screenDiam, Camera.main.transform.position.x + screenDiam);
 
-            float ySlope = diff.y/diff.x;
+            float ySlope = diff.y / diff.x;
             float yIntercept = ySlope * screenDiam * Mathf.Sign(diff.x);
 
             y = Camera.main.transform.position.y + yIntercept;
@@ -33,7 +43,7 @@ public class DungeonPointer : MonoBehaviour
         {
             y = Mathf.Clamp(pointingTo.y, Camera.main.transform.position.y - screenDiam, Camera.main.transform.position.y + screenDiam);
 
-            float xSlope = diff.x/diff.y;
+            float xSlope = diff.x / diff.y;
             float xIntercept = xSlope * screenDiam * Mathf.Sign(diff.y);
 
             x = Camera.main.transform.position.x + xIntercept;

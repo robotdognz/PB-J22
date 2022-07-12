@@ -35,8 +35,8 @@ public class TitleScreenLogic : MonoBehaviour
         // get settings
         settingsSingleton = SettingsSingleton.instance;
 
+        // run title screen message
         Debug.Log(settingsSingleton.titleScreenState);
-
         switch (settingsSingleton.titleScreenState)
         {
             case SettingsSingleton.TitleScreenMessage.Normal:
@@ -58,6 +58,9 @@ public class TitleScreenLogic : MonoBehaviour
         }
         settingsSingleton.titleScreenState = SettingsSingleton.TitleScreenMessage.Normal;
 
+        LoadSettings();
+
+        // set mobile controls to on if using a mobile device
         if (isMobile())
         {
             mobileToggle.GetComponent<Toggle>().isOn = true;
@@ -65,17 +68,8 @@ public class TitleScreenLogic : MonoBehaviour
 
     }
 
-    private void Start()
+    private void LoadSettings()
     {
-        Setup();
-    }
-
-    private void Setup()
-    {
-        // get settings
-        settingsSingleton = SettingsSingleton.instance;
-
-
         // load previous settings
 
         // dungeon size

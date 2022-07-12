@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Alchemy;
+using Alchemy.Inventory;
 using UnityEngine.Events;
 
 public class Room : MonoBehaviour
@@ -240,7 +241,14 @@ public class Room : MonoBehaviour
         {
             if (roomArrow != null)
             {
-                roomArrow.gameObject.SetActive(true);
+                if (ChestsCleared())
+                {
+                    RemoveArrow();
+                }
+                else
+                {
+                    roomArrow.gameObject.SetActive(true);
+                }
             }
 
             OnPlayerExit();
@@ -389,6 +397,22 @@ public class Room : MonoBehaviour
     {
         Destroy(chests);
         chests = null;
+    }
+    public bool ChestsCleared()
+    {
+        if (chests != null)
+        {
+            Chest[] individualChests = chests.GetComponentsInChildren<Chest>();
+            foreach (Chest chest in individualChests)
+            {
+                if (!chest.isUsed)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     // arrow

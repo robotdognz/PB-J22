@@ -46,13 +46,15 @@ public class DungeonManager : MonoBehaviour
 
     // chests
     public GameObject[] chestLayouts;
-    public Item[] chestItems;
+    public Item[] setChestItems;
+    public Item[] generalChestItems;
 
     // doors
     [SerializeField] GameObject door;
 
     // arrows
     [SerializeField] Color bossArrowColor;
+    [SerializeField] Color scrollArrowColor;
     [SerializeField] GameObject dungeonArrowPrefab;
 
     // dungeon generation
@@ -369,9 +371,13 @@ public class DungeonManager : MonoBehaviour
     {
         int totalValidRooms = rooms.Count - 2; // -2 to account for start room and boss room
 
-        // spawn enemies
+
         int roomsToAddEnemies = Mathf.RoundToInt(totalValidRooms * enemyProbability);
         Debug.Log("Adding enemies to " + roomsToAddEnemies + " of " + totalValidRooms + " total valid rooms");
+        int roomsToAddChests = Mathf.RoundToInt((totalValidRooms - roomsToAddEnemies) * chestProbability);
+        Debug.Log("Adding chests to " + roomsToAddEnemies + " of " + (totalValidRooms - roomsToAddEnemies) + " total valid rooms");
+
+        // spawn enemies
         while (roomsToAddEnemies > 0)
         {
             int randomRoomIndex = Random.Range(1, rooms.Count - 2);
@@ -400,14 +406,14 @@ public class DungeonManager : MonoBehaviour
         }
 
         // spawn chests
-        int roomsToAddChests = Mathf.RoundToInt(totalValidRooms * chestProbability);
-        Debug.Log("Adding chests to " + roomsToAddEnemies + " of " + totalValidRooms + " total valid rooms");
-        while (roomsToAddChests > 0)
+        int setChestItemsIndex = 0;
+
+        while (roomsToAddChests > 0 || setChestItemsIndex < setChestItems.Length)
         {
             int randomRoomIndex = Random.Range(1, rooms.Count - 2);
             Room room = rooms[randomRoomIndex];
 
-            if (!room.HasChests())
+            if (!room.HasChests() && !room.HasEnemies())
             {
                 // spawn the chest
                 rand = Random.Range(0, chestLayouts.Length);
@@ -420,8 +426,23 @@ public class DungeonManager : MonoBehaviour
 
                 foreach (Chest chest in chests)
                 {
-                    rand = Random.Range(0, chestItems.Length);
-                    Item item = chestItems[rand];
+                    Item item = null;
+
+                    if (setChestItems != null && setChestItems.Length > 0 && setChestItemsIndex < setChestItems.Length)
+                    {
+                        // create specific items that should always be in the map
+                        item = setChestItems[setChestItemsIndex];
+                        Debug.Log("Created specific chest at " + room.transform.position);
+                        setChestItemsIndex++;
+
+                        AddArrowToRoom(room, scrollArrowColor, 0.5f);
+                    }
+                    else
+                    {
+                        // create random items
+                        rand = Random.Range(0, generalChestItems.Length);
+                        item = generalChestItems[rand];
+                    }
                     ItemInstance loot = new ItemInstance(item, 1);
 
                     ItemInstance[] lootTable = new ItemInstance[] { loot };
@@ -435,15 +456,17 @@ public class DungeonManager : MonoBehaviour
 
     public void SetupBoss()
     {
+        Room bossRoom = rooms[rooms.Count - 1];
+
         // clear out the end room
         // remove any enemies
-        if (rooms[rooms.Count - 1].HasEnemies())
+        if (bossRoom.HasEnemies())
         {
-            rooms[rooms.Count - 1].RemoveEnemies();
+            bossRoom.RemoveEnemies();
             Debug.Log("Removed enemies from boss room");
         }
         // remove any chests
-        GameObject finalRoom = rooms[rooms.Count - 1].gameObject.transform.parent.gameObject;
+        GameObject finalRoom = bossRoom.gameObject.transform.parent.gameObject;
         Chest chestInBossRoom = finalRoom.GetComponentInChildren<Chest>();
         if (chestInBossRoom)
         {
@@ -453,23 +476,27 @@ public class DungeonManager : MonoBehaviour
         }
 
         // add boss to end room
-        GameObject enemies = Instantiate(bossLayout, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
-
-        // store position of boss and create arrow to guide player
-        bossPosition = enemies.transform.position;
-        DungeonPointer bossArrow = Instantiate(dungeonArrowPrefab, transform.position, Quaternion.identity).GetComponent<DungeonPointer>(); ;
-        bossArrow.SetColor(bossArrowColor);
-        bossArrow.pointingTo = new Vector3(bossPosition.x, bossPosition.y);
-        rooms[rooms.Count - 1].AddArrow(bossArrow);
+        GameObject boss = Instantiate(bossLayout, bossRoom.transform.position, Quaternion.identity);
 
         // setup boss level
-        List<Enemy> bossWave = enemies.GetComponent<EnemyLayout>().GetEnemies();
+        List<Enemy> bossWave = boss.GetComponent<EnemyLayout>().GetEnemies();
         foreach (Enemy enemy in bossWave)
         {
             enemy.gameObject.GetComponent<ActorStats>().CurrentLevel = enemyLevel;
         }
 
-        rooms[rooms.Count - 1].AddEnemies(enemies);
+        // add the boss to the room and setup arrow
+        bossRoom.AddEnemies(boss);
+        AddArrowToRoom(bossRoom, bossArrowColor, 1);
+    }
+
+    private void AddArrowToRoom(Room room, Color color, float scale)
+    {
+        DungeonPointer arrow = Instantiate(dungeonArrowPrefab, transform.position, Quaternion.identity).GetComponent<DungeonPointer>(); ;
+        arrow.SetColor(color);
+        arrow.SetScale(scale);
+        arrow.SetPointingTo(room.transform.position);
+        room.AddArrow(arrow);
     }
 
     private void UpdateMapFields(Room room)
