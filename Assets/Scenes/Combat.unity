@@ -2515,7 +2515,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Attack
+  m_Text: Melee
 --- !u!222 &414129393
 CanvasRenderer:
   m_ObjectHideFlags: 0

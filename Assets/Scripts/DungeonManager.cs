@@ -382,6 +382,7 @@ public class DungeonManager : MonoBehaviour
                 // add enemies
                 rand = Random.Range(0, enemyLayouts.Length);
                 GameObject enemies = Instantiate(enemyLayouts[rand], room.transform.position, Quaternion.identity);
+                enemies.transform.parent = room.transform.parent.transform;
                 room.AddEnemies(enemies);
 
                 // set their level
@@ -412,6 +413,7 @@ public class DungeonManager : MonoBehaviour
                 rand = Random.Range(0, chestLayouts.Length);
                 GameObject chestObject = Instantiate(chestLayouts[rand], room.transform.position, Quaternion.identity);
                 chestObject.transform.parent = room.transform.parent.transform;
+                room.AddChests(chestObject);
 
                 // setup chest contents
                 Chest[] chests = chestObject.GetComponentsInChildren<Chest>();
