@@ -127,9 +127,10 @@ public class DungeonManager : MonoBehaviour
     {
         Debug.Log("Build dungeon");
         ConstructRooms();
-        CloseRoomsAndInitEnemies();
+        CloseRooms();
         BuildDoors();
-        SetupLevelEnd();
+        SetupEnemiesAndChests();
+        SetupBoss();
         Invoke("RemoveLoadingScreen", 1f);
         PlayerMovement.PreviousRoom = rooms[0];
     }
@@ -181,35 +182,6 @@ public class DungeonManager : MonoBehaviour
                         rooms.Add(spawnedRoomPoint);
                         spawnedRoomPoint.Init();
                         UpdateMapFields(spawnedRoomPoint);
-
-                        // spawn enemies in room
-                        if (Random.value <= enemyProbability)
-                        {
-                            rand = Random.Range(0, enemyLayouts.Length);
-                            GameObject enemies = Instantiate(enemyLayouts[rand], spawnedRoom.transform.position, Quaternion.identity);
-                            spawnedRoom.GetComponentInChildren<Room>().AddEnemies(enemies);
-                        }
-                        else if (Random.value <= .5f) // spawn chests in room, temp implementation. probability shouldn't be hard coded
-                        {
-                            // spawn the chest
-                            rand = Random.Range(0, chestLayouts.Length);
-                            GameObject chestObject = Instantiate(chestLayouts[rand], spawnedRoom.transform.position, Quaternion.identity);
-                            chestObject.transform.parent = spawnedRoom.transform;
-
-                            // setup chest contents
-                            // Sky's Edit: Allowed for multiple chests in a Chest Layout
-                            Chest[] chests = chestObject.GetComponentsInChildren<Chest>();
-
-                            foreach (Chest chest in chests)
-                            {
-                                rand = Random.Range(0, chestItems.Length);
-                                Item item = chestItems[rand];
-                                ItemInstance loot = new ItemInstance(item, 1);
-
-                                ItemInstance[] lootTable = new ItemInstance[] { loot };
-                                chest.LootTable = lootTable;
-                            }
-                        }
 
                         // decrement. obviously
                         DecrementRemainingRooms();
@@ -289,7 +261,7 @@ public class DungeonManager : MonoBehaviour
         }
     }
 
-    public void CloseRoomsAndInitEnemies()
+    public void CloseRooms()
     {
         Debug.Log("Close up rooms: " + rooms.Count);
 
@@ -327,17 +299,6 @@ public class DungeonManager : MonoBehaviour
                 newWall.transform.parent = roomParent.transform;
                 // Debug.Log("Made left wall");
                 room.RemoveLeftDoor();
-            }
-
-            // get the enemies from the room
-            List<Enemy> roomEnemies = room.GetIndividualEnemies();
-            // set their level
-            if (roomEnemies != null)
-            {
-                foreach (Enemy enemy in roomEnemies)
-                {
-                    enemy.gameObject.GetComponent<ActorStats>().CurrentLevel = enemyLevel;
-                }
             }
         }
     }
@@ -403,13 +364,62 @@ public class DungeonManager : MonoBehaviour
         rooms[0].EnableDoorsOnMap();
     }
 
-    public void SetupLevelEnd()
+    public void SetupEnemiesAndChests()
+    {
+        for(int i = 1; i < rooms.Count-1; i++)
+        // foreach (Room room in rooms)
+        {
+            Room room = rooms[i];
+
+            // spawn enemies in room
+            if (Random.value <= enemyProbability)
+            {
+                rand = Random.Range(0, enemyLayouts.Length);
+                GameObject enemies = Instantiate(enemyLayouts[rand], room.transform.position, Quaternion.identity);
+                room.AddEnemies(enemies);
+
+                // get the enemies from the room
+                List<Enemy> roomEnemies = room.GetIndividualEnemies();
+                // set their level
+                if (roomEnemies != null)
+                {
+                    foreach (Enemy enemy in roomEnemies)
+                    {
+                        enemy.gameObject.GetComponent<ActorStats>().CurrentLevel = enemyLevel;
+                    }
+                }
+            }
+            else if (Random.value <= .5f) // spawn chests in room, temp implementation. probability shouldn't be hard coded
+            {
+                // spawn the chest
+                rand = Random.Range(0, chestLayouts.Length);
+                GameObject chestObject = Instantiate(chestLayouts[rand], room.transform.position, Quaternion.identity);
+                chestObject.transform.parent = room.transform.parent.transform;
+
+                // setup chest contents
+                Chest[] chests = chestObject.GetComponentsInChildren<Chest>();
+
+                foreach (Chest chest in chests)
+                {
+                    rand = Random.Range(0, chestItems.Length);
+                    Item item = chestItems[rand];
+                    ItemInstance loot = new ItemInstance(item, 1);
+
+                    ItemInstance[] lootTable = new ItemInstance[] { loot };
+                    chest.LootTable = lootTable;
+                }
+            }
+        }
+    }
+
+    public void SetupBoss()
     {
         // clear out the end room
         // remove any enemies
         if (rooms[rooms.Count - 1].HasEnemies())
         {
             rooms[rooms.Count - 1].RemoveEnemies();
+            Debug.Log("Removed enemies from boss room");
         }
         // remove any chests
         GameObject finalRoom = rooms[rooms.Count - 1].gameObject.transform.parent.gameObject;
@@ -426,7 +436,7 @@ public class DungeonManager : MonoBehaviour
 
         // store position of boss and create arrow to guide player
         bossPosition = enemies.transform.position;
-        DungeonPointer bossArrow = Instantiate(dungeonArrowPrefab, transform.position, Quaternion.identity).GetComponent<DungeonPointer>();;
+        DungeonPointer bossArrow = Instantiate(dungeonArrowPrefab, transform.position, Quaternion.identity).GetComponent<DungeonPointer>(); ;
         bossArrow.SetColor(bossArrowColor);
         bossArrow.pointingTo = new Vector3(bossPosition.x, bossPosition.y);
         rooms[rooms.Count - 1].AddArrow(bossArrow);
