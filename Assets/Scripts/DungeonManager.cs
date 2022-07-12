@@ -22,6 +22,7 @@ public class DungeonManager : MonoBehaviour
     public bool overwriteSettings = false;
     public int dungeonSize = 20;
     [Range(0f, 1f)] public float enemyProbability = 0.5f;
+    [Range(0f, 1f)] public float chestProbability = 0.5f;
     [Range(1, 10)] public int enemyLevel = 1;
     [Range(1, 10)] public int playerLevel = 1;
     public DungeonType dungeonType = DungeonType.Forest;
@@ -366,21 +367,25 @@ public class DungeonManager : MonoBehaviour
 
     public void SetupEnemiesAndChests()
     {
-        for(int i = 1; i < rooms.Count-1; i++)
-        // foreach (Room room in rooms)
-        {
-            Room room = rooms[i];
+        int totalValidRooms = rooms.Count - 2; // -2 to account for start room and boss room
 
-            // spawn enemies in room
-            if (Random.value <= enemyProbability)
+        // spawn enemies
+        int roomsToAddEnemies = Mathf.RoundToInt(totalValidRooms * enemyProbability);
+        Debug.Log("Adding enemies to " + roomsToAddEnemies + " of " + totalValidRooms + " total valid rooms");
+        while (roomsToAddEnemies > 0)
+        {
+            int randomRoomIndex = Random.Range(1, rooms.Count - 2);
+            Room room = rooms[randomRoomIndex];
+
+            if (!room.HasEnemies())
             {
+                // add enemies
                 rand = Random.Range(0, enemyLayouts.Length);
                 GameObject enemies = Instantiate(enemyLayouts[rand], room.transform.position, Quaternion.identity);
                 room.AddEnemies(enemies);
 
-                // get the enemies from the room
-                List<Enemy> roomEnemies = room.GetIndividualEnemies();
                 // set their level
+                List<Enemy> roomEnemies = room.GetIndividualEnemies();
                 if (roomEnemies != null)
                 {
                     foreach (Enemy enemy in roomEnemies)
@@ -388,8 +393,20 @@ public class DungeonManager : MonoBehaviour
                         enemy.gameObject.GetComponent<ActorStats>().CurrentLevel = enemyLevel;
                     }
                 }
+
+                roomsToAddEnemies--;
             }
-            else if (Random.value <= .5f) // spawn chests in room, temp implementation. probability shouldn't be hard coded
+        }
+
+        // spawn chests
+        int roomsToAddChests = Mathf.RoundToInt(totalValidRooms * chestProbability);
+        Debug.Log("Adding chests to " + roomsToAddEnemies + " of " + totalValidRooms + " total valid rooms");
+        while (roomsToAddChests > 0)
+        {
+            int randomRoomIndex = Random.Range(1, rooms.Count - 2);
+            Room room = rooms[randomRoomIndex];
+
+            if (!room.HasChests())
             {
                 // spawn the chest
                 rand = Random.Range(0, chestLayouts.Length);
@@ -408,6 +425,8 @@ public class DungeonManager : MonoBehaviour
                     ItemInstance[] lootTable = new ItemInstance[] { loot };
                     chest.LootTable = lootTable;
                 }
+
+                roomsToAddChests--;
             }
         }
     }

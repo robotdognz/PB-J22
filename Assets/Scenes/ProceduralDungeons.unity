@@ -431,6 +431,18 @@ PrefabInstance:
       propertyPath: bossArrowColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: chestProbability
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: chestLayouts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: chestLayouts.Array.data[0]
+      value: 
+      objectReference: {fileID: 5653920367887999707, guid: 3cf00154ef22dab4e8aefaa46db826ef, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
 --- !u!1001 &954401128
@@ -1063,7 +1075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8193182263992636012, guid: c72e98ec1235b4b42bbdcefdba648fc2, type: 3}
       propertyPath: enemyProbability
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c72e98ec1235b4b42bbdcefdba648fc2, type: 3}
