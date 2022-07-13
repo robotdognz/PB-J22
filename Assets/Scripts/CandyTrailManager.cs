@@ -12,11 +12,12 @@ public class CandyTrailManager : MonoBehaviour
     public Texture2D atlasTexture;
 
     public static Rect[] uvs;
+    public static float dropProbability = 0.8f;
 
     // Start is called before the first frame update
     void Awake()
     {
-        atlasTexture = new Texture2D(512, 512); //, TextureFormat.ARGB32, false);
+        atlasTexture = new Texture2D(512, 512);
 
         Texture2D[] fixedTextures = new Texture2D[wrapperTextures.Length];
         for (int i = 0; i < wrapperTextures.Length; i++)
@@ -24,20 +25,12 @@ public class CandyTrailManager : MonoBehaviour
             fixedTextures[i] = duplicateTexture(wrapperTextures[i]);
         }
 
-
-        // Debug.Log("Sweet jesus: " + atlasTexture.isReadable);
         if (fixedTextures != null && wrapperMaterial != null)
         {
             uvs = atlasTexture.PackTextures(fixedTextures, 0, 512, false);
             wrapperMaterial.SetTexture("_MainTex", atlasTexture);
             Debug.Log("Built texture atlas");
         }
-
-        // foreach(Rect rect in uvs)
-        // {
-        //     Debug.Log("UV- " + rect + ", All- yMin:" + rect.yMin + " yMax:" + rect.yMax + "- xMin:" + rect.xMin + " xMax:" + rect.xMax);
-            
-        // }
     }
 
     Texture2D duplicateTexture(Texture2D source)
