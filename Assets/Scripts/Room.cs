@@ -165,6 +165,9 @@ public class Room : MonoBehaviour
             // snap camera to this room
             TargetPos = transform.position + -Vector3.forward * 10;
 
+            // tell the dungeon manager this is the current candy room
+            DungeonManager.currentRoomWrappers = transform.parent.GetComponentInChildren<CandyTrailSystem>();
+
             if (roomArrow != null)
             {
                 roomArrow.gameObject.SetActive(false);

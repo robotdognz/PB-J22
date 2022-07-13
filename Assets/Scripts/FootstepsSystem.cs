@@ -8,6 +8,7 @@ public class FootstepsSystem : MonoBehaviour
     public bool Mute;
     [SerializeField] private AudioSource Source;
     [SerializeField] private AudioClip[] Footsteps;
+    [SerializeField] private float wrapperProbability = 0.75f;
 
     public void PlayFootstepSounds()
     {
@@ -15,6 +16,12 @@ public class FootstepsSystem : MonoBehaviour
         {
             Source.pitch = PitchFactor * Random.Range(0.9f, 1.1f);
             Source.PlayOneShot(Footsteps[Random.Range(0, Footsteps.Length)]);
+        }
+
+        // drop candy
+        if (wrapperProbability > Random.value)
+        {
+            DungeonManager.DropWrappers();
         }
     }
 }

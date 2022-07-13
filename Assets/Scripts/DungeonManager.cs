@@ -57,6 +57,9 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] Color scrollArrowColor;
     [SerializeField] GameObject dungeonArrowPrefab;
 
+    // wrapper dropping
+    static public CandyTrailSystem currentRoomWrappers { get; set; }
+
     // dungeon generation
     private int roomCount;
     int rand;
@@ -494,6 +497,15 @@ public class DungeonManager : MonoBehaviour
     {
         // TODO: dynamically create items for the player
         return null;
+    }
+
+    public static void DropWrappers()
+    {
+        if (currentRoomWrappers)
+        {
+            Vector3 pos = FindObjectOfType<PlayerMovement>().transform.position;
+            currentRoomWrappers.DropWrapper(pos);
+        }
     }
 
     private void UpdateMapFields(Room room)
