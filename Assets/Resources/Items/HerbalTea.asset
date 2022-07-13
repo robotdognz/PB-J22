@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: c17c4fbb0b5c2c346af9600927677518, type: 3}
   ItemName: Herbal Tea
+  ItemDescription: Restores 30% of your total SP
+  ConsumeOnAcquire: 0
   RestoreHPAsPercent: 0
   HealthRestore: 0
   RestoreSPAsPercent: 1
   StaminaRestore: 0.3
   SkillToLearn: {fileID: 0}
   Effects: []
+  Removes: []

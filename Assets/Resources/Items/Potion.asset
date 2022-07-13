@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: c17c4fbb0b5c2c346af9600927677518, type: 3}
   ItemName: Potion
+  ItemDescription: Restores 30% of your total HP
+  ConsumeOnAcquire: 0
   RestoreHPAsPercent: 1
   HealthRestore: 0.3
   RestoreSPAsPercent: 0

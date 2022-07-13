@@ -12,6 +12,7 @@ namespace Alchemy.Inventory
     {
         public AudioClip Sound;
         public string ItemName = "Item";
+        [TextArea] public string ItemDescription = "";
         [Space]
         public bool ConsumeOnAcquire;
         [Space]

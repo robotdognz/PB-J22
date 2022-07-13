@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: 4d1ba80e6886ea24c8c307784739edde, type: 3}
   ItemName: Antidote
+  ItemDescription: Cures poison and restores 20% of your total HP
+  ConsumeOnAcquire: 0
   RestoreHPAsPercent: 1
-  HealthRestore: 0.3
+  HealthRestore: 0.2
   RestoreSPAsPercent: 0
   StaminaRestore: 0
   SkillToLearn: {fileID: 0}

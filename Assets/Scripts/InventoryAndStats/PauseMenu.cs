@@ -57,9 +57,10 @@ public class PauseMenu : MonoBehaviour
         foreach (ItemInstance I in Inventory.Items)
         {
             GameObject Btn = Instantiate(ItemButton, ItemSpawn);
-            Btn.GetComponentInChildren<UnityEngine.UI.Text>().text = $"{I.Base.ItemName} x{I.Count}";
+            Btn.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = $"{I.Base.ItemName} x{I.Count}";
+            Btn.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = $"{I.Base.ItemDescription}";
             Btn.name = $"{Index}";
-            Btn.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
+            Btn.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(() =>
             {
                 I.Base.UseItem(PlayerMovement.Instance.GetComponent<Alchemy.Stats.ActorStats>());
                 I.Count--;
@@ -79,7 +80,7 @@ public class PauseMenu : MonoBehaviour
             {
                 if (SelectedItem == Mathf.Clamp(Index, 0, Inventory.Items.Count - 1))
                 {
-                    Btn.GetComponent<UnityEngine.UI.Button>().Select();
+                    Btn.GetComponentInChildren<UnityEngine.UI.Button>().Select();
                 }
             }
 
