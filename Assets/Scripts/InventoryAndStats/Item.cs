@@ -13,6 +13,8 @@ namespace Alchemy.Inventory
         public AudioClip Sound;
         public string ItemName = "Item";
         [Space]
+        public bool ConsumeOnAcquire;
+        [Space]
         public bool RestoreHPAsPercent = false;
         public float HealthRestore = 0;
         public bool RestoreSPAsPercent = false;
@@ -37,14 +39,18 @@ namespace Alchemy.Inventory
                     {
                         Target.Skills.Add(SkillToLearn);
 
-                        LastSelected = EventSystem.current.currentSelectedGameObject.GetComponent<UnityEngine.UI.Button>();
+                        if (EventSystem.current.currentSelectedGameObject && EventSystem.current.currentSelectedGameObject.GetComponent<UnityEngine.UI.Button>())
+                            LastSelected = EventSystem.current.currentSelectedGameObject.GetComponent<UnityEngine.UI.Button>();
+                        else
+                            LastSelected = null;
 
                         DialogueManager.OnDialogueClose += () =>
                         {
-                            if (LastSelected)
-                                LastSelected.Select();
-                            else
-                                FindObjectOfType<PauseMenu>().ContinueButton.Select();
+                            if (PauseMenu.MenuOpen)
+                                if (LastSelected)
+                                    LastSelected.Select();
+                                else
+                                    FindObjectOfType<PauseMenu>().ContinueButton.Select();
                         };
 
                         DialogueManager.ShowMessage($"You learned how to use {SkillToLearn.DisplayedName}!");

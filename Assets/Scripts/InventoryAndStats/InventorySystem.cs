@@ -32,25 +32,32 @@ namespace Alchemy.Inventory
 
         public static void AddItem(Item Itm, int Amount = 1)
         {
-            bool HadItem = false;
-            ItemInstance Holder = null;
-
-            foreach (ItemInstance I in Items)
+            if (!Itm.ConsumeOnAcquire)
             {
-                if (I.Base == Itm)
+                bool HadItem = false;
+                ItemInstance Holder = null;
+
+                foreach (ItemInstance I in Items)
                 {
-                    Holder = I;
-                    HadItem = true;
+                    if (I.Base == Itm)
+                    {
+                        Holder = I;
+                        HadItem = true;
+                    }
                 }
-            }
 
-            if (HadItem)
-            {
-                Holder.Count += Amount;
+                if (HadItem)
+                {
+                    Holder.Count += Amount;
+                }
+                else
+                {
+                    Items.Add(new ItemInstance(Itm, Amount));
+                }
             }
             else
             {
-                Items.Add(new ItemInstance(Itm, Amount));
+                Itm.UseItem(PlayerMovement.Instance.GetComponent<Stats.ActorStats>());
             }
         }
     }
