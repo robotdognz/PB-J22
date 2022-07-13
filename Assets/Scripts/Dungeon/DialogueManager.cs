@@ -37,18 +37,26 @@ public class DialogueManager : MonoBehaviour
         {
             if (InputManager.GetButtonDown("Back"))
             {
-                OnDialogueClose.Invoke();
-                OnDialogueClose = new UnityAction(() => { });
-                DialogueScreen.SetActive(false);
-                AwaitSubmit = false;
+                CloseDialogue();
             }
         }
+    }
+
+    public void CloseDialogue()
+    {
+        StopAllCoroutines();
+        OnDialogueClose.Invoke();
+        OnDialogueClose = new UnityAction(() => { });
+        DialogueScreen.SetActive(false);
+        AwaitSubmit = false;
     }
 
     public AudioSource TickSound;
 
     private IEnumerator Show(string Message)
     {
+        AwaitSubmit = true;
+
         Text T = DialogueScreen.GetComponentInChildren<Text>();
 
         T.text = "";
@@ -66,10 +74,5 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSecondsRealtime(CharacterDelay);
             }
         }
-
-        yield return new WaitForSecondsRealtime(0.5f);
-        T.text += "\n\nPress [TAB] or (B) to close the dialogue...";
-
-        AwaitSubmit = true;
     }
 }
