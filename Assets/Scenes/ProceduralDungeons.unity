@@ -379,6 +379,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1724366414465057345, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: atlasTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: c21d530281dbf3a4da8c13d189e60119, type: 3}
     - target: {fileID: 6099767115999452692, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: m_Name
       value: DungeonManager
@@ -427,6 +431,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: setChestItems.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: setChestItems.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9cc77113dadab614abbafce67569e4dc, type: 2}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: setChestItems.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 14cdb4ff9e109db41bcc0969b1ac2049, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
 --- !u!1001 &954401128
@@ -1055,7 +1071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8193182263992636012, guid: c72e98ec1235b4b42bbdcefdba648fc2, type: 3}
       propertyPath: dungeonSize
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8193182263992636012, guid: c72e98ec1235b4b42bbdcefdba648fc2, type: 3}
       propertyPath: enemyProbability

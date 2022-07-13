@@ -4,6 +4,7 @@ using UnityEngine;
 using Alchemy.Combat;
 using Alchemy.Stats;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 namespace Alchemy.Inventory
 {
@@ -22,10 +23,25 @@ namespace Alchemy.Inventory
         public float StaminaRestore = 0;
         [Space]
         public Skill SkillToLearn;
+        public bool isDungeonSkill;
+        public string DungeonSkill = "Dungeon Skill";
+        public DungeonManager.DungeonSkillType dungeonSkillType;
+
+        
         public StatusEffectValue[] Effects;
         public StatusEffect[] Removes;
 
         private UnityEngine.UI.Button LastSelected;
+
+        public UnityAction action;
+
+        public void Activate()
+        {
+            if (action != null)
+            {
+                action!.Invoke();
+            }
+        }
 
         public void UseItem(ActorStats Target)
         {
@@ -60,6 +76,24 @@ namespace Alchemy.Inventory
                     {
                         DialogueManager.ShowMessage($"You attempt to scrutinize the scroll for more knowledge...\nAlas, there was nothing left to learn about {SkillToLearn.DisplayedName}...");
                     }
+                }
+                else if (isDungeonSkill)
+                {
+                    if (EventSystem.current.currentSelectedGameObject && EventSystem.current.currentSelectedGameObject.GetComponent<UnityEngine.UI.Button>())
+                        LastSelected = EventSystem.current.currentSelectedGameObject.GetComponent<UnityEngine.UI.Button>();
+                    else
+                        LastSelected = null;
+
+                    DialogueManager.OnDialogueClose += () =>
+                    {
+                        if (PauseMenu.MenuOpen)
+                            if (LastSelected)
+                                LastSelected.Select();
+                            else
+                                FindObjectOfType<PauseMenu>().ContinueButton.Select();
+                    };
+
+                    DialogueManager.ShowMessage($"You learned how to use {DungeonSkill}!");
                 }
 
                 Target.ModifyHealth(Mathf.RoundToInt(RestoreHPAsPercent ? HealthRestore * Target.MaxHealth : HealthRestore));

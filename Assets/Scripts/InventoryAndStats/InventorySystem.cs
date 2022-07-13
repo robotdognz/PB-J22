@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 namespace Alchemy.Inventory 
 {
     [System.Serializable]
@@ -67,6 +68,8 @@ namespace Alchemy.Inventory
             else
             {
                 Itm.UseItem(PlayerMovement.Instance.GetComponent<Stats.ActorStats>());
+                DungeonManager.currentDungeonSkill = Itm.dungeonSkillType;
+                Itm.Activate();
             }
         }
     }

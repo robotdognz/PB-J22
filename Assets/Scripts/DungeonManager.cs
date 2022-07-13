@@ -5,9 +5,18 @@ using Alchemy.Stats;
 using Alchemy.Music;
 using Alchemy.Combat;
 using Alchemy.Inventory;
+using UnityEngine.Events;
 
 public class DungeonManager : MonoBehaviour
 {
+    public enum DungeonSkillType 
+    { 
+        Cartography,
+        Boss_Sense,
+        Scroll_Sense
+    }
+    public static DungeonSkillType currentDungeonSkill;
+
     public static EnemyPalette ActiveEnemyPalette;
     public Dictionary<Vector2Int, Room> spawnedRooms = new Dictionary<Vector2Int, Room>();
 
@@ -47,7 +56,9 @@ public class DungeonManager : MonoBehaviour
     // chests
     public GameObject[] chestLayouts;
     public Item[] setChestItems;
+    public Item[] dungeonSkillItems;
     public Item[] generalChestItems;
+    // private UnityAction action;
 
     // doors
     [SerializeField] GameObject door;
@@ -435,6 +446,10 @@ public class DungeonManager : MonoBehaviour
                     {
                         // create specific items that should always be in the map
                         item = setChestItems[setChestItemsIndex];
+                        if (setChestItems[setChestItemsIndex].isDungeonSkill)
+                        {
+                            item.action += LearnDungeonSkill;
+                        }
                         Debug.Log("Created specific chest at " + room.transform.position);
                         setChestItemsIndex++;
 
@@ -455,6 +470,11 @@ public class DungeonManager : MonoBehaviour
                 roomsToAddChests--;
             }
         }
+    }
+
+    public void LearnDungeonSkill()
+    {
+        Debug.Log("Event as... " + currentDungeonSkill);
     }
 
     public void SetupBoss()

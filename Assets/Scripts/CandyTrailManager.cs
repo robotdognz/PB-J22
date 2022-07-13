@@ -29,7 +29,7 @@ public class CandyTrailManager : MonoBehaviour
         {
             uvs = atlasTexture.PackTextures(fixedTextures, 0, 512, false);
             wrapperMaterial.SetTexture("_MainTex", atlasTexture);
-            Debug.Log("Built texture atlas");
+            Debug.Log("Built candy wrapper texture atlas");
         }
     }
 
