@@ -58,7 +58,7 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] GameObject dungeonArrowPrefab;
 
     // wrapper dropping
-    static public CandyTrailSystem currentRoomWrappers { get; set; }
+    static public CandyTrailRoom currentRoomWrappers { get; set; }
 
     // dungeon generation
     private int roomCount;

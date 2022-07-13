@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CandyTrailSystem : MonoBehaviour
+public class CandyTrailRoom : MonoBehaviour
 {
+    private CandyTrailManager manager;
     private const int MAX_QUAD_AMOUNT = 15000;
 
     private Mesh mesh;
@@ -14,8 +15,10 @@ public class CandyTrailSystem : MonoBehaviour
 
     private int quadIndex;
 
-    private void Awake()
+    private void Start()
     {
+        manager = FindObjectOfType<CandyTrailManager>();
+
         mesh = new Mesh();
 
         vertices = new Vector3[4 * MAX_QUAD_AMOUNT];
@@ -34,20 +37,11 @@ public class CandyTrailSystem : MonoBehaviour
     public void DropWrapper(Vector3 position)
     {
         Vector3 diff = position - transform.position;
-        Debug.Log("Dropping wrapper at world pos: " + position + " at local pos: " + diff);
         float angle = Random.Range(0, 359);
-        AddQuad(diff, angle);
+        Rect UV = CandyTrailManager.uvs[Random.Range(0, CandyTrailManager.uvs.Length)];
+        AddQuad(diff, angle, UV);
         Refresh();
     }
-
-    // public void RandomWrapper()
-    // {
-    //     Vector3 pos = new Vector3(Random.Range(-4, 4), Random.Range(-4, 4));
-    //     float angle = Random.Range(0, 359);
-    //     AddQuad(pos, angle);
-    //     Refresh();
-    //     Debug.Log("Added wrapper");
-    // }
 
     private void Refresh()
     {
@@ -56,7 +50,7 @@ public class CandyTrailSystem : MonoBehaviour
         mesh.triangles = triangles;
     }
 
-    private void AddQuad(Vector3 position, float rotation)
+    private void AddQuad(Vector3 position, float rotation, Rect UV)
     {
         if (quadIndex >= MAX_QUAD_AMOUNT) return; // mesh full
 
@@ -75,10 +69,10 @@ public class CandyTrailSystem : MonoBehaviour
         vertices[vIndex3] = position + Quaternion.Euler(0, 0, rotation - 90) * quadSize;
 
         // uv
-        uv[vIndex0] = new Vector2(0, 0);
-        uv[vIndex1] = new Vector2(0, 1);
-        uv[vIndex2] = new Vector2(1, 1);
-        uv[vIndex3] = new Vector2(1, 0);
+        uv[vIndex0] = new Vector2(UV.xMin, UV.yMin);
+        uv[vIndex1] = new Vector2(UV.xMin, UV.yMax);
+        uv[vIndex2] = new Vector2(UV.xMax, UV.yMax);
+        uv[vIndex3] = new Vector2(UV.xMax, UV.yMin);
 
         // create triangles
         int tIndex = quadIndex * 6;

@@ -166,7 +166,7 @@ public class Room : MonoBehaviour
             TargetPos = transform.position + -Vector3.forward * 10;
 
             // tell the dungeon manager this is the current candy room
-            DungeonManager.currentRoomWrappers = transform.parent.GetComponentInChildren<CandyTrailSystem>();
+            DungeonManager.currentRoomWrappers = transform.parent.GetComponentInChildren<CandyTrailRoom>();
 
             if (roomArrow != null)
             {

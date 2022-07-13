@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6099767115999452694}
   - component: {fileID: 6099767115999452695}
+  - component: {fileID: 1724366414465057345}
   m_Layer: 0
   m_Name: DungeonManager
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MonoBehaviour:
   overwriteSettings: 0
   dungeonSize: 100
   enemyProbability: 0.2
+  chestProbability: 0.2
   enemyLevel: 1
   playerLevel: 1
   dungeonType: 4
@@ -100,22 +102,37 @@ MonoBehaviour:
   - {fileID: 5653920367887999707, guid: 0c65a530a8df73e488d1587c309614cd, type: 3}
   - {fileID: 5653920367887999707, guid: 802f54b721c4ce944b7f3a14d77a3dfc, type: 3}
   - {fileID: 5653920367887999707, guid: 94f9daf21f5cba34ba2951b4d1a12c42, type: 3}
-  - {fileID: 5653920367887999707, guid: 14e2b9a70c1f60543984b03b20cb64ab, type: 3}
-  - {fileID: 5653920367887999707, guid: 0fce17c51f959ff40b591c29d097de23, type: 3}
-  chestItems:
-  - {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
-  - {fileID: 11400000, guid: 709ba0ff52bd9a740919559be0956a40, type: 2}
+  setChestItems:
   - {fileID: 11400000, guid: 50acb9853e1bdfb4b961819d13fa1e61, type: 2}
-  - {fileID: 11400000, guid: 06a60dd858a37f440bb4a2e24f59a8eb, type: 2}
+  - {fileID: 11400000, guid: 709ba0ff52bd9a740919559be0956a40, type: 2}
+  - {fileID: 11400000, guid: ec5b78069b8fe9d4b8c3dfdd6bb18dff, type: 2}
+  - {fileID: 11400000, guid: 33caed1e74ddd524689e2267068a5c6c, type: 2}
+  generalChestItems:
+  - {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
   - {fileID: 11400000, guid: 5c5ff226eb4c5c34f8f27525a6e92703, type: 2}
   - {fileID: 11400000, guid: 4dfd97f04fa2f294084eeb0e5a6553c0, type: 2}
-  - {fileID: 11400000, guid: ec5b78069b8fe9d4b8c3dfdd6bb18dff, type: 2}
   - {fileID: 11400000, guid: 41c6e7564b6ccb945b7853a02f76a683, type: 2}
-  - {fileID: 11400000, guid: 33caed1e74ddd524689e2267068a5c6c, type: 2}
   - {fileID: 11400000, guid: 0fcc2982f8c712d408cce16da8a053d1, type: 2}
   - {fileID: 11400000, guid: 46f6094c557c4d148b77d275ad2f69ec, type: 2}
   - {fileID: 11400000, guid: 1ac413d185d6c3b498bea0e7c09a1a70, type: 2}
   door: {fileID: 2574267516488484084, guid: d9a24998c608465488a74adbafdf98a1, type: 3}
-  bossArrowColor: {r: 0.20784314, g: 0.50980395, b: 0.8862745, a: 0}
-  dungeonArrows: []
+  bossArrowColor: {r: 1, g: 0, b: 0, a: 1}
+  scrollArrowColor: {r: 0.20784314, g: 0.50980395, b: 0.8862745, a: 1}
   dungeonArrowPrefab: {fileID: 3862382625336519198, guid: 80b9a6d2c5e148b41a0c7d07c7d343d9, type: 3}
+--- !u!114 &1724366414465057345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6099767115999452692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2892badc046a9514d904e239b9be7c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wrapperTextures:
+  - {fileID: 2800000, guid: 1f8f79ce36d5f7746bcd31d6deb2267e, type: 3}
+  - {fileID: 2800000, guid: 53838459552d137438ff862e28469c7d, type: 3}
+  wrapperMaterial: {fileID: 2100000, guid: cbd1c80c4513e894ebc4ab455e1970b6, type: 2}
+  atlasTexture: {fileID: 0}
