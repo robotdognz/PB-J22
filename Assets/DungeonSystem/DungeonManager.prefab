@@ -107,6 +107,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 709ba0ff52bd9a740919559be0956a40, type: 2}
   - {fileID: 11400000, guid: ec5b78069b8fe9d4b8c3dfdd6bb18dff, type: 2}
   - {fileID: 11400000, guid: 33caed1e74ddd524689e2267068a5c6c, type: 2}
+  dungeonSkillItems: []
   generalChestItems:
   - {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
   - {fileID: 11400000, guid: 5c5ff226eb4c5c34f8f27525a6e92703, type: 2}
@@ -132,7 +133,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wrapperTextures:
-  - {fileID: 2800000, guid: 1f8f79ce36d5f7746bcd31d6deb2267e, type: 3}
-  - {fileID: 2800000, guid: 53838459552d137438ff862e28469c7d, type: 3}
+  - {fileID: 2800000, guid: 8c8197b2946d015468b77cf7a97a3396, type: 3}
+  - {fileID: 2800000, guid: 0fbbbf64aaaf47642885aa9370bc6521, type: 3}
+  - {fileID: 2800000, guid: d4885bb8670da5848be91d0bb9b0aa4e, type: 3}
+  - {fileID: 2800000, guid: e646bd41a46a9a84997876967b86cc3b, type: 3}
+  - {fileID: 2800000, guid: d60a6581805d5de4d8924f56600ba995, type: 3}
+  - {fileID: 2800000, guid: 5307c3f18aaf1054d81d2d3c2820a084, type: 3}
   wrapperMaterial: {fileID: 2100000, guid: cbd1c80c4513e894ebc4ab455e1970b6, type: 2}
   atlasTexture: {fileID: 0}
