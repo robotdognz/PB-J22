@@ -119,11 +119,11 @@ public class PlayerMovement : MonoBehaviour
             Direction = 1;
         }
 
-        if (movement.y > 0)
+        if ((movement.y > 0 && movement.x == 0) || (movement.y > (movement.x < 0 ? -movement.x : movement.x)))
         {
             Direction = 0;
         }
-        if (movement.y < 0)
+        if ((movement.y < 0 && movement.x == 0) || (movement.y < (movement.x > 0 ? -movement.x : movement.x)))
         {
             Direction = 2;
         }
