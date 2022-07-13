@@ -75,6 +75,8 @@ namespace Alchemy.Inventory
 
             DialogueManager.ShowMessage(GotString);
             LootTable = new ItemInstance[] { };
+
+            ReadyToInteract = false;
         }
     }
 }
