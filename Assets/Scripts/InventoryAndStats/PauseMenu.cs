@@ -29,6 +29,7 @@ public class PauseMenu : MonoBehaviour
     public UnityEngine.UI.Text NameAndLevel;
     public UnityEngine.UI.Text HealthValue;
     public UnityEngine.UI.Image HealthBar;
+    public UnityEngine.UI.Image EXPBar;
 
     public void ClosePauseMenu()
     {
@@ -126,6 +127,7 @@ public class PauseMenu : MonoBehaviour
         NameAndLevel.text = $"{Player.ActorName}\nLevel {Player.CurrentLevel}";
         HealthBar.fillAmount = (float)Player.CurrentHealth / Player.MaxHealth;
         HealthValue.text = $"Health: {Player.CurrentHealth}/{Player.MaxHealth}";
+        EXPBar.fillAmount = Player.CurrentEXP / Player.Stats.EXPOverLevel.Evaluate(Player.CurrentLevel);
         #endregion
     }
 }
