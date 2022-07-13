@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ using UnityEngine.Events;
 
 public class DungeonManager : MonoBehaviour
 {
+    public static DungeonManager Instance;
     // dungeon skills
     public enum DungeonSkillType
     {
@@ -59,7 +61,7 @@ public class DungeonManager : MonoBehaviour
 
     // chests
     public GameObject[] chestLayouts;
-    public Item[] setChestItems;
+    public ItemInstance[] setChestItems;
     public Item[] dungeonSkillItems;
     public Item[] generalChestItems;
 
@@ -68,7 +70,7 @@ public class DungeonManager : MonoBehaviour
 
     // arrows
     [SerializeField] Color bossArrowColor;
-    [SerializeField] Color scrollArrowColor;
+    [SerializeField] Color scrollArrowColour;
     [SerializeField] GameObject dungeonArrowPrefab;
 
     // wrapper dropping
@@ -96,6 +98,8 @@ public class DungeonManager : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
+
         hasCartographer = false;
         hasBossSense = false;
         hasScrollSense = false;
@@ -427,7 +431,7 @@ public class DungeonManager : MonoBehaviour
         // spawn chests
         int setChestItemsIndex = 0;
 
-        while (roomsToAddChests > 0 || setChestItemsIndex < setChestItems.Length)
+        while (roomsToAddChests > 0)
         {
             int randomRoomIndex = Random.Range(1, rooms.Count - 2);
             Room room = rooms[randomRoomIndex];
@@ -447,29 +451,33 @@ public class DungeonManager : MonoBehaviour
                 {
                     Item item = null;
 
+                    List<ItemInstance> Loot = new List<ItemInstance>();
+                    /*
                     if (setChestItems != null && setChestItems.Length > 0 && setChestItemsIndex < setChestItems.Length)
                     {
                         // create specific items that should always be in the map
-                        item = setChestItems[setChestItemsIndex];
-                        if (setChestItems[setChestItemsIndex].isDungeonSkill)
+                        item = setChestItems[setChestItemsIndex].Base;
+                        if (setChestItems[setChestItemsIndex].Base.isDungeonSkill)
                         {
                             item.action += LearnDungeonSkill;
                         }
                         Debug.Log("Created specific chest at " + room.transform.position);
                         setChestItemsIndex++;
 
-                        room.AddArrowToRoom(scrollArrowColor, DungeonSkillType.Scroll_Sense, 0.5f);
+                        room.AddArrowToRoom(scrollArrowColour, DungeonSkillType.Scroll_Sense, 0.5f);
+                        Loot.Add(new ItemInstance(item, 1, false));
                     }
                     else
                     {
-                        // create random items
-                        rand = Random.Range(0, generalChestItems.Length);
-                        item = generalChestItems[rand];
                     }
-                    ItemInstance loot = new ItemInstance(item, 1);
+                    */
 
-                    ItemInstance[] lootTable = new ItemInstance[] { loot };
-                    chest.LootTable = lootTable;
+                    int Scroll = Random.Range(0, 5);
+
+                    Loot = setChestItems.ToList();
+
+                    chest.LootTable = Loot.ToArray();
+                    chest.isDynamic = true;
                 }
 
                 roomsToAddChests--;

@@ -12,7 +12,7 @@ public class CandyTrailManager : MonoBehaviour
     public Texture2D atlasTexture;
 
     public static Rect[] uvs;
-    public static float dropProbability = 0.8f;
+    public static float dropProbability = 0.85f;
 
     // Start is called before the first frame update
     void Awake()

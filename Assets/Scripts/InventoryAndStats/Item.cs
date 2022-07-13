@@ -14,6 +14,7 @@ namespace Alchemy.Inventory
         public AudioClip Sound;
         public string ItemName = "Item";
         [TextArea] public string ItemDescription = "";
+        public int AutoBalanceThreshold = 10;
         [Space]
         public bool ConsumeOnAcquire;
         [Space]
@@ -40,6 +41,7 @@ namespace Alchemy.Inventory
             if (action != null)
             {
                 action!.Invoke();
+                action = new UnityAction(() => { });
             }
         }
 
@@ -70,7 +72,7 @@ namespace Alchemy.Inventory
                                     FindObjectOfType<PauseMenu>().ContinueButton.Select();
                         };
 
-                        DialogueManager.ShowMessage($"You learned how to use {SkillToLearn.DisplayedName}!");
+                        DialogueManager.ShowMessage($"You find a crumpled lolly wrapper at the bottom of the chest, on the inner side is a strange symbol...\n\nYou have learned {SkillToLearn.DisplayedName}!");
                     }
                     else
                     {
