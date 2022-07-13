@@ -57,7 +57,7 @@ public class MinimapSystem : MonoBehaviour
             {
                 for (int Y = 0; Y < Height; Y++)
                 {
-                    if (Tex.GetPixel(X, Y) == Color.black || Tex.GetPixel(X, Y) == Color.clear)
+                    if (!DungeonManager.hasCartographer || Tex.GetPixel(X, Y) == Color.black || Tex.GetPixel(X, Y) == Color.clear)
                     {
                         Final.SetPixel(X, Y, Color.black);
                     }
@@ -121,7 +121,7 @@ public class MinimapSystem : MonoBehaviour
 
     private void Update()
     {
-        if (PauseMenu.MenuOpen || UnityEngine.SceneManagement.SceneManager.GetSceneByName("Combat").isLoaded || DungeonManager.darkScreen)
+        if (PauseMenu.MenuOpen || UnityEngine.SceneManagement.SceneManager.GetSceneByName("Combat").isLoaded || !DungeonManager.hasCartographer)
         {
             Minimap.enabled = false;
             return;

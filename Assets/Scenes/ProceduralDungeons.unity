@@ -433,7 +433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[4]
@@ -443,6 +443,10 @@ PrefabInstance:
       propertyPath: setChestItems.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: 14cdb4ff9e109db41bcc0969b1ac2049, type: 2}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: setChestItems.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5fee101699e592140bc95da5441c3ee8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
 --- !u!1001 &954401128

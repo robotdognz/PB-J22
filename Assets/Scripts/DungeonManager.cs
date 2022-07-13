@@ -9,13 +9,15 @@ using UnityEngine.Events;
 
 public class DungeonManager : MonoBehaviour
 {
-    public enum DungeonSkillType 
-    { 
+    // dungeon skills
+    public enum DungeonSkillType
+    {
         Cartography,
         Boss_Sense,
         Scroll_Sense
     }
     public static DungeonSkillType currentDungeonSkill;
+    public static bool hasCartographer;
 
     public static EnemyPalette ActiveEnemyPalette;
     public Dictionary<Vector2Int, Room> spawnedRooms = new Dictionary<Vector2Int, Room>();
@@ -58,7 +60,6 @@ public class DungeonManager : MonoBehaviour
     public Item[] setChestItems;
     public Item[] dungeonSkillItems;
     public Item[] generalChestItems;
-    // private UnityAction action;
 
     // doors
     [SerializeField] GameObject door;
@@ -82,7 +83,7 @@ public class DungeonManager : MonoBehaviour
     public static Vector3 bossPosition { get; private set; }
     public static Vector3 currentRoom { get; set; }
 
-    public static bool darkScreen = true;
+    // public static bool darkScreen = true;
 
     public bool IsPositionValid(Vector2 Position)
     {
@@ -95,6 +96,8 @@ public class DungeonManager : MonoBehaviour
 
     private void Start()
     {
+        hasCartographer = false;
+
         if (!overwriteSettings)
         {
             // replace dungeon settings with ones from the singleton
@@ -475,6 +478,20 @@ public class DungeonManager : MonoBehaviour
     public void LearnDungeonSkill()
     {
         Debug.Log("Event as... " + currentDungeonSkill);
+        switch (currentDungeonSkill)
+        {
+            case DungeonSkillType.Cartography:
+                hasCartographer = true;
+                break;
+            case DungeonSkillType.Boss_Sense:
+
+                break;
+            case DungeonSkillType.Scroll_Sense:
+
+                break;
+            default:
+                break;
+        }
     }
 
     public void SetupBoss()
@@ -552,7 +569,7 @@ public class DungeonManager : MonoBehaviour
     public void RemoveLoadingScreen()
     {
         GameObject.Find("[DARKINATOR]").SetActive(false);
-        darkScreen = false;
+        // darkScreen = false;
     }
 
     public int GetRemainingRooms()
