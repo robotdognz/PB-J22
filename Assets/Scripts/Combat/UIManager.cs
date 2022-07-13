@@ -96,11 +96,6 @@ namespace Alchemy.Combat
             float EXP = StartEXP;
             float Overflow = 0;
 
-            if (EXP + TotalEXP > PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel))
-            {
-                Overflow = EXP + TotalEXP - PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel);
-            }
-
             while (EXP < StartEXP + TotalEXP)
             {
                 EXP = Mathf.MoveTowards(EXP, StartEXP + TotalEXP, Time.deltaTime * 10);
@@ -110,6 +105,13 @@ namespace Alchemy.Combat
                     PlayerStats.CurrentEXP = 0;
                     StartEXP = 0;
                     TotalEXP = Mathf.RoundToInt(Overflow);
+                    EXP = 0;
+
+                    if (EXP + TotalEXP > PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel))
+                    {
+                        Overflow = EXP + TotalEXP - PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel);
+                    }
+
                     LevelUpAnnounce.SetActive(true);
                 }
                 PlayerStats.CurrentEXP = Mathf.RoundToInt(EXP);
@@ -278,43 +280,48 @@ namespace Alchemy.Combat
             foreach (Battler B in BattleManager.Instance.Battlers)
             {
                 ActorStats Actor = B.Stats;
-                Button Btn = Instantiate(TargetsButton, TargetsRoot).GetComponentInChildren<Button>();
-                Btn.onClick.AddListener(() => 
-                {
-                    BattleManager.PlayerLoadedTarget = Actor;
-                    PlayerStats.UseSkill(BattleManager.PlayerLoadedSkill, Actor);
 
-                    if (PlayerStats.StatusEffects.Count > 0)
+                if (Actor != PlayerStats)
+                {
+                    Button Btn = Instantiate(TargetsButton, TargetsRoot).GetComponentInChildren<Button>();
+                    Btn.onClick.AddListener(() =>
                     {
-                        try
+                        BattleManager.PlayerLoadedTarget = Actor;
+                        PlayerStats.UseSkill(BattleManager.PlayerLoadedSkill, Actor);
+
+                        if (PlayerStats.StatusEffects.Count > 0)
                         {
-                            foreach (InstancedStatusEffect Effect in PlayerStats.StatusEffects)
+                            try
                             {
-                                Effect.TurnsRemaining--;
-                                if (Effect.TurnsRemaining <= 0)
+                                foreach (InstancedStatusEffect Effect in PlayerStats.StatusEffects)
                                 {
-                                    PlayerStats.StatusEffects.Remove(Effect);
-                                }
-                                else
-                                {
-                                    PlayerStats.ModifyHealth(-Effect.Effect.HealthDrainPerTurn);
-                                    PlayerStats.ModifyStamina(Effect.Effect.StaminaDrainPerTurn);
+                                    Effect.TurnsRemaining--;
+                                    if (Effect.TurnsRemaining <= 0)
+                                    {
+                                        PlayerStats.StatusEffects.Remove(Effect);
+                                    }
+                                    else
+                                    {
+                                        PlayerStats.ModifyHealth(-Effect.Effect.HealthDrainPerTurn);
+                                        PlayerStats.ModifyStamina(Effect.Effect.StaminaDrainPerTurn);
+                                    }
                                 }
                             }
-                        } catch { }
-                    }
+                            catch { }
+                        }
 
-                    SetMenu(0);
-                });
-                if (Actor.CurrentHealth <= 0)
-                    Btn.interactable = false;
-                Btn.GetComponentInChildren<Text>().text = Actor == PlayerStats ? "Self" : Actor.ActorName;
-                if (Actor == PlayerStats)
-                {
-                    Btn.transform.SetAsFirstSibling();
+                        SetMenu(0);
+                    });
+                    if (Actor.CurrentHealth <= 0)
+                        Btn.interactable = false;
+                    Btn.GetComponentInChildren<Text>().text = Actor == PlayerStats ? "Self" : Actor.ActorName;
+                    if (Actor == PlayerStats)
+                    {
+                        Btn.transform.SetAsFirstSibling();
+                    }
+                    Btn.transform.GetChild(0).GetComponent<Image>().color = Color.clear;
+                    TargetButtons.Add(Btn.gameObject);
                 }
-                Btn.transform.GetChild(0).GetComponent<Image>().color = Color.clear;
-                TargetButtons.Add(Btn.gameObject);
             }
 
             try
