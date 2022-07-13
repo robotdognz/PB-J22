@@ -61,6 +61,10 @@ public class Door : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().enabled = true;
     }
+    public void DisableDoorOnMap()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
 
     public void Refresh()
     {

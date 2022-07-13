@@ -54,7 +54,15 @@ public class Room : MonoBehaviour
 
     protected virtual void OnPlayerExit()
     {
-        mapRoom.GetComponent<SpriteRenderer>().color = Color.gray;
+        if (DungeonManager.hasCartographer)
+        {
+            mapRoom.GetComponent<SpriteRenderer>().color = Color.gray;
+        }
+        else
+        {
+            mapRoom.GetComponent<SpriteRenderer>().color = Color.black;
+            DisableDoorsOnMap();
+        }
     }
 
     public void Init()
@@ -157,6 +165,14 @@ public class Room : MonoBehaviour
             door.EnableDoorOnMap();
         }
     }
+    public void DisableDoorsOnMap()
+    {
+        // draw doors on map
+        foreach (Door door in childDoors)
+        {
+            door.DisableDoorOnMap();
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -176,8 +192,11 @@ public class Room : MonoBehaviour
             // if the room has enemies, snap player to this room (so they are't inside the door when it closes)
             if (enemies != null)
             {
-                EnemyLayout layout = enemies.GetComponent<EnemyLayout>();
-                layout.ActivateMarker(); // mark this room on the map
+                if (DungeonManager.hasCartographer)
+                {
+                    EnemyLayout layout = enemies.GetComponent<EnemyLayout>();
+                    layout.ActivateMarker(); // mark this room on the map
+                }
 
                 Rigidbody2D playerBody = other.gameObject.GetComponentInParent<Rigidbody2D>();
                 Vector2 playerTemp = other.transform.position;
