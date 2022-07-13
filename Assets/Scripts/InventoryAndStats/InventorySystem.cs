@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Alchemy.Inventory 
@@ -25,10 +26,18 @@ namespace Alchemy.Inventory
 
     public static class Inventory
     {
+        public static List<ItemInstance> Itms { get; private set; } = new List<ItemInstance>();
         public static List<ItemInstance> Items
         {
-            get; private set;
-        } = new List<ItemInstance>();
+            get
+            {
+                return Itms.OrderBy(o => o.Base.ItemName).ToList();
+            }
+            private set
+            {
+                Itms = value;
+            }
+        }
 
         public static void AddItem(Item Itm, int Amount = 1)
         {
@@ -37,7 +46,7 @@ namespace Alchemy.Inventory
                 bool HadItem = false;
                 ItemInstance Holder = null;
 
-                foreach (ItemInstance I in Items)
+                foreach (ItemInstance I in Itms)
                 {
                     if (I.Base == Itm)
                     {
@@ -52,7 +61,7 @@ namespace Alchemy.Inventory
                 }
                 else
                 {
-                    Items.Add(new ItemInstance(Itm, Amount));
+                    Itms.Add(new ItemInstance(Itm, Amount));
                 }
             }
             else

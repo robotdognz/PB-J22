@@ -65,7 +65,7 @@ public class PauseMenu : MonoBehaviour
 
                 if (I.Count <= 0)
                 {
-                    Inventory.Items.Remove(I);
+                    Inventory.Itms.Remove(I);
                 }
 
                 SelectedItem = int.Parse(Btn.name);

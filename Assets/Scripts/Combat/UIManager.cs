@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -99,7 +100,7 @@ namespace Alchemy.Combat
             while (EXP < StartEXP + TotalEXP)
             {
                 EXP = Mathf.MoveTowards(EXP, StartEXP + TotalEXP, Time.deltaTime * 10);
-                if (EXP > PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel))
+                if (EXP >= PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel))
                 {
                     PlayerStats.CurrentLevel++;
                     PlayerStats.CurrentEXP = 0;
@@ -107,7 +108,7 @@ namespace Alchemy.Combat
                     TotalEXP = Mathf.RoundToInt(Overflow);
                     EXP = 0;
 
-                    if (EXP + TotalEXP > PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel))
+                    if (EXP + TotalEXP >= PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel))
                     {
                         Overflow = EXP + TotalEXP - PlayerStats.Stats.EXPOverLevel.Evaluate(PlayerStats.CurrentLevel);
                     }
@@ -182,7 +183,9 @@ namespace Alchemy.Combat
 
             SkillButtons.Clear();
 
-            foreach (Skill S in PlayerStats.Skills)
+            List<Skill> Skills = PlayerStats.Skills.OrderBy(o => o.DisplayedName).ToList();
+
+            foreach (Skill S in Skills)
             {
                 Button Btn = Instantiate(SkillButton, SkillsRoot).GetComponentInChildren<Button>();
                 Btn.onClick.AddListener(() =>
@@ -226,7 +229,7 @@ namespace Alchemy.Combat
 
                     if (Item.Count <= 0)
                     {
-                        Inventory.Inventory.Items.Remove(Item);
+                        Inventory.Inventory.Itms.Remove(Item);
                     }
 
                     if (PlayerStats.StatusEffects.Count > 0)

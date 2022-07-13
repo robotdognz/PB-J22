@@ -22,6 +22,7 @@ namespace Alchemy.Combat
         public StatusEffect[] Effects;
     }
 
+    [System.Serializable]
     [CreateAssetMenu(fileName = "New Skill", menuName = "Create Skill")]
     public class Skill : ScriptableObject
     {
