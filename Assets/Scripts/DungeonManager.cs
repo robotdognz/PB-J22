@@ -18,6 +18,8 @@ public class DungeonManager : MonoBehaviour
     }
     public static DungeonSkillType currentDungeonSkill;
     public static bool hasCartographer;
+    public static bool hasBossSense;
+    public static bool hasScrollSense;
 
     public static EnemyPalette ActiveEnemyPalette;
     public Dictionary<Vector2Int, Room> spawnedRooms = new Dictionary<Vector2Int, Room>();
@@ -83,8 +85,6 @@ public class DungeonManager : MonoBehaviour
     public static Vector3 bossPosition { get; private set; }
     public static Vector3 currentRoom { get; set; }
 
-    // public static bool darkScreen = true;
-
     public bool IsPositionValid(Vector2 Position)
     {
         return !spawnedRooms.ContainsKey(new Vector2Int((int)Position.x, (int)Position.y));
@@ -97,6 +97,8 @@ public class DungeonManager : MonoBehaviour
     private void Start()
     {
         hasCartographer = false;
+        hasBossSense = false;
+        hasScrollSense = false;
 
         if (!overwriteSettings)
         {
@@ -456,7 +458,7 @@ public class DungeonManager : MonoBehaviour
                         Debug.Log("Created specific chest at " + room.transform.position);
                         setChestItemsIndex++;
 
-                        room.AddArrowToRoom(scrollArrowColor, 0.5f);
+                        room.AddArrowToRoom(scrollArrowColor, DungeonSkillType.Scroll_Sense, 0.5f);
                     }
                     else
                     {
@@ -484,10 +486,26 @@ public class DungeonManager : MonoBehaviour
                 hasCartographer = true;
                 break;
             case DungeonSkillType.Boss_Sense:
-
+                hasBossSense = true;
+                DungeonPointer[] arrows = FindObjectsOfType<DungeonPointer>();
+                foreach (DungeonPointer arrow in arrows)
+                {
+                    if (arrow.type == DungeonSkillType.Boss_Sense)
+                    {
+                        arrow.Enable();
+                    }
+                }
                 break;
             case DungeonSkillType.Scroll_Sense:
-
+                hasScrollSense = true;
+                arrows = FindObjectsOfType<DungeonPointer>();
+                foreach (DungeonPointer arrow in arrows)
+                {
+                    if (arrow.type == DungeonSkillType.Scroll_Sense)
+                    {
+                        arrow.Enable();
+                    }
+                }
                 break;
             default:
                 break;
@@ -527,7 +545,7 @@ public class DungeonManager : MonoBehaviour
 
         // add the boss to the room and setup arrow
         bossRoom.AddEnemies(boss);
-        bossRoom.AddArrowToRoom(bossArrowColor, 1);
+        bossRoom.AddArrowToRoom(bossArrowColor, DungeonSkillType.Boss_Sense, 1);
     }
 
     public ItemInstance[] GetChestItems()
@@ -569,7 +587,6 @@ public class DungeonManager : MonoBehaviour
     public void RemoveLoadingScreen()
     {
         GameObject.Find("[DARKINATOR]").SetActive(false);
-        // darkScreen = false;
     }
 
     public int GetRemainingRooms()

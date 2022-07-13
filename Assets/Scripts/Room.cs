@@ -441,12 +441,14 @@ public class Room : MonoBehaviour
 
 
     // arrow
-    public void AddArrowToRoom(Color color, float scale)
+    public void AddArrowToRoom(Color color, DungeonManager.DungeonSkillType type, float scale)
     {
         DungeonPointer arrow = Instantiate(dungeonArrowPrefab, transform.position, Quaternion.identity).GetComponent<DungeonPointer>(); ;
         arrow.SetColor(color);
         arrow.SetScale(scale);
+        arrow.SetType(type);
         arrow.SetPointingTo(transform.position);
+        arrow.Disable();
         roomArrow = arrow;
     }
     public bool HasArrow()

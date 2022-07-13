@@ -8,8 +8,12 @@ public class DungeonPointer : MonoBehaviour
     public float screenDiam = 5f;
     private Vector3 pointingTo;
 
+    private Color arrowColor;
+    public DungeonManager.DungeonSkillType type;
+
     public void SetColor(Color color)
     {
+        arrowColor = color;
         SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer sprite in sprites)
         {
@@ -25,6 +29,29 @@ public class DungeonPointer : MonoBehaviour
     public void SetPointingTo(Vector3 position)
     {
         pointingTo = new Vector3(position.x, position.y);
+    }
+
+    public void SetType(DungeonManager.DungeonSkillType newType)
+    {
+        type = newType;
+    }
+
+    public void Disable()
+    {
+        SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            sprite.color = new Color(0, 0, 0, 0);
+        }
+    }
+
+    public void Enable()
+    {
+        SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            sprite.color = arrowColor;
+        }
     }
 
     private void LateUpdate()
