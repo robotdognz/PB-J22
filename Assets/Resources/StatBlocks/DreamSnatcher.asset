@@ -182,7 +182,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   EXPGained: 10
-  IsWeakTo: 02000000
+  IsWeakTo: 03000000
   StartingSkills:
   - {fileID: 11400000, guid: 1ce1f6a89c9677945b2c35eeeb999ec9, type: 2}
   - {fileID: 11400000, guid: 1ce1f6a89c9677945b2c35eeeb999ec9, type: 2}
@@ -199,15 +199,30 @@ MonoBehaviour:
   - Base: {fileID: 11400000, guid: 0fcc2982f8c712d408cce16da8a053d1, type: 2}
     Count: 2
     DropProbability: 1
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: 4dfd97f04fa2f294084eeb0e5a6553c0, type: 2}
     Count: 1
     DropProbability: 0.5
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: 41c6e7564b6ccb945b7853a02f76a683, type: 2}
     Count: 2
     DropProbability: 0.2
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: 5c5ff226eb4c5c34f8f27525a6e92703, type: 2}
     Count: 1
     DropProbability: 0.6
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
     Count: 2
     DropProbability: 0.6
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
