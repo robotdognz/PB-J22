@@ -120,7 +120,7 @@ namespace Alchemy
                     P.SetHealth(Actor.CurrentHealth);
                 }
 
-                P.transform.localScale = Vector3.one * 0.098439f;
+                P.transform.localScale = Vector3.one;
                 P.GetComponent<SpriteRenderer>().sprite = P.NormalSprite;
 
                 Bs.Add(P);
