@@ -135,10 +135,6 @@ namespace Alchemy.Inventory
                     }
                 }
             }
-            // else
-            // {
-            //     GotString = "You find nothing inside...";
-            // }
 
             if (LootedItems.Count == 0)
             {

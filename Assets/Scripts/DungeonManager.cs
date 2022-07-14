@@ -450,13 +450,12 @@ public class DungeonManager : MonoBehaviour
 
                 foreach (Chest chest in chests)
                 {
-                    Item item = null;
-
+                    // make loot for chest
                     List<ItemInstance> Loot = new List<ItemInstance>();
                     if (fixedChestItems != null && fixedChestItems.Length > 0 && fixedChestItemsIndex < fixedChestItems.Length)
                     {
                         // create specific items that should always be in the map
-                        item = fixedChestItems[fixedChestItemsIndex];
+                        Item item = fixedChestItems[fixedChestItemsIndex];
                         Debug.Log("Created specific chest at " + room.transform.position);
                         fixedChestItemsIndex++;
 
@@ -470,10 +469,8 @@ public class DungeonManager : MonoBehaviour
                         chest.isDynamic = true;
                     }
 
+                    // add loot to chest
                     chest.LootTable = Loot.ToArray();
-
-                    // int Scroll = Random.Range(0, 5);
-
                 }
 
                 roomsToAddChests--;
