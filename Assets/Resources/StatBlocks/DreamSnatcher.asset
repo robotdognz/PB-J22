@@ -208,12 +208,6 @@ MonoBehaviour:
     UseRandomAmount: 0
     MinCount: 0
     MaxCount: 0
-  - Base: {fileID: 11400000, guid: 41c6e7564b6ccb945b7853a02f76a683, type: 2}
-    Count: 2
-    DropProbability: 0.2
-    UseRandomAmount: 0
-    MinCount: 0
-    MaxCount: 0
   - Base: {fileID: 11400000, guid: 5c5ff226eb4c5c34f8f27525a6e92703, type: 2}
     Count: 1
     DropProbability: 0.6

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MegaPotion
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: c17c4fbb0b5c2c346af9600927677518, type: 3}
-  ItemName: Expensive Juice
+  ItemName: Crazy Juice
   ItemDescription: Restores 80% of your total HP and 15% of your total SP
   AutoBalanceThreshold: 10
   ConsumeOnAcquire: 0

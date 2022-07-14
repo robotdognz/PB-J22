@@ -15275,7 +15275,7 @@ MonoBehaviour:
     another one\u2026"
   loseDialogue: "Wasn\u2019t that a lovely treat! Now, be a good little boy and run
     along\u2026"
-  winDialogue: "Oh! Oh! You can take as much candy as you want, child. Just don\u2019t
+  winDialogue: "Ouch! Ouch! You can take as much candy as you want, child! Just don\u2019t
     hit me anymore\u2026"
   settingsSingleton: {fileID: 0}
   mobileToggle: {fileID: 2046442069}

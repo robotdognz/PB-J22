@@ -437,7 +437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.size
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: fixedChestItems.Array.size
@@ -514,27 +514,27 @@ PrefabInstance:
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[3].Base
       value: 
-      objectReference: {fileID: 11400000, guid: 41c6e7564b6ccb945b7853a02f76a683, type: 2}
+      objectReference: {fileID: 11400000, guid: 0fcc2982f8c712d408cce16da8a053d1, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[4].Base
       value: 
-      objectReference: {fileID: 11400000, guid: 0fcc2982f8c712d408cce16da8a053d1, type: 2}
+      objectReference: {fileID: 11400000, guid: 46f6094c557c4d148b77d275ad2f69ec, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[5].Base
       value: 
-      objectReference: {fileID: 11400000, guid: 46f6094c557c4d148b77d275ad2f69ec, type: 2}
+      objectReference: {fileID: 11400000, guid: 1ac413d185d6c3b498bea0e7c09a1a70, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[6].Base
       value: 
-      objectReference: {fileID: 11400000, guid: 1ac413d185d6c3b498bea0e7c09a1a70, type: 2}
+      objectReference: {fileID: 11400000, guid: 5fee101699e592140bc95da5441c3ee8, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[7].Base
       value: 
-      objectReference: {fileID: 11400000, guid: 5fee101699e592140bc95da5441c3ee8, type: 2}
+      objectReference: {fileID: 11400000, guid: 14cdb4ff9e109db41bcc0969b1ac2049, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[8].Base
       value: 
-      objectReference: {fileID: 11400000, guid: 14cdb4ff9e109db41bcc0969b1ac2049, type: 2}
+      objectReference: {fileID: 11400000, guid: 9cc77113dadab614abbafce67569e4dc, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[9].Base
       value: 
@@ -555,6 +555,10 @@ PrefabInstance:
       propertyPath: setChestItems.Array.data[13].Base
       value: 
       objectReference: {fileID: 11400000, guid: 5fee101699e592140bc95da5441c3ee8, type: 2}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: setChestItems.Array.data[6].Count
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[7].Count
       value: 1
@@ -609,7 +613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[3].MaxCount
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[3].MinCount
@@ -617,15 +621,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[4].MaxCount
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[4].MinCount
-      value: 1
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: setChestItems.Array.data[5].MaxCount
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[5].MinCount
-      value: 12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[6].MaxCount
@@ -717,7 +725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[3].DropProbability
-      value: 0.15
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[3].UseRandomAmount
@@ -725,7 +733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[4].DropProbability
-      value: 0.4
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[4].UseRandomAmount
@@ -733,7 +741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[5].DropProbability
-      value: 0.15
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[5].UseRandomAmount
@@ -741,15 +749,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[6].DropProbability
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[6].UseRandomAmount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[7].DropProbability
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[7].UseRandomAmount
@@ -757,7 +765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[8].DropProbability
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[8].UseRandomAmount

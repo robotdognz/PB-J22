@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HighPotion
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: c17c4fbb0b5c2c346af9600927677518, type: 3}
-  ItemName: Normal Juice
+  ItemName: Fancy Juice
   ItemDescription: Restores 60% of your total HP and 5% of your total SP
   AutoBalanceThreshold: 10
   ConsumeOnAcquire: 0
