@@ -10,7 +10,7 @@ namespace Alchemy.Combat
         None,
         Fire,
         Ice,
-        Wind,
+        // Wind,
         Earth
     }
 

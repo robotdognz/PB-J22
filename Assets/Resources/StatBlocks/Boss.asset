@@ -182,7 +182,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   EXPGained: 25
-  IsWeakTo: 02000000
+  IsWeakTo: 
   StartingSkills:
   - {fileID: 11400000, guid: 1ce1f6a89c9677945b2c35eeeb999ec9, type: 2}
   - {fileID: 11400000, guid: 1ce1f6a89c9677945b2c35eeeb999ec9, type: 2}
@@ -193,6 +193,6 @@ MonoBehaviour:
   HurtSound: {fileID: 8300000, guid: 1dcb6c3c85cec204ea391b19a1acc0a2, type: 3}
   DeathSound: {fileID: 8300000, guid: c44693ca87013704c8a7f826795eff43, type: 3}
   NormalSprite: {fileID: 21300000, guid: 19d3c5e7bb801034ebf147a59512a9cf, type: 3}
-  DamagedSprite: {fileID: 21300000, guid: b2fb7f92916dc6745a98538f3e7d849b, type: 3}
-  DeadSprite: {fileID: 21300000, guid: a4fdc639d95e9a2488c4e0471e237ae0, type: 3}
+  DamagedSprite: {fileID: 21300000, guid: a4fdc639d95e9a2488c4e0471e237ae0, type: 3}
+  DeadSprite: {fileID: 21300000, guid: 19d3c5e7bb801034ebf147a59512a9cf, type: 3}
   Drops: []
