@@ -1359,7 +1359,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.9098039, g: 0.8745098, b: 0.9882353, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -16446,8 +16446,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136491062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 0.95, y: 0.95, z: 1}
+  m_LocalPosition: {x: 0.03, y: -2.15, z: 10}
+  m_LocalScale: {x: 0.68342996, y: 0.68342996, z: 0.7194}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 317008887}
@@ -16494,7 +16494,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b8cf8bd701ee71741a5041c335af5cf6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cb2de48264cee4344b9eb37ace2ff8a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16515,6 +16515,10 @@ PrefabInstance:
     - target: {fileID: 6438489403734942241, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
       propertyPath: m_Name
       value: Debug Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438489403734942241, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6438489403734942252, guid: dce67d1137472ad4ba0d9950e8de2cc2, type: 3}
       propertyPath: m_Pivot.x
