@@ -478,41 +478,6 @@ public class DungeonManager : MonoBehaviour
         }
     }
 
-    public void LearnDungeonSkill()
-    {
-        Debug.Log("Event as... " + currentDungeonSkill);
-        switch (currentDungeonSkill)
-        {
-            case DungeonSkillType.Cartography:
-                hasCartographer = true;
-                break;
-            case DungeonSkillType.Boss_Sense:
-                hasBossSense = true;
-                DungeonPointer[] arrows = FindObjectsOfType<DungeonPointer>();
-                foreach (DungeonPointer arrow in arrows)
-                {
-                    if (arrow.type == DungeonSkillType.Boss_Sense)
-                    {
-                        arrow.Enable();
-                    }
-                }
-                break;
-            case DungeonSkillType.Scroll_Sense:
-                hasScrollSense = true;
-                arrows = FindObjectsOfType<DungeonPointer>();
-                foreach (DungeonPointer arrow in arrows)
-                {
-                    if (arrow.type == DungeonSkillType.Scroll_Sense)
-                    {
-                        arrow.Enable();
-                    }
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
     public void SetupBoss()
     {
         Room bossRoom = rooms[rooms.Count - 1];
@@ -549,18 +514,47 @@ public class DungeonManager : MonoBehaviour
         bossRoom.AddArrowToRoom(bossArrowColor, DungeonSkillType.Boss_Sense, 1);
     }
 
-    public ItemInstance[] GetChestItems()
+    
+    public void LearnDungeonSkill()
     {
-        // TODO: dynamically create items for the player
-        return null;
+        Debug.Log("Event as... " + currentDungeonSkill);
+        switch (currentDungeonSkill)
+        {
+            case DungeonSkillType.Cartography:
+                hasCartographer = true;
+                break;
+            case DungeonSkillType.Boss_Sense:
+                hasBossSense = true;
+                DungeonPointer[] arrows = FindObjectsOfType<DungeonPointer>();
+                foreach (DungeonPointer arrow in arrows)
+                {
+                    if (arrow.type == DungeonSkillType.Boss_Sense)
+                    {
+                        arrow.Enable();
+                    }
+                }
+                break;
+            case DungeonSkillType.Scroll_Sense:
+                hasScrollSense = true;
+                arrows = FindObjectsOfType<DungeonPointer>();
+                foreach (DungeonPointer arrow in arrows)
+                {
+                    if (arrow.type == DungeonSkillType.Scroll_Sense)
+                    {
+                        arrow.Enable();
+                    }
+                }
+                break;
+            default:
+                break;
+        }
     }
 
-    public static void DropWrappers()
+    public static void DropWrappers(Vector3 position)
     {
         if (currentRoomWrappers)
         {
-            Vector3 pos = FindObjectOfType<PlayerMovement>().transform.position;
-            currentRoomWrappers.DropWrapper(pos);
+            currentRoomWrappers.DropWrapper(position);
         }
     }
 

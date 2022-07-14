@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite[] WalkRight;
 
     private bool MidAnimation = false;
+    private bool dropping = false;
 
     private void SetCharacterSprite(int FrameIndex)
     {
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
                 Sprites = WalkRight;
                 break;
         }
-        
+
         sRenderer.sprite = Sprites[FrameIndex];
     }
 
@@ -73,6 +74,17 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(WalkAnimationLength / 4);
 
         MidAnimation = false;
+    }
+
+    private IEnumerator DropCandy()
+    {
+        {
+            dropping = true;
+            float rand = Random.Range(0.05f, 0.3f);
+            yield return new WaitForSeconds(rand);
+            DungeonManager.DropWrappers(transform.position);
+            dropping = false;
+        }
     }
 
     void Awake()
@@ -97,10 +109,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(WalkAnimation());
             }
+
+            if (!dropping)
+            {
+                StartCoroutine(DropCandy());
+            }
+
         }
         else
         {
             StopCoroutine(WalkAnimation());
+            StopCoroutine(DropCandy());
             SetCharacterSprite(1); // Index 1 should be the "idle" sprite
             Footsteps.Mute = true;
         }
