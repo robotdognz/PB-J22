@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46fb49237bfa6c649ae8f827c9e1dd1e, type: 3}
   m_Name: DreamSnatcher
   m_EditorClassIdentifier: 
-  DefaultName: Dream Snatcher
+  DefaultName: Bad Apple
   HealthOverLevel:
     serializedVersion: 2
     m_Curve:

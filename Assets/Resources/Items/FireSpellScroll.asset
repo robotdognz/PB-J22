@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: FireSpellScroll
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: 132e83b7f35d99c44aa9e593d61ebaff, type: 3}
-  ItemName: Fireball Scroll
-  ItemDescription: Teaches the Fireball Skill
+  ItemName: Sour Wrapper
+  ItemDescription: Teaches the Sour Skill
+  AutoBalanceThreshold: 10
   ConsumeOnAcquire: 1
   RestoreHPAsPercent: 0
   HealthRestore: 0
   RestoreSPAsPercent: 0
   StaminaRestore: 0
   SkillToLearn: {fileID: 11400000, guid: 434a9bac54fe7b845a969da3a9144736, type: 2}
+  isDungeonSkill: 0
+  DungeonSkillDialogue: Dungeon Skill
+  dungeonSkillType: 0
   Effects: []
   Removes: []

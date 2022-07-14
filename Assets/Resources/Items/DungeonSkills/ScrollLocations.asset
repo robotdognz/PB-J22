@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ScrollLocations
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: 132e83b7f35d99c44aa9e593d61ebaff, type: 3}
-  ItemName: Scroll Location Candy
+  ItemName: Ability Location Candy
   ItemDescription: Gives the loaction of all scrolls
   AutoBalanceThreshold: 10
   ConsumeOnAcquire: 1
@@ -23,8 +23,8 @@ MonoBehaviour:
   StaminaRestore: 0
   SkillToLearn: {fileID: 0}
   isDungeonSkill: 1
-  DungeonSkillDialogue: "You found the Scroll Location Candy! Now that you\u2019ve
-    eaten it, follow your instincts to find the power scrolls littered throughout
+  DungeonSkillDialogue: "You found the Ability Location Candy! Now that you\u2019ve
+    eaten it, your instincts will guide you to the ability wrappers hidden throughout
     the dungeon."
   dungeonSkillType: 2
   Effects: []

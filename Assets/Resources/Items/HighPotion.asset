@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: HighPotion
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: c17c4fbb0b5c2c346af9600927677518, type: 3}
-  ItemName: High Potion
+  ItemName: Normal Juice
   ItemDescription: Restores 60% of your total HP and 5% of your total SP
+  AutoBalanceThreshold: 10
   ConsumeOnAcquire: 0
   RestoreHPAsPercent: 1
   HealthRestore: 0.6
   RestoreSPAsPercent: 1
   StaminaRestore: 0.05
   SkillToLearn: {fileID: 0}
+  isDungeonSkill: 0
+  DungeonSkillDialogue: Dungeon Skill
+  dungeonSkillType: 0
   Effects: []
   Removes: []

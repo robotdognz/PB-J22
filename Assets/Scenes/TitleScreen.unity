@@ -8956,7 +8956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -37.703, y: 99.3}
+  m_AnchoredPosition: {x: -42.3, y: 99.3}
   m_SizeDelta: {x: 75.4066, y: -49.4966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1353371201
@@ -8992,7 +8992,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mould
+  m_Text: Size
 --- !u!222 &1353371202
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9329,7 +9329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -32.4, y: 99.5}
+  m_AnchoredPosition: {x: -29.7, y: 99.5}
   m_SizeDelta: {x: 96.7621, y: -45.5418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1510342441
@@ -9365,7 +9365,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Colour
+  m_Text: Colouring
 --- !u!222 &1510342442
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10055,7 +10055,7 @@ GameObject:
   - component: {fileID: 1714411429}
   - component: {fileID: 1714411428}
   m_Layer: 5
-  m_Name: Drink
+  m_Name: Eat Candy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15269,13 +15269,14 @@ MonoBehaviour:
   - {fileID: 766886882}
   - {fileID: 945505461}
   alchemistDialogue: {fileID: 1986391192}
-  normalDialogue: "Welcome to my alchemy store, young one. You seem troubled. Choose
-    the ingredients that speak to you and I will brew you a healing dream potion\u2026"
-  quitDialogue: "Was that potion a tad strong for you? Try choosing different ingredients
-    this time\u2026"
-  loseDialogue: "Oh dear. Perhaps you should look deeper within before choosing your
-    ingredients this time\u2026"
-  winDialogue: Welcome back, you look refreshed. Would you like to try another potion?
+  normalDialogue: "Welcome to my candy store little one. Hehe.. Choose your ingredients
+    and I will brew up a special treat just for you. Hehe\u2026"
+  quitDialogue: "Oh! Oh deer! You weren't supposed to wa\u2026 I mean, here, try
+    another one\u2026"
+  loseDialogue: "Wasn\u2019t that a lovely treat! Now, be a good little boy and run
+    along\u2026"
+  winDialogue: "Oh! Oh! You can take as much candy as you want, child. Just don\u2019t
+    hit me anymore\u2026"
   settingsSingleton: {fileID: 0}
   mobileToggle: {fileID: 2046442069}
   SmallDungeonSize: 50
@@ -15577,11 +15578,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5eebef65099ea1142bee4d37dd66d21f, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 11812b7215542204ca0d95e7209aba66, type: 3}
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 64
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -15589,8 +15590,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Welcome to my alchemy store, young one. You seem troubled. Choose the
-    ingredients that speak to you and I will brew you a dream potion\u2026"
+  m_Text: "Welcome to my candy store little one. Hehe.. Choose your ingredients and
+    I will brew up a special treat just for you. Hehe\u2026"
 --- !u!222 &1986391193
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15750,7 +15751,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Drink Potion
+  m_Text: Eat The Candy
 --- !u!222 &2022574338
 CanvasRenderer:
   m_ObjectHideFlags: 0

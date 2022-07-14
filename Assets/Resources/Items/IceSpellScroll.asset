@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: IceSpellScroll
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: 132e83b7f35d99c44aa9e593d61ebaff, type: 3}
-  ItemName: Frostbite Scroll
-  ItemDescription: Teaches the Frostbite Skill
+  ItemName: Sweet Wrapper
+  ItemDescription: Teaches the Sweet Skill
+  AutoBalanceThreshold: 10
   ConsumeOnAcquire: 1
   RestoreHPAsPercent: 0
   HealthRestore: 0
   RestoreSPAsPercent: 0
   StaminaRestore: 0
   SkillToLearn: {fileID: 11400000, guid: f451c7b529db8f04fa05c253050b626f, type: 2}
+  isDungeonSkill: 0
+  DungeonSkillDialogue: Dungeon Skill
+  dungeonSkillType: 0
   Effects: []
   Removes: []

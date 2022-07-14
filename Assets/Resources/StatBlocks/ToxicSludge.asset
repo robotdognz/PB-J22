@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46fb49237bfa6c649ae8f827c9e1dd1e, type: 3}
   m_Name: ToxicSludge
   m_EditorClassIdentifier: 
-  DefaultName: Toxic Sludge
+  DefaultName: Evil Gobstopper
   HealthOverLevel:
     serializedVersion: 2
     m_Curve:
@@ -198,30 +198,60 @@ MonoBehaviour:
   - Base: {fileID: 11400000, guid: 0fcc2982f8c712d408cce16da8a053d1, type: 2}
     Count: 2
     DropProbability: 1
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: 1ac413d185d6c3b498bea0e7c09a1a70, type: 2}
     Count: 1
     DropProbability: 1
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: 4dfd97f04fa2f294084eeb0e5a6553c0, type: 2}
     Count: 1
     DropProbability: 0.4
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: 5c5ff226eb4c5c34f8f27525a6e92703, type: 2}
     Count: 1
     DropProbability: 0.4
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: 1ac413d185d6c3b498bea0e7c09a1a70, type: 2}
     Count: 1
     DropProbability: 0.5
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
     Count: 2
     DropProbability: 0.3
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
     Count: 1
     DropProbability: 0.3
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
     Count: 2
     DropProbability: 0.3
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
     Count: 1
     DropProbability: 0.3
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0
   - Base: {fileID: 11400000, guid: ed5343070567c374d9c0adb82d474731, type: 2}
     Count: 1
     DropProbability: 0.3
+    UseRandomAmount: 0
+    MinCount: 0
+    MaxCount: 0

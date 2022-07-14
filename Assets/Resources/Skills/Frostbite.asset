@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b048aef8c26b38444bb4b9ed424ec308, type: 3}
   m_Name: Frostbite
   m_EditorClassIdentifier: 
-  DisplayedName: Frostbite
+  DisplayedName: Sweet
   Description: Cast a frostbite at one foe
   Icon: {fileID: 21300000, guid: 15a1578c7c23b1245ac9a568ab3686b8, type: 3}
   BasedStat: 3

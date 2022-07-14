@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b048aef8c26b38444bb4b9ed424ec308, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
-  DisplayedName: Fireball
+  DisplayedName: Sour
   Description: Cast a fireball at one foe
   Icon: {fileID: 21300000, guid: 06603ee1871711643b3ca35a6e43f66d, type: 3}
   BasedStat: 3

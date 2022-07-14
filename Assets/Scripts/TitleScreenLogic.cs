@@ -16,10 +16,10 @@ public class TitleScreenLogic : MonoBehaviour
 
     [Header("Alchemist Dialogue")]
     [SerializeField] Text alchemistDialogue;
-    [SerializeField] string normalDialogue = "";
-    [SerializeField] string quitDialogue = "";
-    [SerializeField] string loseDialogue = "";
-    [SerializeField] string winDialogue = "";
+    [SerializeField] [TextArea] string normalDialogue = "";
+    [SerializeField] [TextArea] string quitDialogue = "";
+    [SerializeField] [TextArea] string loseDialogue = "";
+    [SerializeField] [TextArea] string winDialogue = "";
 
     [HideInInspector] public SettingsSingleton settingsSingleton;
 

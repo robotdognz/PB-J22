@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: EarthquakeScroll
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: 132e83b7f35d99c44aa9e593d61ebaff, type: 3}
-  ItemName: Earthquake Scroll
-  ItemDescription: Teaches the Earthquake Skill
+  ItemName: Salty Wrapper
+  ItemDescription: Teaches the Salty Skill
+  AutoBalanceThreshold: 10
   ConsumeOnAcquire: 1
   RestoreHPAsPercent: 0
   HealthRestore: 0
   RestoreSPAsPercent: 0
   StaminaRestore: 0
   SkillToLearn: {fileID: 11400000, guid: 4305c0f65ed8ecf4891997035252d121, type: 2}
+  isDungeonSkill: 0
+  DungeonSkillDialogue: Dungeon Skill
+  dungeonSkillType: 0
   Effects: []
   Removes: []

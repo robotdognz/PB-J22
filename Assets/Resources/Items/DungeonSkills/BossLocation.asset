@@ -24,7 +24,7 @@ MonoBehaviour:
   SkillToLearn: {fileID: 0}
   isDungeonSkill: 1
   DungeonSkillDialogue: "You found the Boss Location Candy! Now that you\u2019ve
-    eaten it, follow your instincts to the boss at the end of the dungeon."
+    eaten it, your instincts will guide you to the boss at the end of the dungeon."
   dungeonSkillType: 1
   Effects: []
   Removes: []

@@ -2515,7 +2515,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Melee
+  m_Text: Kick
 --- !u!222 &414129393
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5138,7 +5138,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Alchemy
+  m_Text: Abilities
 --- !u!222 &939239345
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7326,7 +7326,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Alchemy
+  m_Text: Abilities
 --- !u!222 &1303181392
 CanvasRenderer:
   m_ObjectHideFlags: 0

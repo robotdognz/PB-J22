@@ -1518,5 +1518,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7358929885649975505, guid: a548873394175a64a935b13ae1552197, type: 3}
+      propertyPath: m_Text
+      value: You fall into a strange feeling sleep...
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a548873394175a64a935b13ae1552197, type: 3}
