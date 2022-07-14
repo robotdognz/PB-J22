@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Alchemy;
 using Alchemy.Inventory;
 using UnityEngine.Events;
@@ -308,7 +309,39 @@ public class Room : MonoBehaviour
     public void WinGame()
     {
         Room.ResetPlayerEnter();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(winScene);
+        int DungeonSize = Random.Range(0, 4);
+        
+        switch (DungeonSize)
+        {
+            default:
+                DungeonSize = 25;
+                break;
+            case 0:
+                DungeonSize = 30;
+                break;
+            case 1:
+                DungeonSize = 75;
+                break;
+            case 2:
+                DungeonSize = 150;
+                break;
+        }
+
+        float EnemyProbability = Random.Range(0.1f, 0.6f);
+        int EnemyLevel = PlayerMovement.Instance.GetComponent<Alchemy.Stats.ActorStats>().CurrentLevel;
+        int PlayerLevel = PlayerMovement.Instance.GetComponent<Alchemy.Stats.ActorStats>().CurrentLevel;
+
+        Alchemy.Music.DungeonType Dungeon = (Alchemy.Music.DungeonType)Random.Range(0, System.Enum.GetNames(typeof(Alchemy.Music.DungeonType)).Length);
+
+        SettingsSingleton.instance.WasPlayerKilled = false;
+        SettingsSingleton.instance.dungeonType = Dungeon;
+        SettingsSingleton.instance.dungeonSize = DungeonSize;
+        SettingsSingleton.instance.enemyProbability = EnemyProbability;
+        SettingsSingleton.instance.enemyLevel = EnemyLevel;
+        SettingsSingleton.instance.playerLevel = PlayerLevel;
+        Inventory.SkillsTransfer = PlayerMovement.Instance.GetComponent<Alchemy.Stats.ActorStats>().Skills.ToArray();
+
+        SceneManager.LoadScene(winScene);
     }
 
     public void BattleEnded(BattleEndResult result)
@@ -352,7 +385,7 @@ public class Room : MonoBehaviour
                 // tell the title screen to display the lose message
                 SettingsSingleton.instance.titleScreenState = SettingsSingleton.TitleScreenMessage.Lose;
                 // load title screen
-                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                SceneManager.LoadScene(0);
                 break;
             case BattleEndResult.Fled:
                 PlayerMovement.Instance.EnablePlayer();

@@ -34,22 +34,36 @@ namespace Alchemy.Inventory
 
     public static class Inventory
     {
-        public static List<ItemInstance> Itms { get; private set; } = new List<ItemInstance>();
-        public static List<ItemInstance> Items
+        private static List<Combat.Skill> Skills = new List<Combat.Skill>();
+        public static Combat.Skill[] SkillsTransfer
         {
             get
             {
-                return Itms.OrderBy(o => o.Base.ItemName).ToList();
+                Combat.Skill[] Skils = Skills.ToArray();
+                Skills.Clear();
+                return Skils;
+            }
+            set
+            {
+                Skills = value.ToList();
+            }
+        }
+        public static List<ItemInstance> Items { get; private set; } = new List<ItemInstance>();
+        public static List<ItemInstance> SortedItems
+        {
+            get
+            {
+                return Items.OrderBy(o => o.Base.ItemName).ToList();
             }
             private set
             {
-                Itms = value;
+                Items = value;
             }
         }
 
         public static ItemInstance GetItem(Item Base)
         {
-            foreach (ItemInstance I in Itms) 
+            foreach (ItemInstance I in Items) 
             {
                 if (Base == I.Base)
                     return I;
@@ -65,7 +79,7 @@ namespace Alchemy.Inventory
                 bool HadItem = false;
                 ItemInstance Holder = null;
 
-                foreach (ItemInstance I in Itms)
+                foreach (ItemInstance I in Items)
                 {
                     if (I.Base == Itm)
                     {
@@ -80,7 +94,7 @@ namespace Alchemy.Inventory
                 }
                 else
                 {
-                    Itms.Add(new ItemInstance(Itm, Amount));
+                    Items.Add(new ItemInstance(Itm, Amount));
                 }
             }
             else

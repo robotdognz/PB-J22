@@ -89,6 +89,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        GetComponent<Alchemy.Stats.ActorStats>().CurrentLevel = SettingsSingleton.instance.playerLevel;
+
+        if (SettingsSingleton.instance.WasPlayerKilled)
+            Alchemy.Inventory.Inventory.Items.Clear();
+
         Instance = this;
         body = GetComponent<Rigidbody2D>();
         sRenderer = GetComponent<SpriteRenderer>();
@@ -114,7 +119,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(DropCandy());
             }
-
         }
         else
         {

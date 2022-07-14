@@ -14,4 +14,9 @@ public class WinScreenLogic : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
+
+    public void ReloadDungeon()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
 }

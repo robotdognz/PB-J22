@@ -49,12 +49,12 @@ public class PauseMenu : MonoBehaviour
 
         int Index = 0;
 
-        if (Inventory.Items.Count <= 0)
+        if (Inventory.SortedItems.Count <= 0)
         {
             ItemsButton.Select();
         }
 
-        foreach (ItemInstance I in Inventory.Items)
+        foreach (ItemInstance I in Inventory.SortedItems)
         {
             GameObject Btn = Instantiate(ItemButton, ItemSpawn);
             Btn.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = $"{I.Base.ItemName} x{I.Count}";
@@ -67,7 +67,7 @@ public class PauseMenu : MonoBehaviour
 
                 if (I.Count <= 0)
                 {
-                    Inventory.Itms.Remove(I);
+                    Inventory.Items.Remove(I);
                 }
 
                 SelectedItem = int.Parse(Btn.name);
@@ -76,9 +76,9 @@ public class PauseMenu : MonoBehaviour
             });
             Buttons.Add(Btn);
 
-            if (Inventory.Items.Count > 0)
+            if (Inventory.SortedItems.Count > 0)
             {
-                if (SelectedItem == Mathf.Clamp(Index, 0, Inventory.Items.Count - 1))
+                if (SelectedItem == Mathf.Clamp(Index, 0, Inventory.SortedItems.Count - 1))
                 {
                     Btn.GetComponentInChildren<UnityEngine.UI.Button>().Select();
                 }
@@ -95,7 +95,7 @@ public class PauseMenu : MonoBehaviour
 
         // go to title screen
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 
     public void ReloadDungeon()

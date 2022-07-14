@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Alchemy.Stats
@@ -67,7 +68,13 @@ namespace Alchemy.Stats
 
             if (DecisionMaker == DecisionStyle.PlayerControlled)
             {
-                Inventory.Inventory.Items.Clear();
+                if (SettingsSingleton.instance.WasPlayerKilled)
+                    Inventory.Inventory.Items.Clear();
+                else
+                {
+                    SettingsSingleton.instance.WasPlayerKilled = true;
+                    Skills = Inventory.Inventory.SkillsTransfer.ToList();
+                }
 
                 foreach (Inventory.ItemInstance Item in Stats.Drops)
                 {

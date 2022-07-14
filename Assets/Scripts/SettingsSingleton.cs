@@ -5,6 +5,8 @@ using Alchemy.Music;
 
 public class SettingsSingleton : MonoBehaviour
 {
+    public bool WasPlayerKilled = true;
+
     // singleton
     public static SettingsSingleton instance { get; private set; }
 

@@ -218,7 +218,7 @@ namespace Alchemy.Combat
 
             ItemButtons.Clear();
 
-            foreach (ItemInstance Item in Inventory.Inventory.Items)
+            foreach (ItemInstance Item in Inventory.Inventory.SortedItems)
             {
                 Button Btn = Instantiate(ItemButton, ItemsRoot).GetComponentInChildren<Button>();
                 Btn.onClick.AddListener(() =>
@@ -229,7 +229,7 @@ namespace Alchemy.Combat
 
                     if (Item.Count <= 0)
                     {
-                        Inventory.Inventory.Itms.Remove(Item);
+                        Inventory.Inventory.Items.Remove(Item);
                     }
 
                     if (PlayerStats.StatusEffects.Count > 0)
