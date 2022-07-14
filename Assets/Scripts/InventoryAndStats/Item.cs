@@ -25,7 +25,7 @@ namespace Alchemy.Inventory
         [Space]
         public Skill SkillToLearn;
         public bool isDungeonSkill;
-        public string DungeonSkill = "Dungeon Skill";
+        [TextArea] public string DungeonSkillDialogue = "Dungeon Skill";
         public DungeonManager.DungeonSkillType dungeonSkillType;
 
         
@@ -95,7 +95,7 @@ namespace Alchemy.Inventory
                                 FindObjectOfType<PauseMenu>().ContinueButton.Select();
                     };
 
-                    DialogueManager.ShowMessage($"You learned how to use {DungeonSkill}!");
+                    DialogueManager.ShowMessage($"{DungeonSkillDialogue}");
                 }
 
                 Target.ModifyHealth(Mathf.RoundToInt(RestoreHPAsPercent ? HealthRestore * Target.MaxHealth : HealthRestore));

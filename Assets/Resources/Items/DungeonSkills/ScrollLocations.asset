@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2667e0a7436d63469e7e74e6d9e7bcc, type: 3}
-  m_Name: BossSense
+  m_Name: ScrollLocations
   m_EditorClassIdentifier: 
   Sound: {fileID: 8300000, guid: 132e83b7f35d99c44aa9e593d61ebaff, type: 3}
-  ItemName: Boss Sense Scroll
-  ItemDescription: Teaches the Boss Sense Skill
+  ItemName: Scroll Location Candy
+  ItemDescription: Gives the loaction of all scrolls
+  AutoBalanceThreshold: 10
   ConsumeOnAcquire: 1
   RestoreHPAsPercent: 0
   HealthRestore: 0
@@ -22,7 +23,9 @@ MonoBehaviour:
   StaminaRestore: 0
   SkillToLearn: {fileID: 0}
   isDungeonSkill: 1
-  DungeonSkill: Boss Sense
-  dungeonSkillType: 1
+  DungeonSkillDialogue: "You found the Scroll Location Candy! Now that you\u2019ve
+    eaten it, follow your instincts to find the power scrolls littered throughout
+    the dungeon."
+  dungeonSkillType: 2
   Effects: []
   Removes: []

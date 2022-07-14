@@ -50,6 +50,8 @@ namespace Alchemy.Inventory
 
                 Stats.ActorStats Player = PlayerMovement.Instance.GetComponent<Stats.ActorStats>();
 
+                // while (Loot.Count == 0) // loop again if nothing was added, prevent empty chests
+                // {
                 foreach (ItemInstance I in LootTable)
                 {
                     if (I != null && I.Base != null && Player != null && Player.Skills != null)
@@ -59,10 +61,11 @@ namespace Alchemy.Inventory
                         bool Add = true;
 
                         if ((I.Base.SkillToLearn != null && Player.Skills.Contains(I.Base.SkillToLearn))
-                            || (Inventory.GetItem(I.Base) != null && Inventory.GetItem(I.Base).Count > I.Base.AutoBalanceThreshold))
+                            || (Inventory.GetItem(I.Base) != null && Inventory.GetItem(I.Base).Count > I.Base.AutoBalanceThreshold)
+                            || I.Base.isDungeonSkill) // dungeon skill
                         {
-                            Itm.DropProbability /= 2; // Lower the probability of recieving this item, to make way for others
-                            
+                            Itm.DropProbability /= 2; // Lower the probability of receiving this item, to make way for others
+
                             if (I.Base.SkillToLearn != null && Player.Skills.Contains(I.Base.SkillToLearn))
                             {
                                 Add = false;
@@ -100,6 +103,7 @@ namespace Alchemy.Inventory
                             Loot.Add(Itm);
                     }
                 }
+                // }
             }
 
 
@@ -131,13 +135,18 @@ namespace Alchemy.Inventory
                     }
                 }
             }
-            else
+            // else
+            // {
+            //     GotString = "You find nothing inside...";
+            // }
+
+            if (LootedItems.Count == 0)
             {
                 GotString = "You find nothing inside...";
             }
 
             Renderer.sprite = OpenedSprite;
-            DialogueManager.OnDialogueClose += () => 
+            DialogueManager.OnDialogueClose += () =>
             {
                 StartCoroutine(AddLoot(LootedItems));
             };
