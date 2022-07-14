@@ -15288,9 +15288,9 @@ MonoBehaviour:
   EasyEnemyLevel: 1
   MediumEnemyLevel: 4
   HardEnemyLevel: 8
-  EasyPlayerLevel: 1
-  MediumPlayerLevel: 4
-  HardPlayerLevel: 8
+  EasyPlayerLevel: 2
+  MediumPlayerLevel: 1
+  HardPlayerLevel: 0
 --- !u!4 &1862841390
 Transform:
   m_ObjectHideFlags: 0

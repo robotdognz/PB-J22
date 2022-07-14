@@ -540,6 +540,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9cc77113dadab614abbafce67569e4dc, type: 2}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: startRoomChestLayouts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[10].Base
       value: 
       objectReference: {fileID: 11400000, guid: 33caed1e74ddd524689e2267068a5c6c, type: 2}
@@ -587,6 +591,14 @@ PrefabInstance:
       propertyPath: setChestItems.Array.data[13].Count
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: startRoomChestLayouts.Array.data[0]
+      value: 
+      objectReference: {fileID: 5653920367887999707, guid: 94f9daf21f5cba34ba2951b4d1a12c42, type: 3}
+    - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
+      propertyPath: startRoomChestLayouts.Array.data[1]
+      value: 
+      objectReference: {fileID: 5653920367887999707, guid: 14e2b9a70c1f60543984b03b20cb64ab, type: 3}
     - target: {fileID: 6099767115999452695, guid: 9b3ff93366aef054eb6f2e6ca8c987db, type: 3}
       propertyPath: setChestItems.Array.data[0].MaxCount
       value: 3

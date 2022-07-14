@@ -61,10 +61,9 @@ public class DungeonManager : MonoBehaviour
 
     // chests
     public GameObject[] chestLayouts;
+    public GameObject[] startRoomChestLayouts;
     public ItemInstance[] setChestItems;
     public Item[] fixedChestItems;
-    // public Item[] dungeonSkillItems;
-    // public Item[] generalChestItems;
 
     // doors
     [SerializeField] GameObject door;
@@ -142,8 +141,8 @@ public class DungeonManager : MonoBehaviour
         roomCount = dungeonSize - 1; // minus one to account for first room
         rooms = new List<Room>();
 
-        // set player level
-        FindObjectOfType<PlayerMovement>().GetComponent<ActorStats>().CurrentLevel = playerLevel;
+        // // set player level
+        // FindObjectOfType<PlayerMovement>().GetComponent<ActorStats>().CurrentLevel = playerLevel;
         FindObjectOfType<PlayerMovement>().GetComponent<ActorStats>().ResetStats(); // Makes sure player's health and stamina are maxed at higher levels
 
         // Build(); // build the dungeon
@@ -158,6 +157,7 @@ public class DungeonManager : MonoBehaviour
         BuildDoors();
         SetupEnemiesAndChests();
         SetupBoss();
+        SetupFirstRoom();
         Invoke("RemoveLoadingScreen", 1f);
         PlayerMovement.PreviousRoom = rooms[0];
     }
@@ -511,10 +511,52 @@ public class DungeonManager : MonoBehaviour
 
         // add the boss to the room and setup arrow
         bossRoom.AddEnemies(boss);
-        bossRoom.AddArrowToRoom(bossArrowColor, DungeonSkillType.Boss_Sense, 1);
+        bossRoom.AddArrowToRoom(bossArrowColor, DungeonSkillType.Boss_Sense, 0.75f);
     }
 
-    
+    private void SetupFirstRoom()
+    {
+        Room room = rooms[0];
+        GameObject chestObject = null;
+
+        switch (playerLevel)
+        {
+            case 1:
+                // create 1 chest in start room
+                chestObject = Instantiate(startRoomChestLayouts[0], room.transform.position, Quaternion.identity);
+                break;
+            case 2:
+                // create 2 chests in start room
+                chestObject = Instantiate(startRoomChestLayouts[1], room.transform.position, Quaternion.identity);
+                break;
+            case 0:
+            default:
+                // no chests in start room
+                return;
+        }
+
+        // add chests to room
+        chestObject.transform.parent = room.transform.parent.transform;
+        room.AddChests(chestObject);
+
+        // setup chest contents
+        Chest[] chests = chestObject.GetComponentsInChildren<Chest>();
+        foreach (Chest chest in chests)
+        {
+            // make loot for chest
+            List<ItemInstance> Loot = new List<ItemInstance>();
+
+            // create dynamic chest
+            Loot = setChestItems.ToList();
+            chest.isDynamic = true;
+
+            // add loot to chest
+            chest.LootTable = Loot.ToArray();
+        }
+    }
+
+
+
     public void LearnDungeonSkill()
     {
         Debug.Log("Event as... " + currentDungeonSkill);
